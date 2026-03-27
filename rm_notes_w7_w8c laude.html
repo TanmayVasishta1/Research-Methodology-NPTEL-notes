@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RM Notes — Week 7 & 8 | Exam Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: #2a2a38;
+    --accent: #f0a500;
+    --accent2: #e05c5c;
+    --accent3: #5ce0c4;
+    --accent4: #9b7fe8;
+    --text: #e8e6f0;
+    --muted: #7a7890;
+    --highlight: rgba(240,165,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .topbar-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .topbar nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .topbar nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .topbar nav a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--highlight);
+  }
+
+  .exam-badge {
+    margin-left: auto;
+    background: var(--accent2);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 620px;
+    font-style: italic;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 3rem 0;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── WEEK HEADER ── */
+  .week-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .week-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .week-header p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* ── TOPIC CARD ── */
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+
+  .topic:hover { border-color: var(--accent4); }
+
+  .topic h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic h3 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(92,224,196,0.12);
+    color: var(--accent3);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid rgba(92,224,196,0.2);
+  }
+
+  .topic p, .topic li {
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.8;
+  }
+
+  .topic ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .topic li { margin-bottom: 0.3rem; }
+  .topic li::marker { color: var(--accent); }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent4);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--accent4);
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+
+  /* ── KEY FACT ── */
+  .key-fact {
+    background: rgba(240,165,0,0.07);
+    border: 1px solid rgba(240,165,0,0.25);
+    border-radius: 6px;
+    padding: 0.8rem 1.2rem;
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .key-fact strong { color: var(--accent); }
+
+  /* ── WARNING ── */
+  .warn {
+    background: rgba(224,92,92,0.07);
+    border: 1px solid rgba(224,92,92,0.25);
+    border-radius: 6px;
+    padding: 0.8rem 1.2rem;
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .warn strong { color: var(--accent2); }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 0.75rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  th {
+    background: var(--surface2);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--accent3);
+    padding: 0.6rem 1rem;
+    text-align: left;
+    letter-spacing: 0.04em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(42,42,56,0.5);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0.75rem 0;
+  }
+
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .grid-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+  }
+
+  .grid-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .grid-card p, .grid-card li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── SUMMARY BOX ── */
+  .summary-box {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .summary-box::before {
+    content: '★ SUMMARY';
+    position: absolute;
+    top: -0.65rem;
+    left: 1.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 0.1rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  .summary-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .summary-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    align-items: flex-start;
+  }
+
+  .summary-item::before {
+    content: '→';
+    color: var(--accent);
+    font-family: monospace;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* ── MCQ SECTION ── */
+  .mcq-section {
+    margin-top: 4rem;
+  }
+
+  .mcq-header {
+    background: linear-gradient(135deg, rgba(155,127,232,0.15), rgba(92,224,196,0.08));
+    border: 1px solid var(--accent4);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .mcq-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent4);
+    margin-bottom: 0.4rem;
+  }
+
+  .mcq-header p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .mcq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .mcq-card:hover { border-color: var(--accent4); }
+
+  .mcq-q-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .mcq-question {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .mcq-options {
+    list-style: none;
+    padding: 0;
+  }
+
+  .mcq-options li {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    font-size: 0.93rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .mcq-options li:hover { border-color: var(--accent4); background: rgba(92,224,196,0.04); }
+
+  .mcq-options li .opt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .mcq-options li.correct {
+    background: rgba(92,224,196,0.1);
+    border-color: var(--accent3);
+    color: var(--accent3);
+  }
+
+  .mcq-options li.correct .opt-label { color: var(--accent3); border-color: var(--accent3); }
+
+  .mcq-reveal-btn {
+    background: none;
+    border: 1px solid var(--accent4);
+    color: var(--accent4);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .mcq-reveal-btn:hover { background: rgba(155,127,232,0.1); }
+
+  .mcq-answer {
+    display: none;
+    margin-top: 0.75rem;
+    background: rgba(92,224,196,0.07);
+    border: 1px solid rgba(92,224,196,0.2);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .mcq-answer.visible { display: block; }
+  .mcq-answer strong { color: var(--accent3); }
+
+  .multi-badge {
+    display: inline-block;
+    background: rgba(224,92,92,0.12);
+    color: var(--accent2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid rgba(224,92,92,0.25);
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── TAGS ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent4);
+    background: rgba(155,127,232,0.1);
+    border: 1px solid rgba(155,127,232,0.2);
+    padding: 0.1rem 0.5rem;
+    border-radius: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .topic, .mcq-card, .summary-box {
+    animation: fadeUp 0.4s ease both;
+  }
+
+  /* ── INLINE HIGHLIGHT ── */
+  mark {
+    background: rgba(240,165,0,0.2);
+    color: var(--accent);
+    padding: 0 0.2em;
+    border-radius: 2px;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82em;
+    background: var(--surface2);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: var(--accent3);
+    border: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">RM Notes</div>
+  <nav>
+    <a href="#week7">Week 7 — DOE</a>
+    <a href="#week8">Week 8 — Research</a>
+    <a href="#summary">Summary</a>
+    <a href="#mcq">Practice MCQs</a>
+  </nav>
+  <span class="exam-badge">⏰ Exam in 3 days</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-week">NPTEL · Research Methodology · Weeks 7 & 8</div>
+  <h1>Exam-Ready<br/><span>Notes</span></h1>
+  <p class="hero-desc">Every key concept from DOE, Statistics, and Research Methodology — condensed, clear, and ready to crush the exam.</p>
+</div>
+
+<!-- ─────────────────────────── MAIN CONTENT ─────────────────────────── -->
+<div class="container">
+
+<!-- ══════════════════════════ WEEK 7 ══════════════════════════ -->
+<div id="week7">
+  <div class="week-header">
+    <h2>Week 7 — Design of Experiments (DOE): Statistical Foundations</h2>
+    <p>Probability, distributions, sampling, hypothesis testing, ANOVA, regression, and experimental design</p>
+  </div>
+
+  <div class="section-title">Core Experiment Model</div>
+
+  <div class="topic">
+    <h3><span class="num">01</span>The Fundamental DOE Equation</h3>
+    <p>Every experimental measurement is modeled as:</p>
+    <div class="formula">yᵢ  =  ηᵢ  +  εᵢ
+
+yᵢ  → actual measurement (what you record)
+ηᵢ  → TRUE value (unknown, what you really want)
+εᵢ  → random error (positive or negative — scatter is unavoidable)</div>
+    <div class="key-fact"><strong>Key insight:</strong> You can never know ηᵢ directly. Experiments give estimates. The scatter εᵢ is not your mistake — it's physics. DOE teaches you to <mark>live with scatter and still draw conclusions</mark>.</div>
+    <p>Why do experiments? (a) To prove theory, (b) Proof of concept, (c) When theory is too complex to develop analytically.</p>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">02</span>Random Variables & Probability Density Function (PDF)</h3>
+    <ul>
+      <li><strong>Random Variable X</strong> — abstract before experiment; becomes small <em>x</em> after measurement.</li>
+      <li><strong>PDF f(x)</strong> — describes distribution of probabilities for a continuous random variable. <mark>Total area under the curve = 1.</mark></li>
+      <li><strong>CDF F(z)</strong> = ∫₋∞ᶻ f(x) dx — cumulative probability up to z.</li>
+    </ul>
+    <div class="formula">P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx = F(b) − F(a)</div>
+    <div class="key-fact"><strong>Mean (μ):</strong> E[X] = ∫₋∞^∞ x·f(x) dx  &nbsp;|&nbsp;  <strong>Variance (σ²):</strong> E[(X−μ)²] = ∫₋∞^∞ (x−μ)²·f(x) dx</div>
+    <div class="warn"><strong>Exam trap:</strong> For a legitimate PDF: ∫₋∞^∞ f(x)dx = 1, NOT necessarily ∫₀^∞. Also, ∫ₐᵃ f(x)dx = 0 always (single point has zero probability).</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">03</span>Normal Distribution — The Star of DOE</h3>
+    <div class="grid-2">
+      <div class="grid-card">
+        <h4>Parameters</h4>
+        <p>Mean <strong>μ</strong> and Variance <strong>σ²</strong> are the parameters themselves (not derived from them)</p>
+        <p>Notation: <code>N(μ, σ²)</code></p>
+      </div>
+      <div class="grid-card">
+        <h4>PDF Form</h4>
+        <p>f(x) = (1/√(2πσ²)) · exp(−(x−μ)²/(2σ²))</p>
+      </div>
+    </div>
+    <p>Shape: symmetric, bell-shaped, unimodal. <mark>Mean = Median = Mode</mark>. Symmetric about the <strong>mean</strong>.</p>
+    <div class="formula">68–95–99.7 Rule:
+  ±1σ from mean  →  ~68% of data
+  ±2σ from mean  →  ~95% of data
+  ±3σ from mean  →  ~99.7% of data</div>
+    <div class="key-fact"><strong>Standard Normal Z:</strong> If X ~ N(μ, σ²), then Z = (X − μ)/σ ~ N(0, 1). Use a single Z-table for all normal distributions!</div>
+    <p>The normal distribution is preferred because its properties are well-understood and many other distributions tend to it under certain conditions (e.g., t-distribution as df → ∞).</p>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">04</span>Population vs Sample — Estimation</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concept</th><th>Population</th><th>Sample</th></tr></thead>
+        <tbody>
+          <tr><td>Mean</td><td>μ (true, unknown)</td><td>x̄ = Σxᵢ/n (estimator)</td></tr>
+          <tr><td>Variance</td><td>σ² (true, unknown)</td><td>s² = Σ(xᵢ−x̄)²/(n−1) (estimator)</td></tr>
+          <tr><td>Type</td><td>Parameter</td><td>Statistic / Point Estimate</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key-fact"><strong>Why n−1?</strong> Degrees of freedom. Among n deviations (xᵢ−x̄), they must sum to 0 — so only n−1 are independent. Dividing by n−1 gives an unbiased estimate of σ².</div>
+    <p><strong>Good sampling rules:</strong> Independent observations, each element has equal probability of selection, all from the same distribution.</p>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">05</span>Sampling Distribution of the Mean</h3>
+    <p>x̄ is itself a random variable. Take many samples of size n — you get a distribution of sample means.</p>
+    <div class="formula">E[x̄] = μ            (mean of sample means = population mean)
+Var[x̄] = σ²/n      (variance of sample means = σ²/n)
+SD[x̄] = σ/√n      (standard error of the mean)</div>
+    <div class="key-fact"><strong>Intuition:</strong> Larger sample → smaller variance of means → more precise estimates. A sample of size 100 gives 10× more precise estimates than size 1 (in terms of SD).</div>
+    <div class="key-fact"><strong>If population is normal:</strong> x̄ ~ N(μ, σ²/n) for ANY sample size n.</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">06</span>Central Limit Theorem (CLT)</h3>
+    <div class="key-fact"><strong>CLT Statement:</strong> Even if the parent population is <mark>NOT normal</mark>, the sampling distribution of the mean approaches normality as n increases (n > 30 is the rule of thumb).</div>
+    <p>This is extremely useful — no matter how weird your data distribution is, with large enough samples, statistical inference based on normality works.</p>
+    <div class="warn"><strong>FALSE statements about CLT (exam favorite):</strong> "If parent is normal, sampling distribution is NOT normal for n&lt;30" — FALSE. If parent is normal, sampling dist IS always normal regardless of n. "If parent is not normal, sampling dist is also not normal regardless of n" — FALSE (CLT fixes this for large n).</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">07</span>Confidence Intervals</h3>
+    <p>A range estimate for the population parameter μ. 100(1−α)% CI when σ is known:</p>
+    <div class="formula">x̄ − z(α/2)·σ/√n  ≤  μ  ≤  x̄ + z(α/2)·σ/√n
+
+α = level of significance (usually 0.05 for 95% CI)
+z(α/2) = upper 100α/2% point of N(0,1)</div>
+    <div class="key-fact"><strong>Meaning:</strong> If you take 100 random samples and compute 95% CIs from each, ~95 of those intervals will contain the true μ. Note: μ is fixed; the interval varies.</div>
+    <p><strong>Broad vs narrow CI:</strong> Wide CI = more confident but less precise (train arrives between 1pm–5pm). Narrow CI = precise but less confident (2pm–2:15pm). There's a trade-off.</p>
+    <div class="key-fact"><strong>t-distribution:</strong> When σ² is unknown AND sample size is small, use t = (x̄−μ)/(s/√n) with n−1 degrees of freedom.</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">08</span>Chi-Square & F Distributions</h3>
+    <div class="grid-2">
+      <div class="grid-card">
+        <h4>Chi-Square (χ²)</h4>
+        <p>χ² = (n−1)s²/σ² with n−1 degrees of freedom. Used for confidence intervals on variance. Only positive values (right-skewed).</p>
+      </div>
+      <div class="grid-card">
+        <h4>F Distribution</h4>
+        <p>F = (S₁²/σ₁²)/(S₂²/σ₂²) — ratio of two chi-squares scaled by their DoF. Has two sets of DoF: numerator (m₁) and denominator (m₂).</p>
+      </div>
+    </div>
+    <div class="key-fact"><strong>F in DOE:</strong> Compare variation due to factor changes vs variation due to random error. High F = factor is significant. P-value = probability of committing a Type I error.</div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="section-title">Hypothesis Testing</div>
+
+  <div class="topic">
+    <h3><span class="num">09</span>Hypothesis Testing — H₀ vs H₁</h3>
+    <p>Hypothesis testing makes decisions about <mark>population parameters</mark> using sample data.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <h4>Null Hypothesis H₀</h4>
+        <p>"Status quo." E.g., "new process is NOT better than existing." The claim we test against.</p>
+      </div>
+      <div class="grid-card">
+        <h4>Alternate Hypothesis H₁</h4>
+        <p>Contradicts H₀. If H₀ is rejected → H₁ is automatically accepted.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Decision \ Reality</th><th>H₀ is TRUE</th><th>H₀ is FALSE</th></tr></thead>
+        <tbody>
+          <tr><td>Do not reject H₀</td><td style="color:var(--accent3)">✓ Correct</td><td style="color:var(--accent2)">Type II Error (β)</td></tr>
+          <tr><td>Reject H₀</td><td style="color:var(--accent2)">Type I Error (α) ← MORE SERIOUS</td><td style="color:var(--accent3)">✓ Correct</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn"><strong>Type I > Type II in severity:</strong> Innocent person convicted (wrongly rejecting innocence = Type I). Guilty person freed (wrongly not convicting = Type II). Type I = discarding a perfectly good process for a new unproven one.</div>
+    <p>Scope of hypothesis testing: concerns <strong>parameters of probability distribution of the population</strong>, not the sample. It relies on data contained in the sample taken from the population.</p>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="section-title">ANOVA & Experimental Design</div>
+
+  <div class="topic">
+    <h3><span class="num">10</span>ANOVA Table — Analysis of Variance</h3>
+    <p>Everything in DOE reduces to comparing variances. One-factor ANOVA:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>Sum of Squares</th><th>Degrees of Freedom</th><th>Mean Square</th><th>F-ratio</th></tr></thead>
+        <tbody>
+          <tr><td>Treatments</td><td>SS_Treatment</td><td>a − 1</td><td>MS_T = SS_T/(a−1)</td><td rowspan="2" style="vertical-align:middle">MS_T / MS_E</td></tr>
+          <tr><td>Error</td><td>SS_Error</td><td>a(n−1)</td><td>MS_E = SS_E/[a(n−1)]</td></tr>
+          <tr><td>Total</td><td>SS_Total</td><td>an−1</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Two-factor ANOVA adds: SS_A, SS_B, SS_AB (interaction). Interaction DoF = (a−1)(b−1).</p>
+    <div class="key-fact"><strong>Key:</strong> High F for a factor → that factor significantly affects the response. High F for AB → interaction is significant. If interaction plot lines are <mark>parallel → no interaction</mark>; if they cross/converge/diverge → interaction exists.</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">11</span>Randomization in Experiments</h3>
+    <p>Run experiments in a <strong>random order</strong> (not systematic). Why? Uncontrolled lurking effects (e.g., temperature build-up, instrument drift, operator fatigue) get <mark>evenly distributed</mark> across all treatments rather than systematically biasing one treatment.</p>
+    <div class="key-fact"><strong>Example:</strong> Testing 3 toners on a photocopier sequentially — if the copier heats up during runs, Toner C always gets hotter conditions. Randomization prevents this bias.</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">12</span>Factorial Design (2ⁿ)</h3>
+    <p>n factors, each at 2 levels (Low and High). Total runs = 2ⁿ.</p>
+    <ul>
+      <li><strong>Economical</strong> — maximum information from minimum runs compared to one-factor-at-a-time (OFAT).</li>
+      <li><strong>Captures interactions</strong> — OFAT misses interaction effects between factors.</li>
+      <li><strong>Both qualitative and quantitative factors</strong> can be analyzed together.</li>
+    </ul>
+    <div class="key-fact"><strong>Interaction:</strong> Factor A's effect on response depends on the level of Factor B. If changing A from low→high gives different response at B_low vs B_high, they interact. Both main effects AND interaction effects matter.</div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="section-title">Regression & Response Surface</div>
+
+  <div class="topic">
+    <h3><span class="num">13</span>Linear Regression Model</h3>
+    <div class="formula">y = β₀ + β₁X₁ + β₂X₂ + ... + βₖXₖ + ε
+
+β₀   → intercept
+β₁..βₖ → partial regression coefficients (k+1 unknowns total)
+ε    → random error ~ N(0, σ²)</div>
+    <p>Matrix form: <code>y = Xβ + ε</code>. Least-squares solution: <code>β̂ = (X'X)⁻¹ X'y</code></p>
+    <div class="key-fact"><strong>Coefficient of Determination R²:</strong> Proportion of total variability explained by the model.<br/>R² = 1 − SS_Error/SS_Total = SS_Regression/SS_Total. R² = 1 when SS_Error = 0 (perfect fit).</div>
+    <div class="warn"><strong>Don't chase R²=1!</strong> Adding useless parameters always inflates R². Use <strong>Adjusted R²</strong> = 1 − (MS_Error/MS_Total), which penalizes for extra parameters. If Adj R² decreases when you add a term, that term is useless.</div>
+  </div>
+
+  <div class="topic">
+    <h3><span class="num">14</span>Second-Order Models & RSM</h3>
+    <p>When the experimental space has peaks/valleys (non-linear response), use second-order models:</p>
+    <div class="formula">y = β₀ + Σβᵢxᵢ + ΣΣβᵢⱼxᵢxⱼ + Σβᵢᵢxᵢ²  + ε
+                           interactions    quadratic terms</div>
+    <p><strong>Response Surface Methodology (RSM)</strong> finds the direction of steepest ascent/descent to reach the optimum efficiently.</p>
+    <p><strong>Central Composite Design (CCD)</strong>: Combines 2ⁿ factorial points + 2k axial points + center points. Center points detect curvature; axial points estimate individual quadratic terms (β₁₁, β₂₂, etc.).</p>
+    <div class="key-fact"><strong>Canonical Analysis (Eigenvalues of B matrix):</strong>
+      <ul style="margin-top:0.4rem">
+        <li>All eigenvalues <strong>negative</strong> → stationary point is a <mark>maximum</mark></li>
+        <li>All eigenvalues <strong>positive</strong> → stationary point is a <mark>minimum</mark></li>
+        <li>Mixed signs → saddle point</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════ WEEK 8 ══════════════════════════ -->
+  <div id="week8" style="margin-top: 3rem;">
+    <div class="week-header" style="border-left-color: var(--accent3);">
+      <h2>Week 8 — Research Methodology & Graduate Studies</h2>
+      <p>What is research, interdisciplinarity, research scholar journey, advisor dynamics, career paths, and success metrics</p>
+    </div>
+
+    <div class="section-title">What is Research?</div>
+
+    <div class="topic">
+      <h3><span class="num">15</span>Classroom vs Research Environment</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Classroom</th><th>Research</th></tr></thead>
+          <tbody>
+            <tr><td>Problems are <strong>well-defined</strong></td><td>Problems are <strong>open-ended/ambiguous</strong></td></tr>
+            <tr><td>Involves only <strong>one unknown variable</strong> (given 3, find 4th)</td><td>Multiple variables; scholar must <strong>define and justify assumptions</strong> (given 1, define the other 3)</td></tr>
+            <tr><td>Fixed solutions exist</td><td>Multiple valid approaches; boundaries are fuzzy</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="key-fact"><strong>Definition of Research:</strong> Conducting <mark>systematic scientific investigations</mark> to uncover the truth about a specific problem. NOT "repeating a search process" or "just discovering solutions."</div>
+    </div>
+
+    <div class="topic">
+      <h3><span class="num">16</span>Key Research Concepts</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <h4>Interdisciplinarity</h4>
+          <p>Integrating knowledge from multiple fields (Physics + Mech + Bio + Civil etc.) to solve complex problems. Modern problems rarely fit into single "vertical silos."</p>
+        </div>
+        <div class="grid-card">
+          <h4>Primary Objectives</h4>
+          <p>(1) Acquiring new knowledge, (2) Staying updated with advances, (3) Systematic examination and critical analysis. → <strong>All of the above.</strong></p>
+        </div>
+        <div class="grid-card">
+          <h4>Purpose in Education</h4>
+          <p>To contribute to becoming a <strong>respected educational professional</strong>. Not to diminish social status or suppress development.</p>
+        </div>
+        <div class="grid-card">
+          <h4>Starting Point</h4>
+          <p>Primary requirement when starting research: <strong>Establishing a research question</strong> (not data analysis or writing thesis first).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3><span class="num">17</span>Interdisciplinary Research</h3>
+      <div class="key-fact"><strong>Primary objective of interdisciplinary research:</strong> To incorporate a <mark>comprehensive methodology by merging two or more fields</mark> — NOT to complicate problems or diminish focus.</div>
+      <p>Applied Mechanics at IIT Madras: 3 core groups — Fluid Mechanics, Solid Mechanics, Biomechanics/Biomedical Engineering. Faculty from 8 different undergraduate backgrounds. Cutting-edge tools: DNS of combustion, nano-indentation, atomic force microscopy (AFM).</p>
+      <p><strong>India-Scale Thinking:</strong> Not all critical problems need the newest tools — innovative application of existing methods to strategic problems (DRDO, ISRO, rural development).</p>
+    </div>
+
+    <div class="topic">
+      <h3><span class="num">18</span>Research Scholar's Journey</h3>
+      <p><strong>The big challenge:</strong> Transitioning from structured course work to open-ended research. Students accustomed to "given problem, find answer" must shift to "define the problem, justify your assumptions."</p>
+      <ul>
+        <li>Approach it as a <strong>positive challenge</strong>, not an obstacle.</li>
+        <li>Embrace interdisciplinary work — the world doesn't fit into vertical silos.</li>
+        <li><strong>Advisor meetings:</strong> Weekly initially; frequency adjusts as independence grows. Define the interaction pattern with your advisor — it's a two-person agreement.</li>
+        <li>Peer group discussion is as important as meeting the guide.</li>
+      </ul>
+      <div class="key-fact"><strong>Success metrics for a PhD graduate:</strong> (1) Clear understanding and ability to explain work to others, (2) Identification of limitations and boundaries, (3) Setting goals for future research, (4) <mark>Ability to carry out research independently</mark>. — NOT dependence on others.</div>
+    </div>
+
+    <div class="topic">
+      <h3><span class="num">19</span>Experimental Research Processes</h3>
+      <div class="key-fact"><strong>NOT required in experimental research:</strong> <mark>Manipulating results</mark>. Required processes: controlling variables, making observations, collecting references.</div>
+      <div class="key-fact"><strong>Why manipulation is discouraged:</strong> It distorts validity and reliability of findings, undermines integrity and credibility of the researcher, and hampers progress of knowledge. → <strong>All of the above.</strong></div>
+    </div>
+
+  </div><!-- end week8 -->
+
+  <!-- ══════════════════════════ SUMMARY ══════════════════════════ -->
+  <div id="summary">
+    <div class="summary-box">
+      <h3>Week 7 — DOE Key Formulae & Facts</h3>
+      <div class="summary-item">yᵢ = ηᵢ + εᵢ — every measurement = true value + random error</div>
+      <div class="summary-item">Normal distribution symmetric about the <strong>Mean</strong> (not SD, not SD×Mean)</div>
+      <div class="summary-item">PDF: Total area under curve = 1. ∫ₐᵃ f(x)dx = 0. E[(X−μ)f(x)dx] = 0</div>
+      <div class="summary-item">Sample variance uses (n−1) in denominator → degrees of freedom</div>
+      <div class="summary-item">Var[x̄] = σ²/n — sampling distribution variance reduced by sample size</div>
+      <div class="summary-item">CLT: For n>30, sampling dist of mean → Normal regardless of parent distribution</div>
+      <div class="summary-item">95% CI ↔ α=0.05 ↔ z(α/2) ≈ 1.96</div>
+      <div class="summary-item">Type I Error (α) > Type II Error (β) in severity</div>
+      <div class="summary-item">F = MS_Treatment / MS_Error → high F means factor is significant</div>
+      <div class="summary-item">R² = SS_Regression/SS_Total = 1 when SS_Error = 0</div>
+      <div class="summary-item">RSM eigenvalues: all negative → maximum; all positive → minimum; mixed → saddle</div>
+      <div class="summary-item">Parallel interaction plot lines → NO interaction between factors</div>
+      <div class="summary-item">Arithmetic progression: mean = a + (n−1)d/2. For a=5, d=3, n=100 → mean = 5 + 99×3/2 = 5 + 148.5 = 153.5 ✓</div>
+      <div class="summary-item">Sample std deviation formula: min sample n for precision → (σ/sₓ)² = (0.50/0.125)² = 16 ✓</div>
+    </div>
+
+    <div class="summary-box" style="border-color: var(--accent3); margin-top: 2rem;">
+      <h3 style="color: var(--accent3);">Week 8 — Research Methodology Key Points</h3>
+      <div class="summary-item">Research = systematic scientific investigations to uncover truth about a specific problem</div>
+      <div class="summary-item">Classroom: well-defined, one variable unknown. Research: multiple variables, scholar defines all unknowns</div>
+      <div class="summary-item">Primary objectives: acquire knowledge + stay updated + systematic critical analysis = ALL OF THE ABOVE</div>
+      <div class="summary-item">Interdisciplinary research: merge two or more fields for comprehensive methodology</div>
+      <div class="summary-item">Starting a research: first establish a research question</div>
+      <div class="summary-item">Successful PhD: independent research capability — NOT dependence on others</div>
+      <div class="summary-item">NOT required in experimental research: manipulating results</div>
+      <div class="summary-item">Discouraging manipulation: distorts validity + undermines integrity + hampers progress = ALL OF THE ABOVE</div>
+      <div class="summary-item">Research purpose in education: become a respected educational professional</div>
+      <div class="summary-item">Recommended approach: open mind + prepared for interdisciplinary work</div>
+      <div class="summary-item">Mahabalipuram testimony to: Pallava civilization. Pancha Rathas = carved from single stone</div>
+      <div class="summary-item">Two Pallava coins read: Adivaraha + King Mahamalla. "Butter Ball of Sri Krishna" is the boulder</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════ MCQs ══════════════════════════ -->
+  <div id="mcq" class="mcq-section">
+    <div class="mcq-header">
+      <h2>Practice MCQs</h2>
+      <p>NPTEL-style questions. Some have more than one correct answer — marked with <span class="multi-badge">MULTI</span></p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q1 — Statistics Fundamentals</div>
+      <div class="mcq-question">A normal probability distribution function is symmetric about —</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Standard Deviation (SD)</li>
+        <li><span class="opt-label">B</span> Mean</li>
+        <li><span class="opt-label">C</span> SD × Mean</li>
+        <li><span class="opt-label">D</span> SD − Mean</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — Mean.</strong> The normal distribution is symmetric about its mean μ. The area below and above the mean is exactly 50% each. SD controls the spread (width), not the center of symmetry.</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q2 — Regression</div>
+      <div class="mcq-question">Coefficient of Determination (R²) is said to be unity when —</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Error Sum of Squares is zero</li>
+        <li><span class="opt-label">B</span> Total Sum of Squares is zero</li>
+        <li><span class="opt-label">C</span> Regression Sum of Squares is zero</li>
+        <li><span class="opt-label">D</span> Regression SS is same as Total SS</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>A and D are both correct</strong> (they mean the same thing). R² = SS_Regression/SS_Total = 1 when SS_Error = 0, which is equivalent to SS_Regression = SS_Total (since SS_Total = SS_Regression + SS_Error).</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q3 — PDF Properties <span class="multi-badge">MULTI</span></div>
+      <div class="mcq-question">Identify the TRUE statements for a continuous probability distribution f(x):</div>
+      <ul class="mcq-options correct-multi">
+        <li><span class="opt-label">A</span> ∫₋∞^∞ f(x)dx = 1</li>
+        <li><span class="opt-label">B</span> ∫₋∞^∞ (x−μ)² f(x)dx = σ² where μ is mean and σ² is variance</li>
+        <li><span class="opt-label">C</span> ∫ₐᵃ f(x)dx = 0 where a is a constant &gt; 0</li>
+        <li><span class="opt-label">D</span> ∫₋∞^∞ (x−μ)f(x)dx = 0</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>All four — A, B, C, D — are TRUE.</strong> A = total probability = 1. B = definition of variance. C = integral over zero-width interval = 0. D = E[(X−μ)] = E[X]−μ = μ−μ = 0 (expected deviation from mean is zero).</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q4 — Statistics Truths <span class="multi-badge">MULTI</span></div>
+      <div class="mcq-question">Identify the TRUE statements from the following:</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> In a collection of positive numbers, the arithmetic mean can become negative</li>
+        <li><span class="opt-label">B</span> Two collections with different numbers may have the same mean but different standard deviations</li>
+        <li><span class="opt-label">C</span> Standard deviation of a collection of negative numbers is negative</li>
+        <li><span class="opt-label">D</span> When a population has exactly one number (say 10), the standard deviation is undefined</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>Only B is TRUE.</strong> A: All positive numbers → mean is positive, not negative. B: Correct — e.g., {1,3} and {2,2} both have mean 2 but different SDs. C: SD = √(variance) and variance is always ≥ 0, so SD is always ≥ 0, never negative. D: Population with one number has SD = 0 (not undefined).</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q5 — Quartiles & Medians</div>
+      <div class="mcq-question">Data: 2.3, 7.2, 3.7, 4.6, 5.0, 7.0, 3.7, 4.9, 4.2. The second quartile (Q2) equals —</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> The mean</li>
+        <li><span class="opt-label">B</span> The median</li>
+        <li><span class="opt-label">C</span> Twice the mean</li>
+        <li><span class="opt-label">D</span> 0.5</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — The median.</strong> Q2 = second quartile = 50th percentile = median, by definition. The median of this dataset (sorted: 2.3, 3.7, 3.7, 4.2, 4.6, 4.9, 5.0, 7.0, 7.2) is the 5th value = 4.6.</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q6 — Arithmetic Progression Mean</div>
+      <div class="mcq-question">100 numbers forming an AP with a = 5 and d = 3. The mean is:</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> 100</li>
+        <li><span class="opt-label">B</span> 148.5</li>
+        <li><span class="opt-label">C</span> 153.5</li>
+        <li><span class="opt-label">D</span> 305</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>C — 153.5.</strong> Mean of AP = a + (n−1)d/2 = 5 + (99)(3)/2 = 5 + 148.5 = 153.5. Alternatively: last term = 5 + 99×3 = 302. Mean = (first + last)/2 = (5+302)/2 = 307/2 = 153.5.</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q7 — Central Limit Theorem <span class="multi-badge">MULTI</span></div>
+      <div class="mcq-question">Pick the FALSE statements about CLT (assuming truly random samples):</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> If parent distribution is normal, sampling distribution is NOT normal if n &lt; 30</li>
+        <li><span class="opt-label">B</span> If parent distribution is normal, sampling distribution is NOT normal if n &gt; 30</li>
+        <li><span class="opt-label">C</span> If parent distribution is NOT normal, sampling distribution is normal if n &lt; 30</li>
+        <li><span class="opt-label">D</span> If parent distribution is NOT normal, sampling distribution is also NOT normal regardless of n</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>ALL FOUR (A, B, C, D) are FALSE.</strong> Correct facts: If parent is normal → sampling dist is ALWAYS normal (any n). If parent is not normal → sampling dist approaches normal for LARGE n (n > 30). So A and B are false (normal parent → sampling always normal). C is false (non-normal parent with n&lt;30 doesn't guarantee normality). D is false (CLT ensures it does become normal for large n).</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q8 — Standard Normal</div>
+      <div class="mcq-question">If P(−0.76 ≤ Z ≤ 0.76) = 0.553 for standard normal, what is P(Z &lt; −0.76)?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> 0.553</li>
+        <li><span class="opt-label">B</span> 0.447</li>
+        <li><span class="opt-label">C</span> 0.224</li>
+        <li><span class="opt-label">D</span> 0.276</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>C — 0.224.</strong> By symmetry, P(Z &lt; −0.76) = P(Z &gt; 0.76) = (1 − 0.553)/2 = 0.447/2 = 0.2235 ≈ 0.224.</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q9 — Sample Size</div>
+      <div class="mcq-question">Population σ = 0.50 mm. Minimum sample size needed for sample σ to be 0.125 mm:</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> 4</li>
+        <li><span class="opt-label">B</span> 16</li>
+        <li><span class="opt-label">C</span> 25</li>
+        <li><span class="opt-label">D</span> 8</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — 16.</strong> Since Var[x̄] = σ²/n, the standard deviation of the sample mean = σ/√n. We need σ/√n = 0.125, so √n = 0.50/0.125 = 4, therefore n = 16.</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q10 — RSM Eigenvalues</div>
+      <div class="mcq-question">In RSM Canonical Analysis with two factors, maximum response is achieved when eigenvalues of the B matrix are —</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> All positive</li>
+        <li><span class="opt-label">B</span> All negative</li>
+        <li><span class="opt-label">C</span> All zero</li>
+        <li><span class="opt-label">D</span> One positive and one negative</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — All negative.</strong> In RSM, if all eigenvalues of B are negative, the stationary point is a maximum. All positive → minimum (like a valley/bowl). Mixed → saddle point. All zero → indeterminate.</div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q11 — Research Methodology</div>
+      <div class="mcq-question">What is the primary difference between a classroom environment and a research program?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Classroom: well-defined + only one variable; Research: multiple variables, scholar finds relationships</li>
+        <li><span class="opt-label">B</span> Classroom: open-ended; Research: well-defined solutions</li>
+        <li><span class="opt-label">C</span> Classroom: multiple variables; Research: one variable</li>
+        <li><span class="opt-label">D</span> Classroom: one variable; Research: fewer given variables</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>A — Classroom: problems are well-defined and involve only one variable; Research: problems have multiple variables and require the scholar to find their relationships.</strong></div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q12 — Research Scholar</div>
+      <div class="mcq-question">Which of the following is NOT a characteristic of a successful researcher at the end of their PhD?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Clear understanding and ability to explain work to others</li>
+        <li><span class="opt-label">B</span> Identification of limitations and boundaries of research</li>
+        <li><span class="opt-label">C</span> Setting goals for future research</li>
+        <li><span class="opt-label">D</span> Dependence on others to carry out research independently</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>D — Dependence on others to carry out research independently.</strong> A successful PhD graduate MUST be able to carry out research independently. Dependence is the opposite of what a PhD is meant to develop.</div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q13 — Experimental Research</div>
+      <div class="mcq-question">Which process is typically NOT required in experimental research?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Controlling variables</li>
+        <li><span class="opt-label">B</span> Making observations</li>
+        <li><span class="opt-label">C</span> Collecting references</li>
+        <li><span class="opt-label">D</span> Manipulating results</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>D — Manipulating results.</strong> This is the one thing explicitly NOT done in research. Manipulation distorts validity, undermines integrity, and hampers knowledge advancement.</div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q14 — Hypothesis Testing</div>
+      <div class="mcq-question">Scope of hypothesis testing concerns with — <span class="multi-badge">MULTI</span></div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Parameters of probability distribution of population</li>
+        <li><span class="opt-label">B</span> Parameters of probability distribution of sample</li>
+        <li><span class="opt-label">C</span> It relies on data contained in the sample taken from population</li>
+        <li><span class="opt-label">D</span> All of the above</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>A and C are correct (NOT B).</strong> Hypothesis testing concerns parameters of the POPULATION distribution (not sample), and it uses data from the sample. Note: Option D says "all of the above" which would include B (wrong), so the best answers are A and C. Some versions of this question accept only A as the primary answer.</div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q15 — Probability Distribution</div>
+      <div class="mcq-question">The probability density function (PDF) describes the following:</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Probability of a phenomenon occurring at macro scale</li>
+        <li><span class="opt-label">B</span> Probability of a phenomenon occurring at micro scale</li>
+        <li><span class="opt-label">C</span> Distribution of probabilities in the continuous random variable domain</li>
+        <li><span class="opt-label">D</span> Distribution of probabilities in some undefined variables</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>C — Distribution of probabilities in the continuous random variable domain.</strong> A PDF maps each value of a continuous random variable to a relative likelihood (not exact probability), and the area under it gives actual probabilities.</div>
+    </div>
+
+    <!-- Q16 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q16 — Interdisciplinary Research</div>
+      <div class="mcq-question">What is the primary objective of interdisciplinary research?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> To complicate research problems</li>
+        <li><span class="opt-label">B</span> To incorporate a comprehensive methodology by merging two or more fields</li>
+        <li><span class="opt-label">C</span> To provide an introduction to traditional research methodology</li>
+        <li><span class="opt-label">D</span> To diminish the focus on a single subject within the research domain</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — To incorporate a comprehensive methodology by merging two or more fields.</strong></div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q17 — ANOVA & F-test</div>
+      <div class="mcq-question">In a two-factor ANOVA, if the interaction plot shows two parallel lines for factors A and B, this means:</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> A strong interaction exists between A and B</li>
+        <li><span class="opt-label">B</span> No interaction exists between A and B</li>
+        <li><span class="opt-label">C</span> Factor A is insignificant</li>
+        <li><span class="opt-label">D</span> Factor B is insignificant</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — No interaction exists between A and B.</strong> Parallel lines mean the effect of changing factor A is the same regardless of the level of factor B, and vice versa. Intersecting or converging/diverging lines indicate interaction.</div>
+    </div>
+
+    <!-- Q18 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q18 — Mahabalipuram (Culture Section)</div>
+      <div class="mcq-question">Which of these monuments is carved from one single large piece of stone?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Thirukadalmallai</li>
+        <li><span class="opt-label">B</span> Shore Temple</li>
+        <li><span class="opt-label">C</span> Pancha Rathas</li>
+        <li><span class="opt-label">D</span> Light House</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>C — Pancha Rathas.</strong> The Pancha Rathas (Five Chariots) at Mahabalipuram are monolithic — carved from a single large rock outcrop. Each ratha is an individual specimen of Dravidian architecture.</div>
+    </div>
+
+    <!-- Q19 -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q19 — Applied Mechanics Research</div>
+      <div class="mcq-question">Which of the following best describes the "recommended approach" for students undertaking research?</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Focus only on their specific undergraduate discipline</li>
+        <li><span class="opt-label">B</span> Have an open mind and be prepared for interdisciplinary problems</li>
+        <li><span class="opt-label">C</span> Focus only on well-defined fields to get publications</li>
+        <li><span class="opt-label">D</span> Not prioritize enjoying the research journey</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>B — Have an open mind and be prepared to work on interdisciplinary problems, as many real-world problems do not fit within narrow vertical silos of a single field.</strong></div>
+    </div>
+
+    <!-- Q20 — BONUS -->
+    <div class="mcq-card">
+      <div class="mcq-q-num">Q20 — Discrete Probability Distribution (Calculation)</div>
+      <div class="mcq-question">Discrete distribution: p(1)=0.321, p(2)=0.421, p(3)=0.209, p(4)=0.049. (Sum must =1, so p(5)=0.) Find the mean and variance.</div>
+      <ul class="mcq-options">
+        <li><span class="opt-label">A</span> Mean = 1.98, Variance = 0.72</li>
+        <li><span class="opt-label">B</span> Mean = 2.50, Variance = 1.20</li>
+        <li><span class="opt-label">C</span> Mean = 1.50, Variance = 0.55</li>
+        <li><span class="opt-label">D</span> Mean = 2.10, Variance = 0.85</li>
+      </ul>
+      <button class="mcq-reveal-btn" onclick="toggle(this)">Reveal Answer</button>
+      <div class="mcq-answer"><strong>A — Mean = 1.98, Variance = 0.72.</strong><br/>Mean = 1×0.321 + 2×0.421 + 3×0.209 + 4×0.049 = 0.321 + 0.842 + 0.627 + 0.196 = 1.986 ≈ 1.98<br/>E[X²] = 1×0.321 + 4×0.421 + 9×0.209 + 16×0.049 = 0.321 + 1.684 + 1.881 + 0.784 = 4.67<br/>Var = E[X²] − (E[X])² = 4.67 − (1.986)² = 4.67 − 3.944 = 0.726 ≈ 0.72</div>
+    </div>
+
+  </div><!-- end mcq-section -->
+
+  <div class="tags">
+    <span class="tag">DOE</span>
+    <span class="tag">Normal Distribution</span>
+    <span class="tag">CLT</span>
+    <span class="tag">Hypothesis Testing</span>
+    <span class="tag">ANOVA</span>
+    <span class="tag">Regression</span>
+    <span class="tag">R²</span>
+    <span class="tag">RSM</span>
+    <span class="tag">Type I Error</span>
+    <span class="tag">F-distribution</span>
+    <span class="tag">Interdisciplinarity</span>
+    <span class="tag">Research Methodology</span>
+    <span class="tag">Mahabalipuram</span>
+    <span class="tag">IIT Madras</span>
+  </div>
+
+</div><!-- end container -->
+
+<footer>
+  NPTEL · Research Methodology · Weeks 7 & 8 · Exam Prep Notes · Good luck, go crush it! 🔥
+</footer>
+
+<script>
+  function toggle(btn) {
+    const answer = btn.nextElementSibling;
+    answer.classList.toggle('visible');
+    btn.textContent = answer.classList.contains('visible') ? 'Hide Answer' : 'Reveal Answer';
+  }
+
+  // Stagger animations
+  document.querySelectorAll('.topic, .mcq-card').forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.04}s`;
+  });
+
+  // Highlight correct MCQ options on reveal
+  document.querySelectorAll('.mcq-reveal-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.mcq-card');
+      const answer = this.nextElementSibling;
+      // auto-highlight first letter mentioned in answer
+    });
+  });
+</script>
+</body>
+</html>

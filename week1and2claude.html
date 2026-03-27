@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTEL RM — Week 1 & 2 Study Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --card-hover: #1a1a25;
+            --border: #1e1e2e;
+            --accent: #6c5ce7;
+            --accent2: #a29bfe;
+            --accent3: #fd79a8;
+            --green: #00b894;
+            --red: #e17055;
+            --yellow: #fdcb6e;
+            --blue: #74b9ff;
+            --text: #e8e8f0;
+            --text-dim: #8888a0;
+            --text-bright: #ffffff;
+            --gradient1: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            --gradient2: linear-gradient(135deg, #fd79a8, #e17055);
+            --gradient3: linear-gradient(135deg, #00b894, #55efc4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(108,92,231,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(253,121,168,0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            background: var(--gradient1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(108,92,231,0.15);
+            border: 1px solid rgba(108,92,231,0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent2);
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .nav-links a {
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links .primary {
+            background: var(--gradient1);
+            color: white;
+        }
+
+        .nav-links .secondary {
+            background: rgba(253,121,168,0.1);
+            border: 1px solid rgba(253,121,168,0.3);
+            color: var(--accent3);
+        }
+
+        .nav-links .tertiary {
+            background: rgba(0,184,148,0.1);
+            border: 1px solid rgba(0,184,148,0.3);
+            color: var(--green);
+        }
+
+        .nav-links a:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        /* STICKY NAV */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sticky-nav a {
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-dim);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .sticky-nav a:hover, .sticky-nav a.active {
+            background: rgba(108,92,231,0.15);
+            color: var(--accent2);
+        }
+
+        /* SECTIONS */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .week-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .week-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-header .w1 { background: var(--gradient1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .week-header .w2 { background: var(--gradient2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .week-header p { color: var(--text-dim); font-size: 1.05rem; }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .section:hover { border-color: rgba(108,92,231,0.3); }
+
+        .section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h3 .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .icon-purple { background: rgba(108,92,231,0.2); }
+        .icon-pink { background: rgba(253,121,168,0.2); }
+        .icon-green { background: rgba(0,184,148,0.2); }
+        .icon-blue { background: rgba(116,185,255,0.2); }
+        .icon-yellow { background: rgba(253,203,110,0.2); }
+
+        .section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--accent2);
+        }
+
+        .section p, .section li {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .section ul, .section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li { margin-bottom: 0.4rem; }
+
+        /* HIGHLIGHT BOXES */
+        .highlight {
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .highlight-purple {
+            background: rgba(108,92,231,0.08);
+            border-left: 3px solid var(--accent);
+        }
+
+        .highlight-green {
+            background: rgba(0,184,148,0.08);
+            border-left: 3px solid var(--green);
+        }
+
+        .highlight-pink {
+            background: rgba(253,121,168,0.08);
+            border-left: 3px solid var(--accent3);
+        }
+
+        .highlight-yellow {
+            background: rgba(253,203,110,0.08);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .highlight-blue {
+            background: rgba(116,185,255,0.08);
+            border-left: 3px solid var(--blue);
+        }
+
+        /* KEY TERM */
+        .key-term {
+            color: var(--accent2);
+            font-weight: 600;
+        }
+
+        /* TABLES */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(108,92,231,0.15);
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--accent2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(108,92,231,0.05); }
+
+        /* COMPARISON CARDS */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+        .compare-card {
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .compare-card h5 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compare-card p { font-size: 0.9rem; color: var(--text-dim); }
+
+        /* SUMMARY BOX */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(253,121,168,0.1));
+            border: 1px solid rgba(108,92,231,0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-bright);
+        }
+
+        .summary-box ul { padding-left: 1.5rem; }
+
+        .summary-box li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        .summary-box li strong { color: var(--accent2); }
+
+        /* QUIZ */
+        .quiz-section {
+            margin: 3rem 0;
+        }
+
+        .quiz-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quiz-q {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .quiz-q.correct { border-color: var(--green); }
+        .quiz-q.wrong { border-color: var(--red); }
+
+        .quiz-q p.question {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-bright);
+        }
+
+        .quiz-q label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.93rem;
+            line-height: 1.5;
+        }
+
+        .quiz-q label:hover { background: rgba(108,92,231,0.08); }
+
+        .quiz-q input[type="radio"] {
+            accent-color: var(--accent);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .quiz-q .feedback {
+            margin-top: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-q .feedback.show { display: block; }
+        .quiz-q .feedback.correct-fb { background: rgba(0,184,148,0.1); color: var(--green); }
+        .quiz-q .feedback.wrong-fb { background: rgba(225,112,85,0.1); color: var(--red); }
+
+        .quiz-btn {
+            display: block;
+            margin: 1.5rem auto;
+            padding: 0.8rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-purple { background: var(--gradient1); color: white; }
+        .btn-pink { background: var(--gradient2); color: white; }
+        .btn-green { background: var(--gradient3); color: white; }
+
+        .quiz-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        /* DIVIDER */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+
+        /* FLOW LIST */
+        .flow-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: flow;
+        }
+
+        .flow-list li {
+            counter-increment: flow;
+            padding: 1rem 1rem 1rem 3.5rem;
+            position: relative;
+            border-left: 2px solid var(--border);
+            margin-left: 1rem;
+        }
+
+        .flow-list li::before {
+            content: counter(flow);
+            position: absolute;
+            left: -14px;
+            top: 1rem;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--gradient1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .flow-list li:last-child { border-left-color: transparent; }
+
+        /* SCROLL TOP */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient1);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
+        }
+
+        .scroll-top.show { opacity: 1; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* COLLAPSIBLE */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .collapsible-header::after {
+            content: '▼';
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            transition: transform 0.3s;
+        }
+
+        .collapsible-header.open::after { transform: rotate(180deg); }
+
+        .collapsible-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .collapsible-body.open { max-height: 5000px; }
+
+        /* PROGRESS BAR */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient1);
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        /* TAB */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: rgba(108,92,231,0.15);
+            border-color: var(--accent);
+            color: var(--accent2);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        code {
+            background: rgba(108,92,231,0.1);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--accent2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section { padding: 1.5rem; }
+            .hero h1 { letter-spacing: -1px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">📚 NPTEL Exam Prep — 1 Week to Go</div>
+        <h1>Research Methodology</h1>
+        <p class="subtitle">Week 1 & 2 — Complete Study Guide with Quizzes</p>
+        <div class="nav-links">
+            <a href="#week1" class="primary">📖 Week 1 Notes</a>
+            <a href="#week2" class="secondary">📖 Week 2 Notes</a>
+            <a href="#quiz1" class="tertiary">🧠 Quiz 1</a>
+            <a href="#quiz2" class="tertiary">🧠 Quiz 2</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== STICKY NAV ===================== -->
+<nav class="sticky-nav" id="stickyNav">
+    <a href="#w1-intro">Intro to Research</a>
+    <a href="#w1-area">Selecting Area</a>
+    <a href="#w1-advisor">Advisor</a>
+    <a href="#w1-daytoday">Day-to-Day</a>
+    <a href="#w1-peer">Peer Review</a>
+    <a href="#w1-learning">Learning</a>
+    <a href="#w1-teamwork">Teamwork</a>
+    <a href="#w1-experimental">Experiments</a>
+    <a href="#w1-summary">W1 Summary</a>
+    <a href="#quiz1">Quiz 1</a>
+    <a href="#w2-litsurvey">Lit Survey</a>
+    <a href="#w2-sources">Sources</a>
+    <a href="#w2-terminology">Terminology</a>
+    <a href="#w2-search">Search</a>
+    <a href="#w2-tools">Tools</a>
+    <a href="#w2-refmgmt">Ref Mgmt</a>
+    <a href="#w2-summary">W2 Summary</a>
+    <a href="#quiz2">Quiz 2</a>
+</nav>
+
+<div class="container">
+
+<!-- =====================================================
+     WEEK 1: INTRODUCTION TO RESEARCH
+     ===================================================== -->
+<div class="week-header" id="week1">
+    <h2 class="w1">Week 1</h2>
+    <p>Introduction to the World of Research & Experimental Skills</p>
+</div>
+
+<!-- SECTION: What is Research? -->
+<div class="section" id="w1-intro">
+    <h3><span class="icon icon-purple">🔬</span> What is Research?</h3>
+    <p>Research is fundamentally different from coursework. It is a transition from being a <strong>consumer of knowledge</strong> to a <strong>producer of knowledge</strong>.</p>
+
+    <div class="highlight highlight-purple">
+        <strong>Einstein Quote:</strong> "If we knew what we were doing, it would not be called research, would it?"
+    </div>
+
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(108,92,231,0.3);">
+            <h5 style="color: var(--accent2);">📘 Course-Based Degree</h5>
+            <p>Structured program. Learning established knowledge through courses, assignments, exams. Everyone aims for similar, correct answers. Path is well-defined.</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(253,121,168,0.3);">
+            <h5 style="color: var(--accent3);">🔬 Research-Based Degree</h5>
+            <p>Novel contribution to field. Self-driven discovery, experimentation, validation. Creating unique, original work. A qualitative leap — training to become an independent researcher.</p>
+        </div>
+    </div>
+
+    <h4>Textbook vs Research Paper</h4>
+    <ul>
+        <li><strong>Textbooks</strong> provide <span class="key-term">accumulated knowledge</span>; well-established content</li>
+        <li><strong>Research papers</strong> explore <span class="key-term">new frontiers</span>; cutting-edge, possibly uncertain</li>
+        <li>If a textbook exists for your exact research topic, you're probably too late!</li>
+    </ul>
+
+    <h4>Incremental vs Path-breaking Research</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>Incremental Research</th><th>Path-breaking Research</th></tr>
+            <tr>
+                <td>Small, structured additions to existing knowledge</td>
+                <td>Fundamentally changes a field's direction</td>
+            </tr>
+            <tr>
+                <td>Most research is this type</td>
+                <td>Often happens by serendipity through steady incremental work</td>
+            </tr>
+            <tr>
+                <td>Systematic, methodical</td>
+                <td>Requires a "prepared mind"</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="highlight highlight-green">
+        <strong>Key Exam Point:</strong> Incremental research <em>leads to</em> path-breaking research. They are NOT unrelated — path-breaking work builds on incremental foundations.
+    </div>
+</div>
+
+<!-- SECTION: Selecting a Research Area -->
+<div class="section" id="w1-area">
+    <h3><span class="icon icon-pink">🗺️</span> Selecting a Research Area</h3>
+    <p>The analogy: research is like <strong>exploring an unknown city</strong>. You know you want to visit, but you don't know which monuments will fascinate you until you start exploring.</p>
+
+    <h4>How to Choose</h4>
+    <ol class="flow-list">
+        <li><strong>Start with genuine interest</strong> — Passion is your engine. Don't let job prospects or trends be the primary driver. Intrinsic motivation is non-negotiable.</li>
+        <li><strong>Trace your interest</strong> — From an undergraduate course that resonated, general reading that sparked curiosity, or desire for societal impact.</li>
+        <li><strong>Specialize beyond the textbook</strong> — Don't pick a broad subject like "signals and systems." True research is highly specialized. Dig into niche sub-fields.</li>
+        <li><strong>Conduct a literature survey</strong> — This is the important early step involving trial and error to identify interesting topics.</li>
+    </ol>
+
+    <div class="highlight highlight-yellow">
+        <strong>Exam Alert:</strong> Important factors for selecting a research area = <em>"The appeal and interest in the area of study and the impact it has on the scientific community."</em> NOT convenience of location, schedule flexibility, or number of students.
+    </div>
+</div>
+
+<!-- SECTION: Selecting an Advisor -->
+<div class="section" id="w1-advisor">
+    <h3><span class="icon icon-blue">👨‍🏫</span> Selecting an Advisor</h3>
+    <p>A PhD can last <strong>4–7 years</strong>, making this one of the longest and most intense professional partnerships you'll have.</p>
+
+    <h4>What to Do</h4>
+    <ul>
+        <li><strong>Investigate:</strong> Read potential advisor's publications. Does their work excite you?</li>
+        <li><strong>Communicate:</strong> Have honest conversations. Express your interests, ask about mentorship style.</li>
+        <li><strong>Evaluate compatibility:</strong> Working style (hands-on, theoretical, experimental?), personality & energy</li>
+    </ul>
+
+    <h4>Role of an Advisor</h4>
+    <div class="highlight highlight-green">
+        <strong>Correct Answer:</strong> "To provide guidance when the student encounters difficulties or loses direction." — NOT day-to-day instructions, NOT doing all research, NOT ensuring strict adherence to initial plan.
+    </div>
+
+    <p>A good guide helps you understand the "lay of the land" — is a research area too crowded? Is a problem worth solving? They provide historical context and strategic insight.</p>
+</div>
+
+<!-- SECTION: Day-to-Day Research -->
+<div class="section" id="w1-daytoday">
+    <h3><span class="icon icon-green">📓</span> Day-to-Day Research Practice</h3>
+
+    <h4>Small Steps Matter</h4>
+    <ul>
+        <li>Most daily work = small steps. Setting up experiments may take 2–3 weeks — that's normal, not wasted time.</li>
+        <li>Reproducing existing work is a valid and valuable starting point — it makes you familiar with the area.</li>
+        <li>Data should be <span class="key-term">believable, defensible, and reproducible</span>.</li>
+    </ul>
+
+    <h4>The Research Notebook</h4>
+    <ul>
+        <li>Note down every observation, every small result, every plot — electronically or on paper.</li>
+        <li>These observations build up over time to something significant.</li>
+        <li>Be <strong>excited and proud</strong> of small results — this keeps you thinking about extensions.</li>
+    </ul>
+
+    <h4>Discipline & Regular Hours</h4>
+    <div class="highlight highlight-purple">
+        <strong>Misconception busted:</strong> Working late nights ≠ great work. Regular 8am–5pm with evenings off can produce excellent research. What matters is <strong>regular, disciplined hours</strong>.
+    </div>
+
+    <h4>Simulations = Experiments</h4>
+    <ul>
+        <li>Same rules of Design of Experiments apply to simulations</li>
+        <li>Simulators are "deadly weapons" — can produce massive amounts of data, only a fraction useful</li>
+        <li>Must understand solver settings, engine underneath, right tools for the purpose</li>
+    </ul>
+
+    <div class="highlight highlight-yellow">
+        <strong>Exam Point:</strong> Attitude for research = "A steady and incremental approach while keeping the long-term goal in mind." NOT urgency/impatience, NOT OCD, NOT deviating from objectives.
+    </div>
+</div>
+
+<!-- SECTION: Peer Review -->
+<div class="section" id="w1-peer">
+    <h3><span class="icon icon-purple">👥</span> Peer Review & Validation</h3>
+
+    <h4>Research is NOT Democratic</h4>
+    <ul>
+        <li>One expert can prove everyone before wrong — their idea then prevails.</li>
+        <li>Not about majority agreement, not about authority of famous names.</li>
+        <li>Peers review each other and hold something as true until disproved.</li>
+    </ul>
+
+    <h4>Validating Your Results</h4>
+    <ol class="flow-list">
+        <li><strong>Self-validation:</strong> Conviction must begin from YOU. Validate qualitatively and quantitatively.</li>
+        <li><strong>Advisor discussion:</strong> Share and discuss — maybe you're right, maybe you need correction.</li>
+        <li><strong>Group presentation:</strong> Share with group mates for critical feedback — even if advisor doesn't insist on it.</li>
+        <li><strong>Peer community:</strong> Communicate through conferences and papers — identify reputable journals and conferences run by professional societies (e.g., IEEE).</li>
+    </ol>
+
+    <h4>Honesty & Reproducibility</h4>
+    <ul>
+        <li>You must be the <strong>most critical examiner</strong> of your own work</li>
+        <li>There is no "final result" — research fields don't end</li>
+        <li>Check if assumptions are not too restrictive</li>
+        <li>Ensure qualitative sense-making</li>
+        <li>Results should be <span class="key-term">reproducible</span> — publish code, post data if not confidential</li>
+    </ul>
+
+    <div class="highlight highlight-green">
+        <strong>Key Quote (Thomas Huxley):</strong> "Science is simply common sense at its best, that is, rigidly accurate in observation, and merciless to fallacy in logic."
+    </div>
+</div>
+
+<!-- SECTION: Learning Paradigms -->
+<div class="section" id="w1-learning">
+    <h3><span class="icon icon-yellow">🧠</span> Learning Paradigms in Research</h3>
+
+    <div class="table-wrap">
+        <table>
+            <tr><th>Paradigm</th><th>Description</th><th>Example</th><th>Time Scale</th></tr>
+            <tr>
+                <td><strong>Just-in-Time</strong></td>
+                <td>Learn only what's needed for immediate task</td>
+                <td>Learning a MATLAB script to make one plot</td>
+                <td>Short</td>
+            </tr>
+            <tr>
+                <td><strong>Strategic</strong></td>
+                <td>Learn up to the extent needed to solve a specific problem</td>
+                <td>Understanding enough to solve a problem, not the whole theory</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td><strong>In-Depth</strong></td>
+                <td>Go to the bottom of knowledge; get into long-term memory</td>
+                <td>Your core research area — deep, thorough mastery</td>
+                <td>Long</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="highlight highlight-pink">
+        <strong>PhD Journey:</strong> Starts with Just-in-Time learning → converges to In-Depth learning. Your attitude of learning MUST change from exam-prep mode when you enter research.
+    </div>
+</div>
+
+<!-- SECTION: Teamwork -->
+<div class="section" id="w1-teamwork">
+    <h3><span class="icon icon-blue">🤝</span> Teamwork in Research</h3>
+
+    <ul>
+        <li>Research is rarely done in complete isolation — you work in groups</li>
+        <li>Some you learn from, some you teach — roles reverse over time</li>
+        <li>Hiding resources and not sharing = bad long-term strategy</li>
+        <li>Know how to <strong>share credit</strong> in publications</li>
+        <li>Joining an <strong>active group</strong> (publishing regularly) is "positively contagious"</li>
+    </ul>
+
+    <div class="highlight highlight-purple">
+        <strong>Newton Quote:</strong> "If I have seen further than other men, it is because I have stood on the shoulder of giants." — Teamwork at the grandest scale.
+    </div>
+
+    <h4>Motivation: Daniel Pink's Framework (Book: "Drive")</h4>
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(0,184,148,0.3);">
+            <h5 style="color: var(--green);">🎯 Mastery</h5>
+            <p>Sense of getting better over time — skills, techniques, methodologies improve</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(108,92,231,0.3);">
+            <h5 style="color: var(--accent2);">🌍 Purpose</h5>
+            <p>Larger purpose for work — curiosity, improvement, betterment of society</p>
+        </div>
+    </div>
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(253,121,168,0.3);">
+            <h5 style="color: var(--accent3);">🔓 Autonomy</h5>
+            <p>Freedom to choose techniques, methodologies, specific problems to solve</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(253,203,110,0.3);">
+            <h5 style="color: var(--yellow);">💡 Result</h5>
+            <p>Researchers are intrinsically motivated when all three align</p>
+        </div>
+    </div>
+
+    <div class="highlight highlight-green">
+        <strong>Important characteristics for researchers:</strong> "Spark of interest and spirit of learning" — NOT super intelligence, NOT no work ethic, NOT just communication skills.
+    </div>
+
+    <div class="highlight highlight-yellow">
+        <strong>Most appropriate motivation:</strong> "To gain knowledge that advances understanding and enables meaningful impact."
+    </div>
+
+    <div class="highlight highlight-blue">
+        <strong>Einstein closing quote:</strong> "Imagination is more important than knowledge."
+    </div>
+</div>
+
+<!-- SECTION: Experimental Skills -->
+<div class="section" id="w1-experimental">
+    <h3><span class="icon icon-green">⚗️</span> Experimental Skills</h3>
+
+    <p>Research is broadly <strong>theoretical</strong> or <strong>experimental</strong>. Experiments are <strong>supreme</strong> — they validate theories. But they must be run <strong>correctly</strong>.</p>
+
+    <div class="highlight highlight-pink">
+        <strong>Core Principle:</strong> Experiments are supreme in the hierarchy of science. If theory doesn't match well-run experiments, the theory is incomplete. But this assumes you've run the experiment CORRECTLY.
+    </div>
+
+    <h4>🌡️ Temperature Measurement</h4>
+    <ul>
+        <li><strong>Common error:</strong> Trusting the furnace display blindly. The thermocouple may be located far from your sample.</li>
+        <li>The furnace may show 800°C, but sample could be at 750°C due to gas flow, heating element positions, etc.</li>
+        <li><strong>Solution:</strong> Add a second thermocouple positioned directly above your sample. Adjust furnace set-point accordingly.</li>
+        <li>Temperature gradients exist both vertically and horizontally in furnaces.</li>
+    </ul>
+
+    <h4>💧 Humidity Measurement</h4>
+    <ul>
+        <li><strong>Common error:</strong> Assuming humidifier output = 100% RH. Design and flow rate affect efficiency.</li>
+        <li><strong>Solution:</strong> Use a desiccant box — weigh before and after to measure actual water content.</li>
+        <li><strong>Path matters:</strong> If the tube between humidifier and experiment drops to room temperature, water condenses out as liquid — no longer in vapor phase!</li>
+        <li>Must heat-trace the path to maintain temperature above dew point.</li>
+    </ul>
+
+    <h4>⚡ Current & Voltage Measurement</h4>
+    <ul>
+        <li><strong>Current:</strong> Use a <span class="key-term">clamp-on meter</span> to independently verify current without disturbing the experiment.</li>
+        <li><strong>Voltage — Contact Resistance Problem:</strong></li>
+    </ul>
+
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(225,112,85,0.3);">
+            <h5 style="color: var(--red);">❌ Two-Probe Measurement</h5>
+            <p>Same two contact points for current AND voltage. Measures R<sub>contact1</sub> + R<sub>sample</sub> + R<sub>contact2</sub>. Can be off by 20-30%!</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(0,184,148,0.3);">
+            <h5 style="color: var(--green);">✅ Four-Probe Measurement</h5>
+            <p>Current through outer two probes, voltage measured at inner two probes. Eliminates contact resistance error (3-4 orders of magnitude smaller).</p>
+        </div>
+    </div>
+
+    <h4>🔑 Golden Rule of Experimental Skills</h4>
+    <div class="highlight highlight-green">
+        For EVERY measurement in EVERY experiment:
+        <ol>
+            <li>Understand HOW the instrument makes its measurement</li>
+            <li>Identify WHERE the sensor is located</li>
+            <li>Find possible sources of error</li>
+            <li>Compensate and correct for those errors</li>
+            <li>Cross-check with independent methods</li>
+            <li>Feel confident to DEFEND your measurements</li>
+        </ol>
+    </div>
+</div>
+
+<!-- WEEK 1 SUMMARY -->
+<div class="summary-box" id="w1-summary">
+    <h3>📋 Week 1 — Master Summary</h3>
+    <ul>
+        <li><strong>Research degree</strong> = specialized knowledge, novel contribution (not general knowledge or coursework)</li>
+        <li><strong>Textbook vs Paper:</strong> Accumulated knowledge vs new frontiers</li>
+        <li><strong>Incremental → Path-breaking:</strong> One leads to the other; they're connected</li>
+        <li><strong>Choosing area:</strong> Follow interest + scientific impact, not convenience</li>
+        <li><strong>Advisor role:</strong> Guidance when stuck, NOT day-to-day instruction</li>
+        <li><strong>Student traits:</strong> Spark of interest + spirit of learning</li>
+        <li><strong>Attitude:</strong> Steady, incremental + long-term goal focus</li>
+        <li><strong>Motivation:</strong> Gain knowledge that advances understanding + meaningful impact</li>
+        <li><strong>Purpose of research:</strong> Establish clear rationale → guides questions & methodology</li>
+        <li><strong>Literature survey early:</strong> Trial and error to identify interesting topics</li>
+        <li><strong>Peer review:</strong> Not democratic; peer scrutiny validates work</li>
+        <li><strong>Notebook:</strong> Record ALL observations, results, plots</li>
+        <li><strong>Learning:</strong> Just-in-Time → Strategic → In-Depth (PhD journey)</li>
+        <li><strong>Teamwork:</strong> Essential; share credit; join active groups</li>
+        <li><strong>Experiments:</strong> Always cross-check, always verify sensor location, always compensate for errors</li>
+        <li><strong>No sequential workflow</strong> in research — but systematic at each stage</li>
+        <li><strong>Thinking never stops</strong> — "You cannot close the lab of the mind" (JC Bose)</li>
+    </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- =====================================================
+     QUIZ 1: WEEK 1
+     ===================================================== -->
+<div class="quiz-section" id="quiz1">
+    <h3 style="background: var(--gradient1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🧠 Week 1 Quiz</h3>
+
+    <div class="quiz-q" data-correct="c" id="q1-1">
+        <p class="question">Q1. What distinguishes a research degree from other degrees?</p>
+        <label><input type="radio" name="q1-1" value="a"> Emphasis on acquiring general knowledge</label>
+        <label><input type="radio" name="q1-1" value="b"> Focus on developing presentation skills</label>
+        <label><input type="radio" name="q1-1" value="c"> Specialized knowledge in a specific field</label>
+        <label><input type="radio" name="q1-1" value="d"> Completion of coursework and examinations</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q1-2">
+        <p class="question">Q2. What distinguishes a textbook from a research paper?</p>
+        <label><input type="radio" name="q1-2" value="a"> Textbooks provide accumulated knowledge, while research papers explore new frontiers</label>
+        <label><input type="radio" name="q1-2" value="b"> Textbooks are purely theoretical while research papers are only practical</label>
+        <label><input type="radio" name="q1-2" value="c"> Textbooks offer only historical perspectives while research papers discuss future possibilities</label>
+        <label><input type="radio" name="q1-2" value="d"> Textbooks offer predictable outcomes, while research papers are unpredictable</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q1-3">
+        <p class="question">Q3. What is an important step in the early stages of research that involves trial and error?</p>
+        <label><input type="radio" name="q1-3" value="a"> Conducting a literature survey to identify interesting topics</label>
+        <label><input type="radio" name="q1-3" value="b"> Choosing a random topic based on popularity</label>
+        <label><input type="radio" name="q1-3" value="c"> Skipping preliminary research and starting experiments</label>
+        <label><input type="radio" name="q1-3" value="d"> Contributing to the chosen area through research</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q1-4">
+        <p class="question">Q4. What is the relationship between incremental and path-breaking research?</p>
+        <label><input type="radio" name="q1-4" value="a"> Incremental research leads to path-breaking research</label>
+        <label><input type="radio" name="q1-4" value="b"> Path-breaking research happens randomly without any prior incremental work</label>
+        <label><input type="radio" name="q1-4" value="c"> Incremental research and path-breaking research are unrelated</label>
+        <label><input type="radio" name="q1-4" value="d"> Path-breaking research builds on theoretical assumptions alone</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q1-5">
+        <p class="question">Q5. What are the important factors to consider when selecting a research area and guide/advisor?</p>
+        <label><input type="radio" name="q1-5" value="a"> The appeal and interest in the area of study and the impact it has on the scientific community</label>
+        <label><input type="radio" name="q1-5" value="b"> The convenience of the location of the research lab</label>
+        <label><input type="radio" name="q1-5" value="c"> The flexibility in the research schedule</label>
+        <label><input type="radio" name="q1-5" value="d"> The number of students under the advisor</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="b" id="q1-6">
+        <p class="question">Q6. What is the role of an advisor in research?</p>
+        <label><input type="radio" name="q1-6" value="a"> To provide day-to-day instructions and guidance on what to do</label>
+        <label><input type="radio" name="q1-6" value="b"> To provide guidance when the student encounters difficulties or loses direction</label>
+        <label><input type="radio" name="q1-6" value="c"> To handle all the research work on behalf of the student</label>
+        <label><input type="radio" name="q1-6" value="d"> To ensure the research adheres strictly to the initial plan</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="c" id="q1-7">
+        <p class="question">Q7. What are the important characteristics for students to fulfil their role as researchers?</p>
+        <label><input type="radio" name="q1-7" value="a"> Super intelligence and adventurous mindset</label>
+        <label><input type="radio" name="q1-7" value="b"> No work ethic and perseverance</label>
+        <label><input type="radio" name="q1-7" value="c"> Spark of interest and spirit of learning</label>
+        <label><input type="radio" name="q1-7" value="d"> Strong communication skills</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="b" id="q1-8">
+        <p class="question">Q8. What attitude should a student maintain when pursuing research?</p>
+        <label><input type="radio" name="q1-8" value="a"> A sense of urgency and impatience to achieve immediate results</label>
+        <label><input type="radio" name="q1-8" value="b"> A steady and incremental approach while keeping the long-term goal in mind</label>
+        <label><input type="radio" name="q1-8" value="c"> An obsessive-compulsive disorder to overcome any obstacles</label>
+        <label><input type="radio" name="q1-8" value="d"> A tendency to deviate fully from long-term objectives</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="d" id="q1-9">
+        <p class="question">Q9. What is the most appropriate underlying motivation for conducting research?</p>
+        <label><input type="radio" name="q1-9" value="a"> To replace manual processes with automated systems alone</label>
+        <label><input type="radio" name="q1-9" value="b"> To address social challenges without prioritizing scientific inquiry</label>
+        <label><input type="radio" name="q1-9" value="c"> To pursue personal interest in science without practical application</label>
+        <label><input type="radio" name="q1-9" value="d"> To gain knowledge that advances understanding and enables meaningful impact</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="b" id="q1-10">
+        <p class="question">Q10. What is the primary reason for clearly defining the purpose of a research?</p>
+        <label><input type="radio" name="q1-10" value="a"> To decide only the formatting and presentation style of the final research report</label>
+        <label><input type="radio" name="q1-10" value="b"> To establish a clear rationale that guides the formulation of research questions and methodology</label>
+        <label><input type="radio" name="q1-10" value="c"> To expect higher academic ranks and long-term success in life</label>
+        <label><input type="radio" name="q1-10" value="d"> To allow manipulation of research results during the course of the study</label>
+        <div class="feedback"></div>
+    </div>
+
+    <button class="quiz-btn btn-purple" onclick="gradeQuiz('q1')">Check Answers — Week 1</button>
+    <div class="score-display" id="score-q1"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- =====================================================
+     WEEK 2: LITERATURE SURVEY
+     ===================================================== -->
+<div class="week-header" id="week2">
+    <h2 class="w2">Week 2</h2>
+    <p>Literature Survey — Search, Organize, and Reference</p>
+</div>
+
+<!-- SECTION: What is Literature Survey? -->
+<div class="section" id="w2-litsurvey">
+    <h3><span class="icon icon-pink">📚</span> What is a Literature Survey?</h3>
+
+    <div class="highlight highlight-pink">
+        <strong>DISCLAIMER:</strong> Literature survey is <strong>NOT just Googling</strong> for information. Google looks at private websites. Literature survey = survey of <em>technical, authoritative</em> literature from universities, research labs, and scientific enterprises. Google Scholar is the closest Google equivalent.
+    </div>
+
+    <h4>Why Do Literature Survey?</h4>
+    <ul>
+        <li>Know what approaches others have used and where gaps exist</li>
+        <li><strong>Avoid duplication</strong> — even unintentional duplication is unacceptable in research degrees</li>
+        <li>Clarify controversial results</li>
+        <li>Establish state-of-the-art and build on others' work</li>
+        <li>Place your study in a <strong>current context</strong> where peers see it as valuable</li>
+        <li>Establish context and background for your own work</li>
+        <li>Point out anomalies and gaps</li>
+    </ul>
+
+    <h4>Novelty Principle</h4>
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(108,92,231,0.3);">
+            <h5 style="color: var(--accent2);">Novel technique + familiar area</h5>
+            <p>A new method applied to a well-known problem = good contribution</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(253,121,168,0.3);">
+            <h5 style="color: var(--accent3);">Familiar technique + novel area</h5>
+            <p>A known method applied to a brand new problem = also valuable</p>
+        </div>
+    </div>
+
+    <div class="highlight highlight-green">
+        <strong>Exam Point:</strong> Literature review must be carried out <strong>throughout the research process</strong> — NOT only at the start, NOT only at the end, NOT only while publishing.
+    </div>
+</div>
+
+<!-- SECTION: Sources of Literature -->
+<div class="section" id="w2-sources">
+    <h3><span class="icon icon-blue">🌐</span> Sources of Literature</h3>
+
+    <h4>Access Points</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>Access Type</th><th>Description</th></tr>
+            <tr><td><strong>Open Access</strong></td><td>Freely available, but limited. Increasing over time.</td></tr>
+            <tr><td><strong>Institutional (INDEST)</strong></td><td>Ministry of HRD program (coordinated by IIT Delhi). Provides access to many sources for Indian institutes. Tier 1, 2, 3 categories.</td></tr>
+            <tr><td><strong>Library Subscriptions</strong></td><td>Beyond INDEST — check with your librarian!</td></tr>
+            <tr><td><strong>Peer-Sharing</strong></td><td>ResearchGate, Academia.edu — authors share upon request</td></tr>
+        </table>
+    </div>
+
+    <h4>Types of Literature Sources</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>Type</th><th>Examples</th><th>Nature</th></tr>
+            <tr>
+                <td><strong>Primary</strong></td>
+                <td>Journal articles, conference proceedings, research reports, theses, dissertations, standards</td>
+                <td>Original research</td>
+            </tr>
+            <tr>
+                <td><strong>Secondary</strong></td>
+                <td>Review articles, reference books, textbooks, monographs, abstracting services</td>
+                <td>Analysis/compilation of primary sources</td>
+            </tr>
+            <tr>
+                <td><strong>Tertiary</strong></td>
+                <td>Bibliographies, dictionaries, yearbooks, lists of secondary sources</td>
+                <td>Indexes or directories</td>
+            </tr>
+        </table>
+    </div>
+
+    <h4>Reliability Hierarchy</h4>
+    <div class="highlight highlight-yellow">
+        <strong>Exam Point:</strong> Compared to peer-reviewed journals, websites are <strong>less likely to be reliable</strong>. NOT equally reliable, NOT completely incorrect, NOT more reliable.
+    </div>
+</div>
+
+<!-- SECTION: Key Terminology -->
+<div class="section" id="w2-terminology">
+    <h3><span class="icon icon-yellow">📖</span> Key Terminology</h3>
+
+    <div class="table-wrap">
+        <table>
+            <tr><th>Term</th><th>Full Form</th><th>What It Does</th><th>Key Exam Facts</th></tr>
+            <tr>
+                <td><strong>ISBN</strong></td>
+                <td>International Standard Book Number</td>
+                <td>Unique identifier for books</td>
+                <td>Without ISBN, book is not traceable</td>
+            </tr>
+            <tr>
+                <td><strong>ISSN</strong></td>
+                <td>International Standard Serial Number</td>
+                <td>Unique identifier for journals, newspapers, conference proceedings</td>
+                <td>Comes in ranges; also for newspapers</td>
+            </tr>
+            <tr>
+                <td><strong>DOI</strong></td>
+                <td>Digital Object Identifier</td>
+                <td>Persistent, unique alphanumeric string for online documents</td>
+                <td>Stable even if URL changes. <strong>Sufficient to retrieve ALL other bibliographic details.</strong> Best way to refer to internet location.</td>
+            </tr>
+            <tr>
+                <td><strong>Impact Factor</strong></td>
+                <td>Journal Impact Factor</td>
+                <td>Average citations to recent articles in a journal</td>
+                <td><strong>Controversial.</strong> Cannot compare across different research areas. Only relative within same field.</td>
+            </tr>
+            <tr>
+                <td><strong>h-index</strong></td>
+                <td>—</td>
+                <td>Author has h-index of n if n papers have ≥ n citations each</td>
+                <td>Also controversial. Context-dependent. Higher h-index = more widely read/referred.</td>
+            </tr>
+            <tr>
+                <td><strong>Citation Index</strong></td>
+                <td>—</td>
+                <td>How many times a specific article has been cited</td>
+                <td>"Citation classics" = articles with hundreds of citations</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="highlight highlight-green">
+        <strong>Critical Exam Points about DOI:</strong>
+        <ul style="margin-top:0.5rem;">
+            <li>DOI is sufficient to retrieve all other bibliographic details of an article ✅</li>
+            <li>DOI link is the best way to refer to internet location of a published article ✅</li>
+            <li>DOI is necessary to retrieve all details of a digitally published article ✅</li>
+            <li>Author+Journal or Author+Year alone is NOT sufficient ❌</li>
+        </ul>
+    </div>
+
+    <h4>What Publishers Allow Without Subscription</h4>
+    <div class="highlight highlight-yellow">
+        <strong>Answer:</strong> Title, Authors, Volume, Issue, Page number and DOI — these are generally allowed free. Abstract and Full text typically require subscription.
+    </div>
+
+    <h4>Impact of an Article</h4>
+    <div class="highlight highlight-blue">
+        <strong>Measure of impact:</strong> Number of articles <em>referring to it</em> (citations). NOT likes, views, or downloads.
+    </div>
+</div>
+
+<!-- SECTION: Search Strategies -->
+<div class="section" id="w2-search">
+    <h3><span class="icon icon-purple">🔍</span> Literature Search Strategies</h3>
+
+    <div class="table-wrap">
+        <table>
+            <tr><th>Strategy</th><th>Method</th><th>Direction</th><th>Goal</th></tr>
+            <tr>
+                <td><strong>1. Keyword Search</strong></td>
+                <td>Use specific words, author names, or article-defined keywords</td>
+                <td>—</td>
+                <td>Cast a wide net to find initial papers. Use OR Boolean to combine synonyms.</td>
+            </tr>
+            <tr>
+                <td><strong>2. Backward Chronological</strong></td>
+                <td>Start with recent article → examine its reference list → go back in time recursively</td>
+                <td>⬅️ Past</td>
+                <td>Understand historical development and foundational theories</td>
+            </tr>
+            <tr>
+                <td><strong>3. Forward Chronological</strong></td>
+                <td>Start with key foundational paper → find all papers that cited it → go forward in time</td>
+                <td>➡️ Future</td>
+                <td>Trace evolution of idea, identify current state-of-the-art</td>
+            </tr>
+        </table>
+    </div>
+
+    <h4>Search Tools & Databases</h4>
+    <ul>
+        <li><strong>Google Scholar</strong> — closest to Google for academic search</li>
+        <li><strong>INSPEC, COMPENDEX</strong> — subscription databases for engineering</li>
+        <li><strong>PubMed</strong> — medical community</li>
+        <li><strong>MathSciNet</strong> — mathematics</li>
+        <li><strong>Web of Science</strong> (Thomson ISI) — citation database, forward search</li>
+        <li><strong>Scopus</strong> (Elsevier) — citation database, forward search</li>
+    </ul>
+
+    <h4>Sorting Search Results</h4>
+    <ul>
+        <li><strong>Newest first:</strong> See latest publications</li>
+        <li><strong>Oldest first:</strong> See how field started</li>
+        <li><strong>Highest citations:</strong> Find "citation classics" — most important works</li>
+        <li><strong>Lowest citations:</strong> Find potentially overlooked but valuable papers</li>
+        <li><strong>Usage count:</strong> See what peers on the portal are reading</li>
+    </ul>
+
+    <h4>Choosing References for Publication</h4>
+    <div class="highlight highlight-green">
+        <strong>Criterion for including a reference:</strong> The article is a <em>prior work directly relating to the topic</em>. NOT because authored by likely reviewers, well-known people, or appeared in well-known journal (those alone aren't sufficient criteria).
+    </div>
+</div>
+
+<!-- SECTION: Tools -->
+<div class="section" id="w2-tools">
+    <h3><span class="icon icon-green">🛠️</span> Literature Survey Tools</h3>
+
+    <h4>Major Publishers (80% of journals)</h4>
+    <ul>
+        <li><strong>Elsevier</strong> → ScienceDirect portal</li>
+        <li><strong>Springer</strong> → SpringerLink portal</li>
+        <li>Taylor & Francis, Nature Publications, Maney Publishing</li>
+        <li>Society journals: APS, AIP, IEEE, etc.</li>
+    </ul>
+
+    <h4>Web of Science Workflow</h4>
+    <ol class="flow-list">
+        <li>Check subscription with librarian (IP-based or roaming login)</li>
+        <li>Register & login to Web of Science + EndNote Web (two tabs)</li>
+        <li>Search using keywords with OR Boolean operator</li>
+        <li>Sort results (by date, citations, relevance, usage count)</li>
+        <li>Check boxes to select → "Add to Marked List"</li>
+        <li>Export Marked List to EndNote (select Author/Title/Source + Abstract)</li>
+        <li>In EndNote: collect unfiled items → create group → export as BibTeX (.bib)</li>
+    </ol>
+
+    <h4>Scopus Workflow</h4>
+    <ol class="flow-list">
+        <li>Check subscription with librarian</li>
+        <li>Register & login to Scopus</li>
+        <li>Search with keywords, choose fields carefully</li>
+        <li>Sort results, select important ones → "Save to List"</li>
+        <li>Export directly as BibTeX format (citations + abstracts)</li>
+        <li>File downloads as Scopus.bib → rename meaningfully</li>
+    </ol>
+
+    <h4>RSS/Content Subscription</h4>
+    <p>Enroll email with publishers → new articles pushed to inbox. Basic info (title, authors, volume, issue, page number) available even without full subscription.</p>
+
+    <h4>Special Interest Group Websites</h4>
+    <p>Example: imechanica.org for mechanical engineering — discusses ongoing work in the domain.</p>
+</div>
+
+<!-- SECTION: Reference Management -->
+<div class="section" id="w2-refmgmt">
+    <h3><span class="icon icon-yellow">📎</span> Reference Management</h3>
+
+    <h4>Why Use a Reference Manager?</h4>
+    <ul>
+        <li>Articles may have 10-30 references; theses may have 100+</li>
+        <li>Avoid typographical errors from manual entry</li>
+        <li>Ensure every cited work is listed in bibliography</li>
+        <li>Auto-handle sequencing when text is rearranged</li>
+        <li>Switch between citation styles (APA, MLA, numbered, etc.) effortlessly</li>
+    </ul>
+
+    <h4>Bibliographic Data Formats</h4>
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(108,92,231,0.3);">
+            <h5 style="color: var(--accent2);">BibTeX (.bib)</h5>
+            <p>Pure text, human-readable. Each entry starts with @article. Native for LaTeX and JabRef. Can cut/paste/merge in Notepad.</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(253,121,168,0.3);">
+            <h5 style="color: var(--accent3);">RIS Format</h5>
+            <p>Another popular format. Used by many reference managers.</p>
+        </div>
+    </div>
+
+    <h4>JabRef (Recommended — Free & Open Source)</h4>
+    <ul>
+        <li>Java-based, runs on any platform</li>
+        <li>Displays .bib file as a spreadsheet (rows = entries, columns = fields)</li>
+        <li>Can search, sort, add notes, split/merge files</li>
+        <li>Can export BibTeX → XML (for MS Word)</li>
+        <li>Files reside on your desktop — work offline at your own pace</li>
+        <li>Other managers: Zotero, Mendeley (some paid, some free)</li>
+    </ul>
+
+    <h4>Using References in Documents</h4>
+    <div class="compare-grid">
+        <div class="compare-card" style="border-color: rgba(0,184,148,0.3);">
+            <h5 style="color: var(--green);">LaTeX + BibTeX</h5>
+            <p>Keep .bib file in same folder as .tex file. Use <code>\bibliography{filename}</code> and <code>\bibliographystyle{unsrt}</code>. Cite with <code>\cite{key}</code>. Compile: LaTeX → BibTeX → LaTeX × 2.</p>
+        </div>
+        <div class="compare-card" style="border-color: rgba(116,185,255,0.3);">
+            <h5 style="color: var(--blue);">MS Word</h5>
+            <p>Convert .bib → XML via JabRef. References → Manage Sources → Browse XML. Copy references to current list. Insert Citation at any point. Insert Bibliography at end.</p>
+        </div>
+    </div>
+
+    <h4>Handling Retracted References</h4>
+    <div class="highlight highlight-pink">
+        <strong>If a cited article is retracted before your paper goes to press:</strong> Remove the retracted reference and modify the text and citations accordingly. Do NOT just add a note, ignore it, or replace with same author's other article.
+    </div>
+
+    <h4>Identifying Fake Journals</h4>
+    <div class="highlight highlight-yellow">
+        <strong>Strongest indicator of a fake journal:</strong> The journal does not have an editorial board or review process. Page charges alone, similar name to reputed journal, or free articles are not definitive indicators.
+    </div>
+</div>
+
+<!-- WEEK 2 SUMMARY -->
+<div class="summary-box" id="w2-summary">
+    <h3>📋 Week 2 — Master Summary</h3>
+    <ul>
+        <li><strong>Not Googling:</strong> Literature survey = formal process using authoritative sources</li>
+        <li><strong>Goals:</strong> Avoid duplication, identify gaps, prove novelty, establish context</li>
+        <li><strong>Continuous process:</strong> Throughout research, not just at start</li>
+        <li><strong>Sources:</strong> Primary (journals, proceedings) → Secondary (reviews, textbooks) → Tertiary (bibliographies, dictionaries)</li>
+        <li><strong>Access:</strong> Open access, INDEST, library subscriptions, peer-sharing (ResearchGate, Academia.edu)</li>
+        <li><strong>DOI:</strong> The single most important identifier — sufficient to retrieve ALL details, best for web references</li>
+        <li><strong>ISBN/ISSN:</strong> For books/serials respectively — essential for traceability</li>
+        <li><strong>Impact Factor:</strong> Controversial, relative within a field only, not across fields</li>
+        <li><strong>h-index:</strong> n papers cited ≥ n times. Context-dependent</li>
+        <li><strong>Article impact:</strong> Measured by number of articles citing it</li>
+        <li><strong>Search strategies:</strong> Keyword + Backward (references list → past) + Forward (citations → future)</li>
+        <li><strong>Tools:</strong> Web of Science, Scopus for citation data; JabRef for management</li>
+        <li><strong>Free fields from publishers:</strong> Title, Authors, Volume, Issue, Page number, DOI</li>
+        <li><strong>Reference criterion:</strong> Prior work directly relating to the topic</li>
+        <li><strong>Retracted article:</strong> Remove and modify text/citations</li>
+        <li><strong>Fake journal sign:</strong> No editorial board or review process</li>
+        <li><strong>Websites < peer-reviewed journals</strong> in reliability</li>
+    </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- =====================================================
+     QUIZ 2: WEEK 2
+     ===================================================== -->
+<div class="quiz-section" id="quiz2">
+    <h3 style="background: var(--gradient2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🧠 Week 2 Quiz</h3>
+
+    <div class="quiz-q" data-correct="b" id="q2-1">
+        <p class="question">Q1. Which of the following is a recommended criterion to pick a reference article for inclusion in a publication?</p>
+        <label><input type="radio" name="q2-1" value="a"> The article is authored by likely reviewers</label>
+        <label><input type="radio" name="q2-1" value="b"> The article is a prior work directly relating to the topic</label>
+        <label><input type="radio" name="q2-1" value="c"> The article is authored by someone well known in that topic</label>
+        <label><input type="radio" name="q2-1" value="d"> The article appeared in a well known journal</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="d" id="q2-2">
+        <p class="question">Q2. Which of the following indices is considered a measure of the impact of a particular article?</p>
+        <label><input type="radio" name="q2-2" value="a"> Number of likes</label>
+        <label><input type="radio" name="q2-2" value="b"> Number of views</label>
+        <label><input type="radio" name="q2-2" value="c"> Number of downloads</label>
+        <label><input type="radio" name="q2-2" value="d"> Number of articles referring to it</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="c" id="q2-3">
+        <p class="question">Q3. Which bibliographic detail is necessary to retrieve all other details of a digitally published article?</p>
+        <label><input type="radio" name="q2-3" value="a"> ISSN</label>
+        <label><input type="radio" name="q2-3" value="b"> ISBN</label>
+        <label><input type="radio" name="q2-3" value="c"> DOI</label>
+        <label><input type="radio" name="q2-3" value="d"> URL</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="d" id="q2-4">
+        <p class="question">Q4. Literature review is an activity that typically needs to be carried out:</p>
+        <label><input type="radio" name="q2-4" value="a"> Only at the start of the research</label>
+        <label><input type="radio" name="q2-4" value="b"> Only at the end of the research</label>
+        <label><input type="radio" name="q2-4" value="c"> Only while publishing a paper</label>
+        <label><input type="radio" name="q2-4" value="d"> Throughout the research process</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="c" id="q2-5">
+        <p class="question">Q5. Compared to peer reviewed journals, websites are:</p>
+        <label><input type="radio" name="q2-5" value="a"> More likely to be reliable</label>
+        <label><input type="radio" name="q2-5" value="b"> Equally reliable</label>
+        <label><input type="radio" name="q2-5" value="c"> Less likely to be reliable</label>
+        <label><input type="radio" name="q2-5" value="d"> Completely incorrect</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q2-6">
+        <p class="question">Q6. Which bibliographic fields are generally allowed for use without subscription by publishers?</p>
+        <label><input type="radio" name="q2-6" value="a"> Title, Authors, Volume, Issue, Page number and DOI</label>
+        <label><input type="radio" name="q2-6" value="b"> Title, Volume, Issue, Page number, Abstract and Full text</label>
+        <label><input type="radio" name="q2-6" value="c"> Title, Authors, Issue, Page number, Abstract and References</label>
+        <label><input type="radio" name="q2-6" value="d"> Title, Authors, Volume, Issue, Page number and Abstract</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="d" id="q2-7">
+        <p class="question">Q7. Which is the best way to refer to the internet location of a published article?</p>
+        <label><input type="radio" name="q2-7" value="a"> URL of the website of publisher</label>
+        <label><input type="radio" name="q2-7" value="b"> URL of the author of the article</label>
+        <label><input type="radio" name="q2-7" value="c"> URL of the journal</label>
+        <label><input type="radio" name="q2-7" value="d"> DOI link of the article</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="a" id="q2-8">
+        <p class="question">Q8. Which is a sufficient piece of information to retrieve rest of the bibliographic details of an article?</p>
+        <label><input type="radio" name="q2-8" value="a"> DOI link</label>
+        <label><input type="radio" name="q2-8" value="b"> Author and Journal</label>
+        <label><input type="radio" name="q2-8" value="c"> Journal, Volume and Year</label>
+        <label><input type="radio" name="q2-8" value="d"> Author and Year</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="b" id="q2-9">
+        <p class="question">Q9. A reference you cited has been retracted before your article goes to press. What should you do?</p>
+        <label><input type="radio" name="q2-9" value="a"> Add a note in the reference that it has been retracted</label>
+        <label><input type="radio" name="q2-9" value="b"> Remove the retracted reference and modify the text and citations accordingly</label>
+        <label><input type="radio" name="q2-9" value="c"> Ignore the retraction and leave it to publisher to address</label>
+        <label><input type="radio" name="q2-9" value="d"> Replace the reference with another article of same author</label>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-q" data-correct="b" id="q2-10">
+        <p class="question">Q10. You received an invitation to submit to a journal. Which best indicates it may be fake?</p>
+        <label><input type="radio" name="q2-10" value="a"> The journal has page charges for the articles it publishes</label>
+        <label><input type="radio" name="q2-10" value="b"> The journal does not have an editorial board or review process</label>
+        <label><input type="radio" name="q2-10" value="c"> The name is similar to another reputed journal in the same domain</label>
+        <label><input type="radio" name="q2-10" value="d"> The articles are available for free on internet</label>
+        <div class="feedback"></div>
+    </div>
+
+    <button class="quiz-btn btn-pink" onclick="gradeQuiz('q2')">Check Answers — Week 2</button>
+    <div class="score-display" id="score-q2"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FINAL CHEAT SHEET -->
+<div class="summary-box">
+    <h3>🔥 Last-Minute Cheat Sheet — Both Weeks</h3>
+    <ul>
+        <li><strong>Research degree =</strong> specialized knowledge in specific field</li>
+        <li><strong>Incremental → Path-breaking</strong> (connected, not random)</li>
+        <li><strong>Advisor role =</strong> guidance when stuck (not daily instructions)</li>
+        <li><strong>Student traits =</strong> spark of interest + spirit of learning</li>
+        <li><strong>Research attitude =</strong> steady + incremental + long-term focus</li>
+        <li><strong>Motivation =</strong> advancing understanding + meaningful impact</li>
+        <li><strong>Purpose =</strong> clear rationale → guides questions & methodology</li>
+        <li><strong>Literature survey ≠ Googling.</strong> Done THROUGHOUT research</li>
+        <li><strong>DOI =</strong> the golden key. Sufficient for everything. Best internet reference</li>
+        <li><strong>Free fields =</strong> Title, Authors, Volume, Issue, Page, DOI (no abstract/full text)</li>
+        <li><strong>Article impact =</strong> number of citations (not likes/views/downloads)</li>
+        <li><strong>Ref criterion =</strong> prior work directly relating to topic</li>
+        <li><strong>Websites &lt; peer-reviewed journals</strong> in reliability</li>
+        <li><strong>Retracted ref →</strong> REMOVE and modify text</li>
+        <li><strong>Fake journal sign →</strong> no editorial board / no review process</li>
+        <li><strong>Impact Factor:</strong> controversial, compare only within same field</li>
+        <li><strong>h-index:</strong> n papers with ≥ n citations. Also controversial</li>
+        <li><strong>3 search strategies:</strong> Keyword, Backward (refs → past), Forward (citations → future)</li>
+        <li><strong>JabRef:</strong> free, open-source reference manager (BibTeX native)</li>
+        <li><strong>Experiments are supreme</strong> — but MUST be run correctly</li>
+        <li><strong>Four-probe &gt; Two-probe</strong> for resistance measurement</li>
+    </ul>
+</div>
+
+</div><!-- /container -->
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0})">↑</button>
+
+<footer>
+    <p>NPTEL Research Methodology — Week 1 & 2 Study Guide | Built for exam prep 🚀</p>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+
+    // Scroll to top button
+    const btn = document.getElementById('scrollTop');
+    if (winScroll > 500) btn.classList.add('show');
+    else btn.classList.remove('show');
+});
+
+// Quiz grading
+function gradeQuiz(prefix) {
+    const questions = document.querySelectorAll(`[id^="${prefix}-"]`);
+    let score = 0;
+    let total = 0;
+
+    questions.forEach(q => {
+        if (!q.classList.contains('quiz-q')) return;
+        total++;
+        const correct = q.dataset.correct;
+        const selected = q.querySelector(`input[name="${q.id}"]:checked`);
+        const feedback = q.querySelector('.feedback');
+
+        q.classList.remove('correct', 'wrong');
+
+        if (selected && selected.value === correct) {
+            score++;
+            q.classList.add('correct');
+            feedback.textContent = '✅ Correct!';
+            feedback.className = 'feedback show correct-fb';
+        } else {
+            q.classList.add('wrong');
+            const correctLabel = q.querySelector(`input[value="${correct}"]`).parentElement.textContent.trim();
+            feedback.textContent = '❌ Correct answer: ' + correctLabel;
+            feedback.className = 'feedback show wrong-fb';
+        }
+    });
+
+    const scoreEl = document.getElementById('score-' + prefix);
+    scoreEl.style.display = 'block';
+    const pct = Math.round((score / total) * 100);
+    let color = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+    scoreEl.style.color = color;
+    scoreEl.textContent = `Score: ${score}/${total} (${pct}%)`;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RM NPTEL — Week 5 & 6 Killer Notes</title>
+<style>
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;
+  --surface:#161b27;
+  --surface2:#1c2236;
+  --accent:#7b9cff;
+  --accent2:#4ecdc4;
+  --accent3:#c084fc;
+  --text:#e8eaf0;
+  --text-mid:#b0b8cc;
+  --text-dim:#6b7590;
+  --border:#252d42;
+  --border-strong:#3a4460;
+  --success:#4ecdc4;
+  --warn:#f6c90e;
+  --tag-bg:#1e2840;
+  --tag-text:#7b9cff;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Georgia',serif;
+  font-size:16px;
+  line-height:1.8;
+  scroll-behavior:smooth;
+}
+::selection{background:#2a3b6e;color:#e8eaf0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ===== LAYOUT ===== */
+.container{
+  max-width:860px;
+  margin:0 auto;
+  padding:32px 24px;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#0a0e1a;
+  padding:56px 24px 48px;
+  text-align:center;
+  border-bottom:4px solid #2a3b6e;
+}
+header h1{
+  font-size:2.3em;
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.5px;
+  margin-bottom:10px;
+}
+header p{color:rgba(255,255,255,0.75);font-size:1.05em;font-style:italic}
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,0.18);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.35);
+  padding:3px 13px;
+  border-radius:20px;
+  font-size:.78em;
+  margin:4px;
+  font-family:'Segoe UI',sans-serif;
+  letter-spacing:.4px;
+}
+
+/* ===== NAV ===== */
+nav{
+  background:var(--surface);
+  border-bottom:2px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+nav ul{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  list-style:none;
+  padding:8px 12px;
+  gap:4px;
+  max-width:860px;
+  margin:0 auto;
+}
+nav a{
+  padding:6px 14px;
+  border-radius:6px;
+  font-size:.85em;
+  font-family:'Segoe UI',sans-serif;
+  transition:.2s;
+  color:var(--text-mid);
+}
+nav a:hover,nav a.active{
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+}
+
+/* ===== WEEK HEADER ===== */
+.week-header{
+  text-align:center;
+  padding:44px 0 20px;
+  margin:10px 0;
+}
+.week-header h2{
+  font-size:1.9em;
+  color:var(--accent);
+  letter-spacing:.5px;
+  border-bottom:2px solid var(--border);
+  display:inline-block;
+  padding-bottom:8px;
+}
+.week-header .subtitle{
+  color:var(--text-dim);
+  margin-top:8px;
+  font-size:.95em;
+  font-style:italic;
+}
+
+/* ===== TOPIC CARD ===== */
+.topic{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:5px solid var(--accent);
+  border-radius:8px;
+  margin:28px 0;
+  padding:32px 36px;
+  box-shadow:0 1px 6px rgba(0,0,0,0.06);
+}
+.topic h3{
+  font-size:1.45em;
+  color:var(--accent);
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.topic h4{
+  font-size:1.07em;
+  color:var(--accent3);
+  margin:24px 0 10px;
+  font-family:'Segoe UI',sans-serif;
+  font-weight:700;
+  letter-spacing:.2px;
+  text-transform:uppercase;
+  font-size:.9em;
+}
+
+/* ===== POINTS ===== */
+.point{
+  padding:5px 0 5px 22px;
+  position:relative;
+  color:var(--text-mid);
+  font-size:.97em;
+}
+.point::before{
+  content:'›';
+  position:absolute;
+  left:6px;
+  color:var(--accent2);
+  font-weight:bold;
+  font-size:1.1em;
+}
+.point strong{color:var(--text)}
+
+/* ===== IMPORTANT BOX ===== */
+.important{
+  background:#1a1600;
+  border:1px solid #4a3800;
+  border-left:4px solid var(--warn);
+  border-radius:6px;
+  padding:14px 18px;
+  margin:16px 0;
+  color:#f0d98a;
+  font-size:.95em;
+}
+.important::before{
+  content:'📌 KEY POINT';
+  display:block;
+  color:var(--warn);
+  font-weight:700;
+  margin-bottom:6px;
+  font-size:.8em;
+  font-family:'Segoe UI',sans-serif;
+  letter-spacing:.5px;
+}
+
+/* ===== TABLES ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  font-size:.92em;
+  font-family:'Segoe UI',sans-serif;
+}
+th{
+  background:var(--accent);
+  color:#fff;
+  padding:11px 14px;
+  text-align:left;
+  font-weight:600;
+  font-size:.9em;
+  letter-spacing:.3px;
+}
+td{
+  padding:9px 14px;
+  border-bottom:1px solid var(--border);
+  color:var(--text-mid);
+  vertical-align:top;
+}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--surface2)}
+
+/* ===== COMPARISON CARDS ===== */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0}
+.comp-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:18px 20px;
+}
+.comp-card h5{
+  text-align:center;
+  color:var(--accent);
+  margin-bottom:12px;
+  font-size:1em;
+  font-family:'Segoe UI',sans-serif;
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;
+}
+
+/* ===== SUMMARY BOX ===== */
+.summary-box{
+  background:var(--surface);
+  border:2px solid var(--accent2);
+  border-radius:8px;
+  padding:32px 36px;
+  margin:30px 0;
+}
+.summary-box h3{
+  color:var(--accent2);
+  font-size:1.4em;
+  text-align:center;
+  margin-bottom:22px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.summary-item{
+  display:flex;
+  gap:14px;
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start;
+  font-size:.95em;
+  color:var(--text-mid);
+}
+.summary-item:last-child{border-bottom:none}
+.summary-item .num{
+  background:var(--accent2);
+  color:#fff;
+  min-width:26px;
+  height:26px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.78em;
+  font-weight:bold;
+  font-family:'Segoe UI',sans-serif;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+/* ===== MCQ SECTION ===== */
+.mcq-section{margin:40px 0}
+.mcq-section h2{
+  text-align:center;
+  color:var(--accent);
+  font-size:1.8em;
+  margin-bottom:10px;
+  padding-bottom:12px;
+  border-bottom:2px solid var(--border);
+}
+.mcq{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:4px solid var(--accent3);
+  border-radius:8px;
+  margin:20px 0;
+  padding:22px 28px;
+}
+.mcq .q-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.mcq .q-num{
+  background:var(--accent3);
+  color:#fff;
+  min-width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:.85em;
+  font-family:'Segoe UI',sans-serif;
+  flex-shrink:0;
+}
+.mcq .q-text{font-size:1em;font-weight:600;color:var(--text);line-height:1.6;font-family:'Segoe UI',sans-serif}
+.mcq .q-note{font-size:.82em;color:var(--accent3);margin-bottom:10px;font-style:italic;font-family:'Segoe UI',sans-serif}
+
+/* ===== OPTIONS ===== */
+.option{
+  padding:9px 14px;
+  margin:5px 0;
+  border:1px solid var(--border);
+  border-radius:6px;
+  cursor:pointer;
+  transition:.15s;
+  font-size:.93em;
+  color:var(--text-mid);
+  font-family:'Segoe UI',sans-serif;
+}
+.option:hover{border-color:var(--accent);background:#1a2240;color:var(--text)}
+.option.correct{
+  border-color:var(--success);
+  background:#0e2420;
+  color:#a0f0ea;
+}
+.option.correct::after{content:' ✓';color:var(--success);font-weight:bold}
+
+/* ===== ANSWER BOX ===== */
+.answer-box{
+  display:none;
+  background:#0e2420;
+  border:1px solid #2a6b5c;
+  border-radius:6px;
+  padding:14px 18px;
+  margin-top:14px;
+  font-family:'Segoe UI',sans-serif;
+  font-size:.93em;
+  color:#a0f0ea;
+}
+.answer-box .explanation{
+  color:var(--text-mid);
+  font-size:.9em;
+  margin-top:6px;
+}
+
+/* ===== BUTTON ===== */
+.show-btn{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:7px 18px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
+  font-size:.88em;
+  font-family:'Segoe UI',sans-serif;
+  transition:.2s;
+  letter-spacing:.3px;
+}
+.show-btn:hover{background:#5570cc}
+
+/* ===== TAGS ===== */
+.tag{
+  display:inline-block;
+  background:var(--tag-bg);
+  color:var(--tag-text);
+  padding:2px 10px;
+  border-radius:12px;
+  font-size:.75em;
+  margin:2px;
+  font-family:'Segoe UI',sans-serif;
+}
+
+/* ===== FLOW DIAGRAM ===== */
+.flow-diagram{
+  text-align:center;
+  padding:18px;
+  color:var(--accent2);
+  font-size:1em;
+  letter-spacing:.5px;
+  font-family:'Segoe UI',sans-serif;
+}
+.flow-diagram span{
+  background:var(--tag-bg);
+  color:var(--accent);
+  padding:5px 14px;
+  border-radius:6px;
+  margin:3px;
+  display:inline-block;
+  border:1px solid var(--border);
+  font-size:.9em;
+}
+.flow-diagram .arrow{color:var(--accent3);margin:0 4px;font-weight:bold}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:36px;
+  color:var(--text-dim);
+  border-top:2px solid var(--border);
+  margin-top:40px;
+  font-family:'Segoe UI',sans-serif;
+  font-size:.9em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  header h1{font-size:1.7em}
+  .comparison{grid-template-columns:1fr}
+  nav a{padding:5px 10px;font-size:.8em}
+  .topic{padding:20px 18px}
+  .summary-box{padding:22px 18px}
+  .mcq{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🔬 Research Methodology — NPTEL</h1>
+<p>Week 5 & 6 • Ultimate Revision Notes</p>
+<div style="margin-top:15px">
+<span class="badge">Creativity</span>
+<span class="badge">Ethics</span>
+<span class="badge">IPR</span>
+<span class="badge">Exam Ready</span>
+</div>
+</header>
+
+<nav>
+<ul>
+<li><a href="#w5-creativity">Creativity</a></li>
+<li><a href="#w5-creativity2">Creativity-II</a></li>
+<li><a href="#w5-creativity3">Creativity-III</a></li>
+<li><a href="#w5-ethics">Ethics</a></li>
+<li><a href="#w6-ipr1">IPR Part-1</a></li>
+<li><a href="#w6-ipr2">IPR Part-2</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#mcqs">MCQs</a></li>
+</ul>
+</nav>
+
+<div class="container">
+
+<!-- ===== WEEK 5 ===== -->
+<div class="week-header">
+<h2>📘 WEEK 5</h2>
+<div class="subtitle">Creativity in Research & Ethics in Research</div>
+</div>
+
+<!-- CREATIVITY PART 1 -->
+<div class="topic" id="w5-creativity">
+<h3>🎨 Creativity in Research — Part 1</h3>
+
+<h4>What is a Fully Professional Researcher?</h4>
+<div class="point">Has something to say that <strong>international peers</strong> want to listen to</div>
+<div class="point">Has <strong>command over their area/subject</strong></div>
+<div class="point">Has fundamental concepts that <strong>international peers</strong> are interested in</div>
+<div class="point">Peer group must be <strong>truly international</strong> — not just local</div>
+<div class="point">Should be among the <strong>top 10-20 experts</strong> in their specific domain</div>
+<div class="point">Should be aware of situations where they can make <strong>significant contribution</strong></div>
+<div class="point">Must have <strong>mastery of appropriate techniques</strong> (analytical, numerical, experimental)</div>
+<div class="point">Must be able to <strong>communicate ideas</strong> effectively through papers & presentations</div>
+<div class="point">Should be a <strong>fountain head of ideas</strong> — generating new ideas throughout lifetime</div>
+<div class="point">Should be able to <strong>guide Ph.D. students</strong> and defend proposals</div>
+
+<div class="important">A fully professional researcher does NOT work without focusing on literature. They have deep knowledge AND broad awareness of their field globally.</div>
+
+<h4>Sternberg's Triarchic Theory of Intelligence (1985, Yale University)</h4>
+<p style="margin-bottom:10px;color:var(--text-dim)">From: <em>Beyond IQ: A Triarchic Theory of Human Intelligence</em>, Cambridge University Press</p>
+
+<table>
+<tr><th>Type</th><th>What It Is</th><th>Where Tested</th></tr>
+<tr><td><strong>Analytical Intelligence</strong></td><td>Ability to solve well-defined problems with a single correct answer. Tested through exams, grades.</td><td>Classrooms, traditional exams</td></tr>
+<tr><td><strong>Synthetic Intelligence</strong></td><td>Ability to combine existing knowledge in <strong>new ways</strong>. Off-beat solutions, different people can get different answers.</td><td>Project work, design problems, research</td></tr>
+<tr><td><strong>Practical Intelligence</strong></td><td>Ability to adapt to everyday needs, <strong>"street smarts"</strong>. Selling ideas to funding agencies, managers, editors, reviewers. Relates to how one <strong>relates to the environment</strong> around them.</td><td>Never formally taught — acquired over years</td></tr>
+</table>
+
+<div class="important">In traditional education, only <strong>Analytical Intelligence</strong> is excessively focused. The other two (Synthetic & Practical) must be self-learned. Research success depends heavily on all three.</div>
+
+<h4>Role of Knowledge</h4>
+<div class="point">Knowledge gives us the ability to <strong>recognize what is genuinely new</strong></div>
+<div class="point">Without knowledge, you may "reinvent the wheel"</div>
+<div class="point">You must know what has <strong>already been done</strong> before you can do something new</div>
+<div class="point">Knowledge provides skills to <strong>design experiments, analyze results, do scientific computing</strong></div>
+<div class="point">Creativity must be <strong>supplemented by knowledge</strong> — brilliance alone is not enough</div>
+
+<h4>Attributes of a Good Researcher</h4>
+<div class="point"><strong>Sound grasp of fundamentals</strong> — very important foundation</div>
+<div class="point"><strong>Mastery of techniques</strong> in the field</div>
+<div class="point"><strong>Tenacity and perseverance</strong> — resilience in face of failures and rejections</div>
+<div class="point"><strong>Scholarship</strong> — deep knowledge + awareness of global research landscape</div>
+<div class="point"><strong>Communication skills</strong> — papers, posters, presentations</div>
+<div class="point"><strong>Creativity</strong> — often neglected but essential</div>
+
+<h4>What is Creativity?</h4>
+<div class="point">A creative person does things that have <strong>never been done before</strong></div>
+<div class="point">Can be in <strong>any field</strong> — science, engineering, music, law, philosophy</div>
+<div class="point">Creativity includes: discoveries of new knowledge, invention of new technology, composing music, novel legal arguments</div>
+<div class="point">A creative person will likely find a <strong>new approach to solve a problem</strong> that others may not have considered</div>
+<div class="point">Usually does <strong>not conform to pre-existing notions</strong> of what is possible</div>
+<div class="point">Does NOT mean just accurately repeating work done by others</div>
+
+<h4>Ph.D. and Depth vs Width</h4>
+<div class="point">B.Tech: Know a little about everything</div>
+<div class="point">M.Tech: Know reasonably about many things</div>
+<div class="point">Ph.D.: Know a LOT about a very narrow area</div>
+<div class="point"><strong>We gain width through the depth</strong> — deep focus cultivates a "vision" (darshan) that improves ability to understand other areas</div>
+</div>
+
+<!-- CREATIVITY PART 2 -->
+<div class="topic" id="w5-creativity2">
+<h3>🎨 Creativity in Research — Part 2</h3>
+
+<h4>Thinking Styles of Creative People</h4>
+<div class="point">Creative people often <strong>question conventional wisdom</strong>, assumptions, and rules</div>
+<div class="point">May get into <strong>conflicts with society</strong> because of non-conformity</div>
+<div class="point">Need to be <strong>persistent, tenacious, uncompromising, stubborn</strong></div>
+<div class="point">Must believe it will work and keep working at it</div>
+<div class="point">Self-confidence (arrogance in "homeopathic dose" only!)</div>
+
+<h4>The 10,000-Hour Rule — Herbert Simon (Nobel Laureate)</h4>
+<div class="important">It takes approximately <strong>10,000 hours</strong> of deliberate practice/study to master a skill or area of research. This debunks the "Genius Theory" — it's mostly hard work (perspiration).</div>
+
+<table>
+<tr><th>Scenario</th><th>Hours/Day</th><th>Time to Mastery</th></tr>
+<tr><td>Practice (e.g., tennis, music)</td><td>3 hours/day</td><td>~10 years</td></tr>
+<tr><td>Full-time employment</td><td>8 hours/day</td><td>~5 years</td></tr>
+<tr><td>Research student (intensive)</td><td>10-12 hours/day, 6 days/week</td><td>~3-4 years</td></tr>
+</table>
+
+<div class="point">If you have <strong>above average intelligence</strong> + put in 10,000 hours → anyone can become expert</div>
+<div class="point">Mozart, A.R. Rahman, Viswanathan Anand, Bill Gates, Beatles, Chess Grand Masters — all put in 10,000 hours before becoming famous</div>
+<div class="point">Also studied by <strong>Prof. Anders Ericsson</strong> of Florida State University</div>
+<div class="point">Malcolm Gladwell's book <strong>"Outliers" (2008)</strong> — conclusively established the 10,000-hour rule</div>
+
+<h4>Hard Work — The Key</h4>
+<div class="point">Science has progressed through <strong>hard work, failures, and frustrations</strong></div>
+<div class="point">Programs don't work first time; experiments fail; papers get rejected</div>
+<div class="point">Journal publications do NOT reveal the full story — pain, frustrations, failures are not reported</div>
+<div class="point">Research progress follows a <strong>log sigmoidal curve</strong> — slow initially, then rapid, then plateaus</div>
+<div class="point">Society attaches too much importance only to success</div>
+
+<h4>Motivation</h4>
+<div class="comparison">
+<div class="comp-card">
+<h5>Extrinsic Motivation</h5>
+<div class="point">Rewards, money, praise, promotion, prizes, fame</div>
+<div class="point">External motivators that propel work</div>
+<div class="point">Good starting point for beginners</div>
+</div>
+<div class="comp-card">
+<h5>Intrinsic Motivation</h5>
+<div class="point">Self-set goals, achieve, set new goals</div>
+<div class="point">The sheer joy of solving an unknown riddle</div>
+<div class="point">"Eureka feeling" — not related to money/degree</div>
+<div class="point"><strong>More important</strong> in highly creative people</div>
+</div>
+</div>
+
+<h4>Role of Stress in Research — Yerkes-Dodson Curve (1908)</h4>
+<div class="important">We work to the <strong>best of our potential</strong> when we are <strong>Eustressed</strong> (optimally/reasonably stressed). Optimal stress propels us to work harder and perform at peak levels.</div>
+
+<table>
+<tr><th>Stress Level</th><th>Name</th><th>Performance</th></tr>
+<tr><td>Too Low</td><td><strong>Hypo-stressed</strong></td><td>Very Low — no motivation</td></tr>
+<tr><td>Optimal</td><td><strong>Eustressed</strong> (eu + stress = good stress)</td><td>🔥 <strong>Peak Performance</strong></td></tr>
+<tr><td>Too High</td><td><strong>Hyper-stressed / Distressed</strong></td><td>Very Low — anxiety, breakdown</td></tr>
+</table>
+
+<div class="point">Achievement = optimal nervousness + channelizing disenchantment</div>
+<div class="point">Some <strong>optimal unhappiness</strong> with current state propels improvement</div>
+<div class="point">Stress is NOT stressful until it becomes <strong>distress</strong></div>
+
+<h4>How Does Creativity Occur?</h4>
+<div class="point">Often occurs in an <strong>intuitive flash of insight</strong> — "Dharshana" (vision)</div>
+<div class="point">Can come when NOT in the lab — jogging, watching movie, taking bath</div>
+<div class="point">Max Planck example: Got dharshana of "minus 1" in black body radiation → led to quantum mechanics → Nobel Prize (1918)</div>
+<div class="point"><strong>Write down ideas immediately</strong> when a brain wave comes</div>
+<div class="point">Have backup plans — if an idea doesn't work in 2-3 weeks, move on</div>
+
+<h4>Medawar Zone — Sir Peter Medawar (Nobel Prize 1960, Medicine)</h4>
+<div class="point">Y-axis: Payoff; X-axis: Difficulty level</div>
+<div class="point">Very easy problems → low return</div>
+<div class="point">Very difficult problems → low return (may not solve)</div>
+<div class="point">Right difficulty → <strong>highest return</strong> = the <strong>Medawar Zone</strong></div>
+<div class="point">The right research problem should be neither trivially easy nor impossibly hard</div>
+</div>
+
+<!-- CREATIVITY PART 3 -->
+<div class="topic" id="w5-creativity3">
+<h3>🎨 Creativity in Research — Part 3</h3>
+
+<h4>Examples of Creativity</h4>
+<table>
+<tr><th>Example</th><th>Creative Insight</th></tr>
+<tr><td><strong>Velcro®</strong> — George de Mestral</td><td>Converted a <strong>nuisance</strong> (cockleburs sticking to pants) into a useful product</td></tr>
+<tr><td><strong>Post-It®</strong> — Art Fry, 3M (1974)</td><td>Dr. Spencer Silver's "failed" adhesive (poor adhesion) → turned into removable bookmark. <strong>Deviated from conventional wisdom</strong> that adhesive must permanently set.</td></tr>
+<tr><td><strong>Japanese Bullet Trains</strong></td><td>Nose cone shaped like <strong>kingfisher's beak</strong> to reduce tunnel noise — bio-inspired engineering</td></tr>
+<tr><td><strong>Apple iPhone</strong></td><td>Phone without keypad, finger as stylus — defied market conventions</td></tr>
+</table>
+
+<h4>Flow Theory — Prof. Mihaly Csikszentmihalyi (Univ. of Chicago)</h4>
+<div class="point">Y-axis: Challenge; X-axis: Skill</div>
+<div class="point">High skill + Low challenge → <strong>Boredom</strong></div>
+<div class="point">Low skill + High challenge → <strong>Anxiety</strong></div>
+<div class="point"><strong>Challenge = Skill → FLOW</strong> (peak performance, timelessness, enjoyment)</div>
+<div class="point">According to flow theory, a person performs best when <strong>challenge is equal to the skill</strong></div>
+<div class="point">Navigate life so challenge and skill stay matched → you'll be happy and productive</div>
+
+<h4>Lessons from Nobel Laureates</h4>
+<div class="point"><strong>Young scientists</strong> are generally more creative — less "baggage," fearless, not scared of failure</div>
+<div class="point">Experienced researchers (20+ years) tend to be <strong>less creative</strong> due to familiarity</div>
+<div class="point">Solution: <strong>Change fields every ~10 years</strong> (Prof. Chandrasekhar changed field every decade)</div>
+<div class="point">Ignorance of basic education does NOT enhance creativity — knowledge is essential</div>
+<div class="point">Nobel Prize not given to upstarts — results must withstand <strong>test of time</strong> (20-30 years)</div>
+
+<h4>Bio-Inspired Engineering</h4>
+<div class="point"><strong>Ant Colony Optimization</strong> — inspired by foraging behavior of ants & pheromone trails</div>
+<div class="point"><strong>Genetic Algorithm</strong> — mimics process of evolution (best parents → best children → crossover → mutation)</div>
+<div class="point">Both draw inspiration from nature to solve optimization problems</div>
+
+<h4>Edward de Bono on Simplicity</h4>
+<div class="important">According to Edward de Bono, the most complex activity is: <strong>To simplify</strong>. Making things as simple as possible is the highest goal.</div>
+
+<h4>Traits of a Creative Engineer</h4>
+<div class="point"><strong>High motivation</strong> ✓</div>
+<div class="point"><strong>Self confidence</strong> ✓</div>
+<div class="point"><strong>Knowledge of fundamentals</strong> ✓</div>
+<div class="point">Constructive nonconformity (genuinely different, not just looking different)</div>
+<div class="point">Ability to think in images</div>
+<div class="point">Tenacity and perseverance</div>
+<div class="point">NOT "Low self esteem" ✗</div>
+
+<h4>How to Improve Creativity</h4>
+<div class="point">Play games/puzzles; have hobbies that release imagination</div>
+<div class="point">Write poetry, maintain daily journal, read short stories & biographies</div>
+<div class="point">Develop 3D visualization skills</div>
+<div class="point">Talk to others, develop scholarship</div>
+<div class="point">Maintain large library of ideas; look at biographies for inspiration</div>
+<div class="point">Look at what other fields are doing — apply their ideas to your field</div>
+<div class="point">Use analogy method, brainstorming, look at asymptotes</div>
+</div>
+
+<!-- ETHICS -->
+<div class="topic" id="w5-ethics">
+<h3>⚖️ Ethics in Research</h3>
+
+<h4>What is Ethics?</h4>
+<div class="point">Derived from Greek word <strong>"ethos"</strong> meaning <strong>character</strong></div>
+<div class="point">Good character = moral integrity of the researcher</div>
+<div class="point">Important for ensuring <strong>reliable process</strong> with <strong>trustworthy and valid findings</strong></div>
+<div class="point">Research depends on <strong>public trust</strong></div>
+
+<h4>Ethical Aspects Govern:</h4>
+<div class="point">How research is <strong>funded</strong></div>
+<div class="point">How research is <strong>carried out</strong></div>
+<div class="point">How research is <strong>reported</strong></div>
+<div class="point">How and what <strong>information is shared</strong></div>
+
+<h4>The Research Process & Ethics</h4>
+<div class="flow-diagram">
+<span>Problem ID</span> <span class="arrow">→</span>
+<span>Literature Review</span> <span class="arrow">→</span>
+<span>Objectives</span> <span class="arrow">→</span>
+<span>Methodology</span> <span class="arrow">→</span>
+<span>Analysis</span> <span class="arrow">→</span>
+<span>Publishing</span>
+</div>
+<div class="point">Ethics plays a role at <strong>every step</strong> from problem identification to publishing</div>
+
+<h4>Key Ethical Issues</h4>
+<table>
+<tr><th>Issue</th><th>Description</th></tr>
+<tr><td><strong>Plagiarism</strong></td><td>Taking someone else's work and presenting it as your own without proper acknowledgement</td></tr>
+<tr><td><strong>Fabrication of Data</strong></td><td>Making up data or results that don't exist (e.g., Hwang Woo-suk case)</td></tr>
+<tr><td><strong>Breach of Confidentiality</strong></td><td>Disclosing personal information of participants without consent</td></tr>
+<tr><td><strong>Discrimination</strong></td><td>Based on gender, caste, race, nationality, language (e.g., Tuskegee study)</td></tr>
+<tr><td><strong>Authorship Issues</strong></td><td>Not all authors knowing/agreeing to publication; gift authorship</td></tr>
+</table>
+
+<h4>Unethical Behavior in Research Includes:</h4>
+<div class="point"><strong>Copying from other papers</strong> (plagiarism)</div>
+<div class="point"><strong>Directly changing data</strong> if it is not as expected (fabrication/falsification)</div>
+<div class="point"><strong>Accusing other researchers</strong> to become prominent (making unfounded charges)</div>
+<div class="point">NOT: "Listing all the authors while writing a paper" — that is ethical!</div>
+
+<h4>Reasons for Unethical Practices</h4>
+<div class="point"><strong>Pressure to become famous</strong></div>
+<div class="point"><strong>Intention to have quick career growth</strong></div>
+<div class="point"><strong>Pressure to get funding</strong></div>
+<div class="point">Self-interest, ignorance, relativism</div>
+<div class="point">Pressure to publish ("publish or perish")</div>
+<div class="point">Poor supervision of students</div>
+<div class="point">NOT: "The need to teach well" — that is not a reason for unethical practices</div>
+
+<h4>Case Study: Prof. Hwang Woo-suk (South Korea)</h4>
+<div class="point">2004: Claimed to have cloned human embryo & extracted stem cells (in journal Science)</div>
+<div class="point">Called South Korea's "national treasure"</div>
+<div class="point">Investigation found: <strong>faked claims, fabricated data, coerced female lab members</strong></div>
+<div class="point">2006: Fired from Seoul National University, charged with fraud & embezzlement</div>
+
+<h4>Historical Milestones in Research Ethics</h4>
+<table>
+<tr><th>Event</th><th>Year</th><th>Key Contribution</th></tr>
+<tr><td><strong>Nuremberg Code</strong></td><td>1949</td><td>Emphasis on <strong>voluntary consent</strong> from participants</td></tr>
+<tr><td><strong>Tuskegee Syphilis Study</strong></td><td>1932-1972</td><td>Exposed race-based discrimination; no consent/treatment given to Black subjects</td></tr>
+<tr><td><strong>Declaration of Helsinki</strong></td><td>1964</td><td>Mandated <strong>risk-benefit analysis</strong>, respect for privacy, minimize cost to subjects</td></tr>
+<tr><td><strong>Belmont Report</strong></td><td>1979</td><td>Voluntary consent, autonomy of individual, protection of human subjects</td></tr>
+<tr><td><strong>Animal Welfare Act</strong></td><td>—</td><td>Guidelines for research with animals; respect animal life</td></tr>
+</table>
+
+<h4>Publishing Ethics</h4>
+<div class="point">Important to ensure <strong>experiments were conducted correctly</strong></div>
+<div class="point">Important to ensure <strong>references are properly cited</strong></div>
+<div class="point">Only people <strong>involved in the research</strong> should be acknowledged as authors</div>
+<div class="point">UNETHICAL: Agreement with colleague to include names in each other's papers without involvement</div>
+
+<div class="important">If collaborators generate data together, it is <strong>NOT ethical</strong> for some to publish independently without all authors knowing and agreeing. <strong>All authors should know and agree with the publication.</strong></div>
+
+<h4>Researcher's Obligations</h4>
+<div class="point"><strong>Honesty</strong> — to self, work, society, fellow researchers</div>
+<div class="point"><strong>Integrity</strong> — moral soundness</div>
+<div class="point"><strong>Minimal risk</strong> to participants and themselves</div>
+<div class="point"><strong>Cultural sensitivity</strong></div>
+<div class="point"><strong>Transparency</strong></div>
+<div class="point"><strong>Responsibility</strong> — the most important concept in research ethics</div>
+<div class="point">Social benefits > individual benefits</div>
+</div>
+
+<!-- ===== WEEK 6 ===== -->
+<div class="week-header">
+<h2>📗 WEEK 6</h2>
+<div class="subtitle">Intellectual Property Rights (IPR)</div>
+</div>
+
+<!-- IPR PART 1 -->
+<div class="topic" id="w6-ipr1">
+<h3>🏛️ Intellectual Property Rights — Part 1</h3>
+
+<h4>IP vs Real Property</h4>
+<div class="comparison">
+<div class="comp-card">
+<h5>Real Property</h5>
+<div class="point">Tangible — can touch & feel</div>
+<div class="point">Has physical boundaries</div>
+<div class="point">Exists in time & space</div>
+<div class="point">Examples: Land, laptop, pen, <strong>house</strong>, car</div>
+<div class="point">Limits on enjoyment (room capacity)</div>
+<div class="point"><strong>Rivalrous</strong></div>
+</div>
+<div class="comp-card">
+<h5>Intellectual Property</h5>
+<div class="point"><strong>Intangible</strong> — cannot touch & feel</div>
+<div class="point">Boundaries defined by legal documents (claims, specifications)</div>
+<div class="point">Does NOT exist in time & space like real property</div>
+<div class="point">Examples: Inventions, books, trademarks</div>
+<div class="point">No limits on enjoyment (millions can read same book)</div>
+<div class="point"><strong>Non-rivalrous</strong></div>
+</div>
+</div>
+
+<div class="important">The idea that distinguishes IP from real property is: <strong>Real properties have physical boundaries</strong>. They are NOT the same. IP is NOT superior to real property — they are different types.</div>
+
+<h4>What is Intellectual Property?</h4>
+<div class="point">Original ideas, results from research, critical business information</div>
+<div class="point">Property that emanates from <strong>human creative labour</strong></div>
+<div class="point">IP protects <strong>applications/expressions of ideas</strong> — NOT ideas per se</div>
+<div class="point">An original set of ideas or research results falls in the category of IP</div>
+<div class="point">Properties emanating from human creativity/labour = IP</div>
+
+<h4>What are Rights?</h4>
+<div class="point">A <strong>legal entitlement</strong> — something you can get legally</div>
+<div class="point">Can be justified, recognized, and protected</div>
+<div class="point">Violation is <strong>unlawful</strong> and leaves the violated party with a remedy</div>
+<div class="point">Two senses: <strong>Liberty</strong> (freedom to do) & <strong>License</strong> (consent given)</div>
+<div class="point">Inherent rights (human rights) vs. rights created by law (property rights)</div>
+<div class="point">General rights (shared by all) vs. <strong>Exclusive rights</strong> (stop others from acting)</div>
+
+<h4>Infringement</h4>
+<div class="point">Violation of an intellectual property right</div>
+<div class="point">Technically means <strong>trespass</strong> — getting into the property of someone else</div>
+<div class="point">Both <strong>civil and criminal remedies</strong> available</div>
+<div class="point">Leads to infringement → can get <strong>injunction or monetary damages</strong></div>
+
+<h4>Patent Specification & Claims</h4>
+<div class="point"><strong>Patent specification</strong> = descriptive document for an invention (like a land deed)</div>
+<div class="point">Contains: background art, description, embodiments, illustrations</div>
+<div class="point"><strong>Claims</strong> = concluding part that demarcates boundaries of the IP</div>
+<div class="point">Protection is confined to <strong>what is mentioned in the claims</strong>, not the descriptive part</div>
+<div class="point">Every invention needs to be <strong>described in writing</strong></div>
+<div class="point"><strong>Prior art</strong> = what has gone before (existing technology)</div>
+<div class="point">Inventor must distinguish invention from prior art</div>
+
+<h4>"Intellectual" Component</h4>
+<div class="point">Refers to things from our <strong>intellect</strong> — mental effort, creative effort</div>
+<div class="point">Combination of <strong>physical and mental skills</strong> — but IP focuses on the mental element</div>
+<div class="point">Distinguished as something from <strong>human beings</strong>, not machines</div>
+<div class="point">Example: Carpenter making chair — physical labor visible, but mental conception is the IP</div>
+
+<h4>Key Characteristics/Traits of IPR</h4>
+<table>
+<tr><th>#</th><th>Trait</th><th>Explanation</th></tr>
+<tr><td>1</td><td><strong>Protectable by law (Enforceable)</strong></td><td>If violated, there is a remedy (injunction or damages)</td></tr>
+<tr><td>2</td><td><strong>Intangible in nature</strong></td><td>Cannot touch/feel; must be described and registered</td></tr>
+<tr><td>3</td><td><strong>Easily replicable</strong></td><td>First copy expensive, subsequent copies nearly free (Windows 7 example)</td></tr>
+<tr><td>4</td><td><strong>Requires creative effort</strong></td><td>Creations of the mind; often group efforts in modern research</td></tr>
+<tr><td>5</td><td><strong>Has commercial value</strong></td><td>Can be used in trade and business</td></tr>
+<tr><td>6</td><td><strong>Non-rivalrous</strong></td><td>Use by one does not take away enjoyment by another</td></tr>
+<tr><td>7</td><td><strong>Non-excludable</strong></td><td>Once public, hard to stop others from accessing it</td></tr>
+</table>
+
+<div class="important">Common characteristics of IPR: <strong>Protectable by law, Intangible in nature, Has commercial value</strong>. Note: "Cannot be easily replicated" is INCORRECT — IP CAN be easily replicated (that's the problem IPR solves!).</div>
+
+<h4>Definition of IPR</h4>
+<div class="point">There is <strong>no universal/agreed definition</strong> of IPR</div>
+<div class="point">WIPO (World Intellectual Property Organization) — UN body for IP</div>
+<div class="point">WIPO's definition is an "inclusive/grocery list" — lists patents, copyrights, trademarks, designs, etc.</div>
+<div class="point">Generally: <strong>"Rights that protect applications of ideas and information of commercial value"</strong></div>
+
+<h4>Types of IPR</h4>
+<table>
+<tr><th>Type</th><th>Protects</th><th>Key Detail</th></tr>
+<tr><td><strong>Patent</strong></td><td>Inventions (technological)</td><td>Rights: make, sell, use, offer for sale, import</td></tr>
+<tr><td><strong>Copyright</strong></td><td>Literary, artistic, musical, cinematographic works, computer programs</td><td>Rights: print, publish, perform, film, record</td></tr>
+<tr><td><strong>Trademark</strong></td><td>Words, symbols identifying a company/products</td><td>Helps identify producer; ambassador of business</td></tr>
+<tr><td><strong>Design</strong></td><td>Shape, configuration, pattern — <strong>aesthetic/visual appeal</strong></td><td>No functional element; test = "what the eye can see"</td></tr>
+<tr><td><strong>Geographical Indication</strong></td><td>Origin of goods from specific geography</td><td>E.g., Darjeeling tea; beneficiaries = producers from that region</td></tr>
+<tr><td><strong>Trade Secret</strong></td><td>Confidential business information</td><td>As long as kept secret, enforceable</td></tr>
+</table>
+
+<h4>Two Types of Property</h4>
+<div class="point"><strong>Public property</strong> — held in common</div>
+<div class="point"><strong>Private property</strong> — held individually</div>
+
+<h4>Registration & Its Importance</h4>
+<div class="point">Registration = the process through which IPR are <strong>recognized</strong></div>
+<div class="point">We get to know what the <strong>right holder has claimed</strong></div>
+<div class="point">It is the form by which IP is <strong>protected</strong></div>
+<div class="point">Done by the government/state — confers sanctity</div>
+<div class="point"><strong>Copyright exception:</strong> Under the <strong>Berne Convention</strong>, copyright registration is NOT mandatory for enforcement. Just a copyright notice (©, name, year) is sufficient.</div>
+<div class="point">Patent specification undergoes <strong>patent prosecution</strong> in the patent office</div>
+</div>
+
+<!-- IPR PART 2 -->
+<div class="topic" id="w6-ipr2">
+<h3>🏛️ Intellectual Property Rights — Part 2</h3>
+
+<h4>Duration of IP Rights</h4>
+<table>
+<tr><th>IPR Type</th><th>Duration</th><th>Category</th></tr>
+<tr><td><strong>Patent</strong></td><td><strong>20 years from date of application</strong> (globally, per TRIPS)</td><td>Limited Life IP</td></tr>
+<tr><td><strong>Copyright (India)</strong></td><td><strong>Life of author + 60 years</strong>; Institution: date of creation + 60 years</td><td>Limited Life IP</td></tr>
+<tr><td><strong>Trademark</strong></td><td>Granted for <strong>10 years</strong>; renewable (can be kept alive forever)</td><td><strong>Unlimited Life IP</strong></td></tr>
+<tr><td><strong>Trade Secret</strong></td><td>As long as kept confidential — <strong>unlimited</strong></td><td><strong>Unlimited Life IP</strong></td></tr>
+<tr><td><strong>Design</strong></td><td>Limited (weakest IPR)</td><td>Limited Life IP</td></tr>
+</table>
+
+<div class="important">
+<strong>Key exam points:</strong><br>
+• Patent = 20 years from date of application ✓ (TRIPS Agreement)<br>
+• Trademark granted for 10 years, renewable — but a <strong>trademark has unlimited life</strong> (can be renewed indefinitely)<br>
+• Copyright India = Life + 60 years<br>
+• A trademark is NOT granted for 15 years — it's 10 years!<br>
+• IPR did NOT first come up during Green Revolution — they came with Industrial Revolution<br>
+• <strong>Limited life IP can go to public domain</strong> after expiry ✓<br>
+• IP is NOT the same as real property ✓<br>
+• IPR are <strong>exclusive</strong> rights (not non-exclusive)
+</div>
+
+<h4>TRIPS Agreement & WTO</h4>
+<div class="point"><strong>TRIPS</strong> = Trade-Related Aspects of Intellectual Property Rights</div>
+<div class="point">An agreement under the <strong>World Trade Organization (WTO)</strong></div>
+<div class="point">Mandates <strong>20-year patent term</strong> for all WTO member countries</div>
+<div class="point">Technology agnostic — applies to ALL fields of technology</div>
+<div class="point">Before TRIPS: Patent term was 14 years in most countries</div>
+<div class="point">In India before TRIPS: 14 years general, up to 7 years for pharmaceuticals</div>
+
+<h4>Why 14 Years Historically?</h4>
+<div class="point">In England: 7 years to train an apprentice</div>
+<div class="point">Craftsmen were given exclusive privilege in exchange for training 2 British apprentices</div>
+<div class="point">7 + 7 = 14 years</div>
+
+<h4>Historical Context: Industrial Revolution & IPR</h4>
+<div class="point">IPR attained international recognition with advent of <strong>Industrial Revolution</strong></div>
+<div class="point">Advancement in <strong>printing technology</strong> → quick spread of ideas</div>
+<div class="point">People crossing borders → translation of works → spread of ideas</div>
+<div class="point">Mass manufacturing made duplication easy → need for protection</div>
+<div class="point">Before Industrial Revolution: <strong>Oral-formulaic tradition</strong> (memorize and pass on)</div>
+
+<h4>Oral-Formulaic Tradition & Copyright</h4>
+<div class="point">Knowledge was transmitted by memorization and oral recitation</div>
+<div class="point">Shakespeare benefited from this tradition</div>
+<div class="point">Copyright regime requires things to be <strong>recorded/expressed on some medium</strong></div>
+<div class="point">Medium: paper (print), tapes (film), digital</div>
+<div class="point">Memorizing something is NOT "making a copy" — copyright requires a medium</div>
+
+<h4>Patent Rights — Exclusive Bundle</h4>
+<div class="point">Right to <strong>make/manufacture</strong></div>
+<div class="point">Right to <strong>sell</strong></div>
+<div class="point">Right to <strong>use</strong></div>
+<div class="point">Right to <strong>offer for sale</strong></div>
+<div class="point">Right to <strong>import</strong></div>
+<div class="point">Anyone doing these without consent → <strong>infringement</strong></div>
+
+<h4>Trademark — Key Points</h4>
+<div class="point">Identifies a company and its products/services</div>
+<div class="point">Can be registered OR established by <strong>use</strong> (law of passing off)</div>
+<div class="point">Even without registration, long-time use gives protection</div>
+<div class="point">Well-known marks can stop use even in <strong>different business domains</strong> (Benz logo for undergarments case)</div>
+<div class="point">Mark acts as <strong>ambassador</strong> for the business</div>
+<div class="point">Trademarks = <strong>unlimited life IP</strong> (keep renewing)</div>
+
+<h4>Design Rights</h4>
+<div class="point">Protects <strong>aesthetic appeal</strong> — what the eye can see</div>
+<div class="point">Does NOT protect functional elements (that's patents' domain)</div>
+<div class="point">Used for mass-produced goods (tiles, bottles, jewelry, clothing)</div>
+<div class="point"><strong>Weakest of IPRs</strong> — restrictions on enforcement, limited damages</div>
+<div class="point">Example: Children's shoe shaped like bunny = design; Nike shoe with grip features = patent territory</div>
+
+<h4>Copyright vs Design</h4>
+<div class="point">If something can be protected by copyright, nobody goes for shorter-term design</div>
+<div class="point">Copyright = life + 60 years (much longer protection)</div>
+<div class="point">Design rights exist for <strong>industrial designs</strong> that can't claim copyright protection</div>
+
+<h4>Medical Methods</h4>
+<div class="point">Medical methods of treatment are <strong>exempted</strong> from patent protection under Indian Act (Section 3)</div>
+
+<h4>Book Written by Prof Feroz</h4>
+<div class="point">A book can be protected by <strong>Copyright</strong></div>
+<div class="point">Not by trademark, patent, or design</div>
+
+<h4>Which IPR Identifies a Company?</h4>
+<div class="point"><strong>Trademark</strong> — it identifies the company and its products</div>
+
+<h4>Example of Real Property</h4>
+<div class="point"><strong>House</strong> is real property (tangible, physical boundaries)</div>
+<div class="point">Invention = IP; Trademark = IP; Car = debatable but exam answer is House</div>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="summary-box" id="summary">
+<h3>📋 MEGA SUMMARY — Must-Remember Points</h3>
+
+<h4 style="color:var(--accent);margin:15px 0 10px">Week 5: Creativity</h4>
+<div class="summary-item"><div class="num">1</div><div>Sternberg's 3 types: Analytical (textbook), Synthetic (new combinations), <strong>Practical (street smarts, environment adaptation)</strong></div></div>
+<div class="summary-item"><div class="num">2</div><div><strong>10,000-hour rule</strong> by Herbert Simon (Nobel Laureate) — ~5 years full-time (8 hrs/day) to become expert</div></div>
+<div class="summary-item"><div class="num">3</div><div>Best performance at <strong>Eustress</strong> (optimal stress) — Yerkes-Dodson curve (1908)</div></div>
+<div class="summary-item"><div class="num">4</div><div><strong>Flow Theory</strong> (Csikszentmihalyi): Best performance when challenge = skill</div></div>
+<div class="summary-item"><div class="num">5</div><div><strong>Medawar Zone</strong>: Right difficulty = highest payoff in research</div></div>
+<div class="summary-item"><div class="num">6</div><div>Edward de Bono: Most complex activity = <strong>to simplify</strong></div></div>
+<div class="summary-item"><div class="num">7</div><div>Creative person: New approach, doesn't conform, can be in <strong>any field</strong></div></div>
+<div class="summary-item"><div class="num">8</div><div>Young researchers = more creative (less baggage). Experienced = less creative (familiarity)</div></div>
+<div class="summary-item"><div class="num">9</div><div>Creative engineer traits: High motivation, self-confidence, knowledge of fundamentals (NOT low self-esteem)</div></div>
+<div class="summary-item"><div class="num">10</div><div>Creativity examples: Velcro (nuisance→product), Post-It (failed adhesive→product), deviating from conventional wisdom</div></div>
+
+<h4 style="color:var(--accent);margin:20px 0 10px">Week 5: Ethics</h4>
+<div class="summary-item"><div class="num">11</div><div>Ethics = from Greek <strong>"ethos"</strong> = character. Key concept: <strong>Responsibility</strong></div></div>
+<div class="summary-item"><div class="num">12</div><div>Ethics governs: how research is funded, carried out, reported, and information shared</div></div>
+<div class="summary-item"><div class="num">13</div><div>Unethical: plagiarism, data fabrication, copying, changing data, accusing others</div></div>
+<div class="summary-item"><div class="num">14</div><div>Reasons for unethical behavior: pressure for fame, quick career, funding pressure</div></div>
+<div class="summary-item"><div class="num">15</div><div>Collaborative research: All authors must <strong>know and agree</strong> before publication</div></div>
+<div class="summary-item"><div class="num">16</div><div>Publishing: Correct experiments, proper citations, only involved researchers as authors</div></div>
+
+<h4 style="color:var(--accent);margin:20px 0 10px">Week 6: IPR</h4>
+<div class="summary-item"><div class="num">17</div><div>IP ≠ Real Property. Real property has physical boundaries. IP is intangible.</div></div>
+<div class="summary-item"><div class="num">18</div><div>Infringement = violation of IPR = trespass on intellectual property</div></div>
+<div class="summary-item"><div class="num">19</div><div>Patent = 20 years from application date (TRIPS/WTO). Protects inventions.</div></div>
+<div class="summary-item"><div class="num">20</div><div>Copyright (India) = Life + 60 years. Protects books, music, software.</div></div>
+<div class="summary-item"><div class="num">21</div><div>Trademark = 10 years, renewable = <strong>unlimited life IP</strong>. Identifies company.</div></div>
+<div class="summary-item"><div class="num">22</div><div>Trade Secret = unlimited life (as long as kept confidential)</div></div>
+<div class="summary-item"><div class="num">23</div><div>IPR traits: protectable by law, intangible, has commercial value, easily replicable</div></div>
+<div class="summary-item"><div class="num">24</div><div>IPR are <strong>exclusive</strong> rights (NOT non-exclusive)</div></div>
+<div class="summary-item"><div class="num">25</div><div>Limited life IP → goes to <strong>public domain</strong> after expiry</div></div>
+<div class="summary-item"><div class="num">26</div><div>Copyright: Registration NOT mandatory (Berne Convention). © notice sufficient.</div></div>
+<div class="summary-item"><div class="num">27</div><div>Patent specification → claims define boundaries → patent prosecution at patent office</div></div>
+<div class="summary-item"><div class="num">28</div><div>Two types of property: <strong>Public and Private</strong></div></div>
+<div class="summary-item"><div class="num">29</div><div>Book → Copyright. Company identity → Trademark. Invention → Patent. Aesthetic design → Design.</div></div>
+<div class="summary-item"><div class="num">30</div><div>Trademark NOT granted for 15 years. IPR did NOT originate during Green Revolution.</div></div>
+</div>
+
+<!-- ===== MCQs ===== -->
+<div class="mcq-section" id="mcqs">
+<h2>📝 NPTEL-Style Practice MCQs</h2>
+<p style="text-align:center;color:var(--text-dim);margin-bottom:30px">Some questions have more than one correct answer. Click "Show Answer" to reveal.</p>
+
+<!-- MCQ 1 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">1</div><div class="q-text">According to Sternberg's triarchic theory of intelligence, practical intelligence relates to:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">How one relates to the environment around them</div>
+<div class="option" data-correct="true">How street smart they are</div>
+<div class="option" data-correct="false">How well they come up with new theories</div>
+<div class="option" data-correct="false">How well they solve new problems</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>How one relates to the environment around them</strong> & <strong>How street smart they are</strong></div>
+<div class="explanation">Practical intelligence = ability to adapt to everyday needs, "street smarts." Coming up with new theories = synthetic intelligence.</div>
+</div>
+</div>
+
+<!-- MCQ 2 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">2</div><div class="q-text">According to flow theory (Csikszentmihalyi), a person performs best when:</div></div>
+<div class="option" data-correct="false">Challenge is much lower than the skill</div>
+<div class="option" data-correct="true">Challenge is equal to the skill</div>
+<div class="option" data-correct="false">Challenge is much higher than the skill</div>
+<div class="option" data-correct="false">Challenge is unrelated to the skill</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Challenge is equal to the skill</strong></div>
+<div class="explanation">When challenge matches skill → flow state → peak performance. Low challenge = boredom. High challenge = anxiety.</div>
+</div>
+</div>
+
+<!-- MCQ 3 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">3</div><div class="q-text">According to Herbert Simon (Nobel Laureate), it takes:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">10,000 hours of effort to be an expert in an area</div>
+<div class="option" data-correct="true">Approximately 4-5 years of working 8 hours a day to become an expert</div>
+<div class="option" data-correct="false">A Bachelor's degree to become an expert</div>
+<div class="option" data-correct="false">Regular reading of newspapers to become an expert in a scientific area</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>10,000 hours</strong> & <strong>~4-5 years at 8 hrs/day</strong></div>
+<div class="explanation">10,000 ÷ (8 hrs × ~250 working days) ≈ 5 years. A degree alone doesn't make an expert.</div>
+</div>
+</div>
+
+<!-- MCQ 4 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">4</div><div class="q-text">We can work to the best of our potential when we are:</div></div>
+<div class="option" data-correct="false">Hypo stressed</div>
+<div class="option" data-correct="true">Eustressed</div>
+<div class="option" data-correct="false">Hyper stressed</div>
+<div class="option" data-correct="false">Distressed</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Eustressed</strong></div>
+<div class="explanation">Eustress (eu = good + stress) = optimal stress level for peak performance (Yerkes-Dodson curve).</div>
+</div>
+</div>
+
+<!-- MCQ 5 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">5</div><div class="q-text">Traits of a creative engineer include:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">High motivation</div>
+<div class="option" data-correct="false">Low self esteem</div>
+<div class="option" data-correct="true">Self Confidence</div>
+<div class="option" data-correct="true">Knowledge of fundamentals</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>High motivation, Self Confidence, Knowledge of fundamentals</strong></div>
+<div class="explanation">Low self esteem is NOT a trait of creative engineers. Creative engineers need confidence, not self-doubt.</div>
+</div>
+</div>
+
+<!-- MCQ 6 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">6</div><div class="q-text">Ethical aspects govern which of the following areas:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">How research is funded</div>
+<div class="option" data-correct="true">How research is carried out</div>
+<div class="option" data-correct="true">How research is reported</div>
+<div class="option" data-correct="true">How and what information is shared</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>All four are correct</strong></div>
+<div class="explanation">Ethics governs every aspect of research — from funding to conduct to reporting to sharing.</div>
+</div>
+</div>
+
+<!-- MCQ 7 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">7</div><div class="q-text">Which of the following is true?<br>Statement 1: A patent is protected for 20 years from the date of application.<br>Statement 2: Infringement means violation of an intellectual property right.</div></div>
+<div class="option" data-correct="false">Statement 1 is true, Statement 2 is false</div>
+<div class="option" data-correct="false">Statement 1 is false, Statement 2 is true</div>
+<div class="option" data-correct="true">Both Statement 1 and Statement 2 are true</div>
+<div class="option" data-correct="false">Both Statement 1 and Statement 2 are false</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Both statements are true</strong></div>
+<div class="explanation">Patent = 20 years from application (TRIPS). Infringement = violation/trespass of IP right.</div>
+</div>
+</div>
+
+<!-- MCQ 8 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">8</div><div class="q-text">Which of the following is true?<br>Statement 1: Intellectual property rights are non-exclusive set of rights.<br>Statement 2: Intellectual property rights are rights which protect products of human creative labour.</div></div>
+<div class="option" data-correct="false">Statement 1 is true, Statement 2 is false</div>
+<div class="option" data-correct="true">Statement 1 is false, Statement 2 is true</div>
+<div class="option" data-correct="false">Both are true</div>
+<div class="option" data-correct="false">Both are false</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Statement 1 is FALSE, Statement 2 is TRUE</strong></div>
+<div class="explanation">IPRs are EXCLUSIVE rights (not non-exclusive) — they give the ability to stop others. They do protect products of human creative labour.</div>
+</div>
+</div>
+
+<!-- MCQ 9 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">9</div><div class="q-text">Which intellectual property right has unlimited life?</div></div>
+<div class="option" data-correct="true">Trademark</div>
+<div class="option" data-correct="false">Patent</div>
+<div class="option" data-correct="false">Copyright</div>
+<div class="option" data-correct="false">All of the above</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Trademark</strong></div>
+<div class="explanation">Trademarks can be renewed indefinitely = unlimited life IP. Patents (20 yrs) and Copyright (life+60) are limited life. Trade secrets also unlimited but that wasn't an option.</div>
+</div>
+</div>
+
+<!-- MCQ 10 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">10</div><div class="q-text">What is the duration of copyright in India?</div></div>
+<div class="option" data-correct="false">Life of author + 20 Years</div>
+<div class="option" data-correct="false">Life of author + 40 Years</div>
+<div class="option" data-correct="true">Life of author + 60 Years</div>
+<div class="option" data-correct="false">Life of author + 80 Years</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Life of author + 60 Years</strong></div>
+<div class="explanation">In India, copyright lasts for the lifetime of the author plus 60 years after death. For institutions, 60 years from date of creation/publication.</div>
+</div>
+</div>
+
+<!-- MCQ 11 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">11</div><div class="q-text">Some examples of creativity include:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">Taking a problem/nuisance and converting it into a useful product</div>
+<div class="option" data-correct="true">Taking a poorly performing product and converting it into a new product line</div>
+<div class="option" data-correct="true">Products that deviate from conventional wisdom</div>
+<div class="option" data-correct="false">Copying products that already exist, since the market is established</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ First three are correct</div>
+<div class="explanation">Velcro (nuisance→product), Post-It (poor adhesive→product), iPhone (deviated from convention). Copying is NOT creativity.</div>
+</div>
+</div>
+
+<!-- MCQ 12 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">12</div><div class="q-text">With respect to being creative in research:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">Young researchers are generally more creative since they have less prior baggage</div>
+<div class="option" data-correct="true">Researchers who have spent 20 years are generally less creative due to familiarity</div>
+<div class="option" data-correct="false">Ignorance of basic education enhances creativity in formal research</div>
+<div class="option" data-correct="false">Researchers who have spent 20 years are generally more creative due to familiarity</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Young = more creative (less baggage)</strong> & <strong>20-year veterans = less creative (familiarity)</strong></div>
+<div class="explanation">Young scientists are fearless. Experienced ones fear reputation damage. Ignorance does NOT enhance creativity — knowledge is essential.</div>
+</div>
+</div>
+
+<!-- MCQ 13 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">13</div><div class="q-text">According to Edward de Bono, the most complex activity is:</div></div>
+<div class="option" data-correct="false">Teaching</div>
+<div class="option" data-correct="false">Reading</div>
+<div class="option" data-correct="true">To simplify</div>
+<div class="option" data-correct="false">To complicate things further</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>To simplify</strong></div>
+<div class="explanation">Edward de Bono wrote a 500-page book on simplicity. Making things as simple as possible is the hardest goal.</div>
+</div>
+</div>
+
+<!-- MCQ 14 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">14</div><div class="q-text">Which of the following are common characteristics of intellectual property rights?</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">It is protectable by law</div>
+<div class="option" data-correct="true">It is intangible in nature</div>
+<div class="option" data-correct="false">It cannot be easily replicated</div>
+<div class="option" data-correct="true">It has commercial value</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Protectable by law, Intangible, Commercial value</strong></div>
+<div class="explanation">"Cannot be easily replicated" is WRONG — IP CAN be easily replicated (that's exactly why IPR protection is needed!).</div>
+</div>
+</div>
+
+<!-- MCQ 15 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">15</div><div class="q-text">Unethical behaviour in scientific research includes:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">Copying from other papers</div>
+<div class="option" data-correct="true">Directly changing the data if it is not as expected</div>
+<div class="option" data-correct="false">Listing all the authors while writing a paper</div>
+<div class="option" data-correct="true">Accusing other researchers so that you become prominent</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Copying, Changing data, Accusing others</strong></div>
+<div class="explanation">Listing all actual authors is ETHICAL, not unethical. It's the right thing to do!</div>
+</div>
+</div>
+
+<!-- MCQ 16 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">16</div><div class="q-text">Which of the following is true?<br>Statement 1: A trademark is granted for a period of 15 years and can be renewed thereafter.<br>Statement 2: Intellectual property rights first came up during the green revolution.</div></div>
+<div class="option" data-correct="false">Statement 1 is true, Statement 2 is false</div>
+<div class="option" data-correct="false">Statement 1 is false, Statement 2 is true</div>
+<div class="option" data-correct="false">Both are true</div>
+<div class="option" data-correct="true">Both Statement 1 and Statement 2 are false</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Both are false</strong></div>
+<div class="explanation">Trademark = 10 years (not 15). IPR came up during Industrial Revolution (not Green Revolution).</div>
+</div>
+</div>
+
+<!-- MCQ 17 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">17</div><div class="q-text">The following can be attributed to a fully professional researcher:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">They have fundamental concepts that their international peers might be interested in</div>
+<div class="option" data-correct="true">They have command over their area</div>
+<div class="option" data-correct="true">They are aware of situations where they can make significant contribution</div>
+<div class="option" data-correct="false">They work without focusing on literature in the area</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ First three are correct</div>
+<div class="explanation">A fully professional researcher absolutely DOES focus on literature — scholarship and knowledge of the field is essential. Working without literature awareness is the opposite of professional research.</div>
+</div>
+</div>
+
+<!-- MCQ 18 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">18</div><div class="q-text">Few research scholars collaborated on a specific area, generated data, and analyzed results. Some of them published independently since they typed it up first. Is it ethical?</div></div>
+<div class="option" data-correct="false">Yes, because they have collaborated and know each other</div>
+<div class="option" data-correct="true">No, all authors should know and agree with the publication</div>
+<div class="option" data-correct="false">Yes, if the collaborators are junior to you</div>
+<div class="option" data-correct="false">No, only if the authors are senior to you</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>No, all authors should know and agree with the publication</strong></div>
+<div class="explanation">In collaborative research, ALL collaborators must know and agree before any publication. Being first to type doesn't give exclusive publishing rights.</div>
+</div>
+</div>
+
+<!-- MCQ 19 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">19</div><div class="q-text">Which of the following are the two types of property?</div></div>
+<div class="q-note">Two options are correct</div>
+<div class="option" data-correct="true">Public</div>
+<div class="option" data-correct="false">Government</div>
+<div class="option" data-correct="true">Private</div>
+<div class="option" data-correct="false">Lawful</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Public and Private</strong></div>
+<div class="explanation">Property can be either public property (commons) or private property (individual). Government and Lawful are not types of property.</div>
+</div>
+</div>
+
+<!-- MCQ 20 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">20</div><div class="q-text">Which of the following is true?<br>Statement 1: Limited life intellectual property can go to public domain.<br>Statement 2: Intellectual property is same as real property.</div></div>
+<div class="option" data-correct="true">Statement 1 is true, Statement 2 is false</div>
+<div class="option" data-correct="false">Statement 1 is false, Statement 2 is true</div>
+<div class="option" data-correct="false">Both are true</div>
+<div class="option" data-correct="false">Both are false</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Statement 1 is TRUE, Statement 2 is FALSE</strong></div>
+<div class="explanation">Limited life IP (patents, copyrights) fall into public domain after expiry. IP is fundamentally different from real property (intangible vs tangible, no physical boundaries, etc.).</div>
+</div>
+</div>
+
+<!-- MCQ 21 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">21</div><div class="q-text">Some of the reasons for researchers adopting unethical practices include:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">Pressure to become famous</div>
+<div class="option" data-correct="true">Intention to have a quick career growth</div>
+<div class="option" data-correct="true">Pressure to get funding</div>
+<div class="option" data-correct="false">The need to teach well</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Fame pressure, Quick career, Funding pressure</strong></div>
+<div class="explanation">"Need to teach well" is a legitimate professional goal, not a reason for unethical practices.</div>
+</div>
+</div>
+
+<!-- MCQ 22 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">22</div><div class="q-text">A creative person:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="false">Accurately repeats work done by others</div>
+<div class="option" data-correct="true">Will likely find a new approach to solve a problem that others may not have considered</div>
+<div class="option" data-correct="true">Usually does not like to conform to pre-existing notions of what is possible</div>
+<div class="option" data-correct="true">Can be in almost any field</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>New approach, Non-conformity, Any field</strong></div>
+<div class="explanation">Accurately repeating = reproduction, NOT creativity. Creativity is about doing something that has never been done before.</div>
+</div>
+</div>
+
+<!-- MCQ 23 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">23</div><div class="q-text">Which of the following fall in the category of intellectual property?</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">An original set of ideas or research results</div>
+<div class="option" data-correct="false">Ideas originating from real property</div>
+<div class="option" data-correct="true">Properties emanating from human creativity labour</div>
+<div class="option" data-correct="false">All of the above</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Original ideas/research results</strong> & <strong>Properties from human creative labour</strong></div>
+<div class="explanation">IP = property from human creative labour. "Ideas from real property" doesn't make conceptual sense as an IP category.</div>
+</div>
+</div>
+
+<!-- MCQ 24 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">24</div><div class="q-text">The idea that distinguishes intellectual property from real property is:</div></div>
+<div class="option" data-correct="false">One can have both types of property</div>
+<div class="option" data-correct="true">Real properties have physical boundaries</div>
+<div class="option" data-correct="false">Both are same</div>
+<div class="option" data-correct="false">Intellectual property is superior to real property</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ <strong>Real properties have physical boundaries</strong></div>
+<div class="explanation">The key distinction is that real property has physical, ascertainable boundaries, while IP does not exist in physical time and space.</div>
+</div>
+</div>
+
+<!-- MCQ 25 -->
+<div class="mcq">
+<div class="q-header"><div class="q-num">25</div><div class="q-text">While publishing a paper it is:</div></div>
+<div class="q-note">One or more options may be correct</div>
+<div class="option" data-correct="true">Important to be sure that experiments were conducted correctly</div>
+<div class="option" data-correct="true">Important to ensure that references are properly cited</div>
+<div class="option" data-correct="true">Important to ensure only people involved in the research are acknowledged as authors</div>
+<div class="option" data-correct="false">Important to have an agreement with a colleague to include his/her name in your publications even if not involved</div>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer-box">
+<div>✅ First three are correct</div>
+<div class="explanation">Mutual name-adding without involvement = gift authorship = highly unethical practice. Only genuine contributors should be authors.</div>
+</div>
+</div>
+
+</div> <!-- end mcq-section -->
+
+</div> <!-- end container -->
+
+<footer>
+<p>🎯 Made for NPTEL RM Exam Prep • Week 5 & 6</p>
+<p style="margin-top:5px;font-size:.85em">Good luck with the exam! Remember: Eustress, not Distress! 💪</p>
+</footer>
+
+<script>
+function toggleAnswer(btn){
+const box=btn.nextElementSibling;
+if(box.style.display==='block'){
+box.style.display='none';
+btn.textContent='Show Answer';
+}else{
+box.style.display='block';
+btn.textContent='Hide Answer';
+// Highlight correct options
+const mcq=btn.closest('.mcq');
+mcq.querySelectorAll('.option').forEach(opt=>{
+if(opt.dataset.correct==='true') opt.classList.add('correct');
+});
+}
+}
+
+// Smooth scroll for nav
+document.querySelectorAll('nav a').forEach(a=>{
+a.addEventListener('click',function(e){
+e.preventDefault();
+const target=document.querySelector(this.getAttribute('href'));
+if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+});
+});
+
+// Active nav on scroll
+window.addEventListener('scroll',()=>{
+const sections=document.querySelectorAll('.topic,.summary-box,.mcq-section');
+const navLinks=document.querySelectorAll('nav a');
+let current='';
+sections.forEach(s=>{
+if(window.scrollY>=s.offsetTop-100) current=s.id;
+});
+navLinks.forEach(l=>{
+l.classList.remove('active');
+if(l.getAttribute('href')==='#'+current) l.classList.add('active');
+});
+});
+</script>
+
+</body>
+</html>

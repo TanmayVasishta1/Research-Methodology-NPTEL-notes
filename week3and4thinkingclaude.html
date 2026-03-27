@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTEL Research Methodology - Weeks 3 & 4 Complete Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --accent-1: #6366f1;
+            --accent-2: #8b5cf6;
+            --accent-3: #a78bfa;
+            --accent-4: #c084fc;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #2d2d4a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #8b5cf6, #c084fc);
+            --gradient-3: linear-gradient(135deg, #6366f1, #06b6d4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 30%, #0a1a3e 60%, #0a0a2e 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.06) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(20px, -20px) rotate(1deg); }
+            66% { transform: translate(-15px, 15px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3em;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .hero .week-badges {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .week-badge {
+            background: var(--gradient-1);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: white;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .toc-item:hover {
+            background: var(--bg-card-hover);
+            color: var(--accent-3);
+        }
+
+        .toc-item .num {
+            background: var(--gradient-1);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .week-section {
+            margin-bottom: 60px;
+        }
+
+        .week-header {
+            background: var(--gradient-1);
+            padding: 25px 35px;
+            border-radius: 16px 16px 0 0;
+            font-size: 1.8em;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 1.6em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent-3);
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section h3 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin: 25px 0 12px;
+            color: var(--accent-4);
+        }
+
+        .section h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 18px 0 8px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+        }
+
+        ul, ol {
+            margin: 10px 0 18px 22px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.05));
+            border-left: 4px solid var(--accent-1);
+            padding: 18px 22px;
+            border-radius: 0 12px 12px 0;
+            margin: 18px 0;
+        }
+
+        .key-concept strong {
+            color: var(--accent-3);
+        }
+
+        .definition-box {
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.2);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 15px 0;
+        }
+
+        .definition-box .term {
+            font-weight: 700;
+            color: var(--accent-3);
+            font-size: 1.05em;
+        }
+
+        .definition-box .def {
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: var(--gradient-1);
+            color: white;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table td {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.92em;
+        }
+
+        .comparison-table tr:nth-child(even) td {
+            background: rgba(99,102,241,0.03);
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(99,102,241,0.08);
+        }
+
+        .warning-box {
+            background: rgba(245,158,11,0.08);
+            border: 1px solid rgba(245,158,11,0.25);
+            border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+            color: #fbbf24;
+            font-size: 0.95em;
+        }
+
+        .important-box {
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-left: 4px solid var(--danger);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+        }
+
+        .tip-box {
+            background: rgba(34,197,94,0.08);
+            border: 1px solid rgba(34,197,94,0.2);
+            border-left: 4px solid var(--success);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+        }
+
+        .procedure-step {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 18px;
+            background: rgba(99,102,241,0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(99,102,241,0.1);
+        }
+
+        .step-num {
+            background: var(--gradient-1);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin: 0 0 6px;
+            color: var(--accent-3);
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 0.93em;
+        }
+
+        /* Quiz Styles */
+        .quiz-section {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-1);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .quiz-section h2 {
+            text-align: center;
+            font-size: 2em;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .quiz-question {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question .q-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .q-num {
+            background: var(--gradient-1);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+
+        .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.02em;
+            line-height: 1.6;
+        }
+
+        .options {
+            margin-top: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 6px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .option:hover {
+            background: rgba(99,102,241,0.08);
+            border-color: var(--accent-1);
+        }
+
+        .option input[type="checkbox"] {
+            margin-top: 4px;
+            accent-color: var(--accent-1);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .option label {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .quiz-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            font-size: 0.95em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+        }
+
+        .answer-reveal {
+            display: none;
+            margin-top: 12px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 0.93em;
+        }
+
+        .answer-reveal.correct {
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: #4ade80;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.05));
+            border: 1px solid var(--accent-1);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 40px 0;
+        }
+
+        .summary-section h2 {
+            text-align: center;
+            font-size: 1.8em;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .summary-card h4 {
+            color: var(--accent-3);
+            margin-bottom: 8px;
+        }
+
+        .summary-card p {
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        .formula {
+            background: rgba(99,102,241,0.08);
+            border: 1px solid rgba(99,102,241,0.2);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-3);
+            margin: 10px 0;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .section { padding: 22px; }
+            .quiz-section { padding: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Research Methodology</h1>
+        <div class="subtitle">NPTEL – Introduction to Research | Comprehensive Notes Weeks 3 & 4</div>
+        <div class="week-badges">
+            <span class="week-badge">📊 Week 3: Data Analysis & Modelling</span>
+            <span class="week-badge">📝 Week 4: Presentations, Writing & Safety</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h2>📑 Table of Contents</h2>
+        <div class="toc-grid">
+            <a href="#da1" class="toc-item"><span class="num">1</span> What is Data Analysis?</a>
+            <a href="#da2" class="toc-item"><span class="num">2</span> Types of Analysis</a>
+            <a href="#da3" class="toc-item"><span class="num">3</span> Deterministic vs Stochastic Data</a>
+            <a href="#da4" class="toc-item"><span class="num">4</span> Key Terminology</a>
+            <a href="#da5" class="toc-item"><span class="num">5</span> Systematic Procedure for Data Analysis</a>
+            <a href="#da6" class="toc-item"><span class="num">6</span> Anscombe's Quartet & Visualization</a>
+            <a href="#da7" class="toc-item"><span class="num">7</span> Modelling & Overfitting</a>
+            <a href="#tp" class="toc-item"><span class="num">8</span> Technical Presentations</a>
+            <a href="#tw" class="toc-item"><span class="num">9</span> Technical Writing & Journal Papers</a>
+            <a href="#safety" class="toc-item"><span class="num">10</span> Laboratory Safety</a>
+            <a href="#quiz" class="toc-item"><span class="num">11</span> NPTEL-Style Quiz (20 Questions)</a>
+            <a href="#summary" class="toc-item"><span class="num">12</span> Master Summary</a>
+        </div>
+    </div>
+
+    <!-- WEEK 3 HEADER -->
+    <div class="week-section">
+        <div class="week-header">📊 WEEK 3 — Data Analysis & Modelling Skills</div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section" id="da1">
+        <h2>1. What is Data Analysis?</h2>
+        <div class="key-concept">
+            <strong>Definition:</strong> Data analysis is the process of extracting <em>useful, relevant, and meaningful</em> information from observations in a <em>systematic</em> manner.
+        </div>
+        <p>Data analysis is <strong>not</strong> simply throwing data into software and reporting fancy graphs. It is a theory-grounded discipline requiring rigorous methodology, domain knowledge, and careful interpretation at every step.</p>
+
+        <h3>Purposes of Data Analysis</h3>
+        <ul>
+            <li><strong>Parameter Estimation</strong> — Inferring unknowns (means, variances, model coefficients, etc.)</li>
+            <li><strong>Model Development & Prediction</strong> — Building relationships between variables; forecasting</li>
+            <li><strong>Feature Extraction & Classification</strong> — Identifying patterns (e.g., peaks in ECG), classifying images</li>
+            <li><strong>Hypothesis Testing</strong> — Verifying postulates with statistical rigor (e.g., "Is average temperature 25°C?")</li>
+            <li><strong>Fault Detection / Process Monitoring</strong> — Comparing current data against a normal template to detect anomalies</li>
+        </ul>
+
+        <h3>Where Does Analysis Fit In?</h3>
+        <p>Data analysis sits between raw observations and actionable applications. The flow is:</p>
+        <p><strong>Process → Sensors → Data → [Visualization → Quality Check → Pre-processing] → [Descriptive Analysis → Confirmatory Analysis → Estimation → Modelling] → [Monitoring → Control → Optimization → Innovation]</strong></p>
+        <p>Domain knowledge should be factored in at <em>every</em> stage of this pipeline.</p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section" id="da2">
+        <h2>2. Types of Analysis</h2>
+        <table class="comparison-table">
+            <tr><th>Classification</th><th>Type A</th><th>Type B</th></tr>
+            <tr><td><strong>1</strong></td><td><strong>Exploratory</strong> — No hypothesis upfront; exploring data (means, trends, graphs)</td><td><strong>Confirmatory</strong> — Testing a pre-existing postulate with data</td></tr>
+            <tr><td><strong>2</strong></td><td><strong>Quantitative</strong> — Numerical results from analysis</td><td><strong>Qualitative</strong> — Looking at trends, features, oscillations visually</td></tr>
+            <tr><td><strong>3</strong></td><td><strong>Descriptive</strong> — Summarizing data (first step); not feeding into larger analysis</td><td><strong>Inferential</strong> — Drawing specific inferences; hypothesis testing; systematic statistical analysis</td></tr>
+            <tr><td><strong>4</strong></td><td><strong>Predictive</strong> — Where is the process heading? Forecasting</td><td><strong>Prescriptive</strong> — Why did something happen? Diagnosis & remedies</td></tr>
+        </table>
+        <div class="tip-box">
+            <strong>💡 Best Practice:</strong> Always start with exploratory and descriptive analysis. Familiarize yourself with the data before proceeding to modelling or prediction. The objective of analysis determines which type and tools to use.
+        </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section" id="da3">
+        <h2>3. Deterministic vs Stochastic Data</h2>
+        <p>The most critical assumption in data analysis is about the <strong>Data Generating Process (DGP)</strong>. This assumption determines the entire theoretical framework, the tools used, and how results are interpreted.</p>
+
+        <div class="definition-box">
+            <div class="term">Deterministic DGP</div>
+            <div class="def">The DGP is perfectly known OR a mathematical function can perfectly explain the data OR there is no uncertainty in observed values OR the process is accurately predictable. Example: A ball dropped in still air — physics predicts time to hit the floor perfectly.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Stochastic DGP</div>
+            <div class="def">Observations are only a subset of many (finite or infinite) possibilities OR no mathematical function can perfectly explain the data OR observations have uncertainties. Example: Sensor noise, stock market index, weather prediction. <strong>Stochasticity does NOT mean zero predictability.</strong></div>
+        </div>
+
+        <div class="important-box">
+            <strong>⚠️ Critical Point:</strong> In practice, NO process is truly deterministic since perfect knowledge is never available. We say a process is <em>predominantly</em> deterministic or <em>predominantly</em> stochastic. Many engineering processes are a <em>mix</em> of both (e.g., well-understood reactor + noisy sensor).
+        </div>
+
+        <h3>Why Does This Assumption Matter?</h3>
+        <ul>
+            <li>The <strong>theory</strong>, <strong>tools</strong>, and <strong>interpretations</strong> of results heavily depend on whether you assume determinism or stochasticity</li>
+            <li>Definitions of periodicity, mean, variance, stationarity differ between deterministic and stochastic signals</li>
+            <li>The sample mean is NOT the true mean — it is only an <em>estimate</em> of the true mean</li>
+            <li>Assuming stochasticity is a formal way of saying "I do not have sufficient understanding of the process"</li>
+        </ul>
+
+        <h3>When to Assume Which?</h3>
+        <ul>
+            <li>If physical process is well-understood and errors are negligible → predominantly <strong>deterministic</strong></li>
+            <li>If causes are unknown or mechanism is too complex → assume <strong>stochastic</strong></li>
+            <li>If part is well-understood and part is not (e.g., reactor + noisy sensor) → <strong>mixed</strong></li>
+            <li>Determinism/stochasticity rests with the <em>knowledge of the analyst</em> — there is no perfect formula to determine it a priori</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>⚡ Key Insight:</strong> Any estimate inferred from data with uncertainties ALSO has uncertainty in it! Therefore, always compute and report the error in your estimate. Choose estimation methods where error shrinks as sample size N → ∞.
+        </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section" id="da4">
+        <h2>4. Key Terminology in Data Analysis</h2>
+
+        <div class="definition-box">
+            <div class="term">Population vs Sample</div>
+            <div class="def"><strong>Population (Ensemble):</strong> The collection of ALL events or possibilities that could ever be observed. <strong>Sample:</strong> The subset of the population actually obtained through sampling (one data record). We use the sample to make inferences about the unobservable population.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Truth vs Estimate</div>
+            <div class="def"><strong>Truth:</strong> The actual population parameter (e.g., true average temperature). <strong>Estimate:</strong> The value inferred from the sample (e.g., sample mean). Estimates will always differ from truth because we haven't seen all possibilities.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Statistic vs Estimator</div>
+            <div class="def"><strong>Statistic:</strong> Any mathematical function of observations (e.g., sample mean, sample variance). <strong>Estimator:</strong> A mathematical function of observations devised <em>specifically for the purpose</em> of estimating an unknown quantity. Both are mathematical functions of data — the difference is purpose. Sample mean is both a statistic AND an estimator of the true mean.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Ensemble Average vs Sample Average</div>
+            <div class="def"><strong>Ensemble average (Expectation):</strong> Average computed across ALL possible data records at a single point in time. <strong>Sample average:</strong> Average computed over all observations for ONE data record.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Bias (Accuracy)</div>
+            <div class="def">Systematic error in an estimate. <strong>Bias(θ̂) = E(θ̂) − θ₀</strong>. If the expected value of the estimate equals the truth, the estimator is <em>unbiased</em> (zero bias = high accuracy). Low bias = high accuracy.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Variability (Precision)</div>
+            <div class="def">Spread of estimates across different data records. <strong>Var(θ̂) = E(θ̂ − E(θ̂))²</strong>. Low variability = high precision. If you repeatedly measure the same variable and get consistent results, the estimator is precise. This is what "high precision instrument" means.</div>
+        </div>
+
+        <div class="definition-box">
+            <div class="term">Efficiency</div>
+            <div class="def">An estimator is <strong>most efficient</strong> when it estimates parameters with the <em>lowest variability / highest precision</em> — i.e., the lowest standard error among all estimators of that parameter.</div>
+        </div>
+
+        <div class="key-concept">
+            <strong>Ideal Goal:</strong> We want estimates with <strong>zero bias</strong> (accurate) and <strong>low variability</strong> (precise). In practice, both may not be achievable from finite samples. The most efficient estimate is <strong>not necessarily</strong> the most accurate — they measure different things.
+        </div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section" id="da5">
+        <h2>5. Systematic Procedure for Data Analysis</h2>
+        <div class="warning-box">
+            <strong>Key Principle:</strong> Almost all data analysis exercises are <strong>iterative</strong>, not necessarily sequential. Success depends on TWO factors: <strong>quality of data</strong> and <strong>methodology of data analysis</strong>. The "80/20 rule" applies: expect to spend 80% of time on data preparation.
+        </div>
+
+        <div class="procedure-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h4>Preliminary Questions & Scoping</h4>
+                <p>What type of analysis is required? (exploratory, confirmatory, predictive, prescriptive) • Where does data come from? (domain) • How was data acquired? (sampling mechanism, hardware) • How informative is the data? (quality, outliers, missing values, noise) • What assumptions on the DGP? (deterministic/stochastic, linear/non-linear, stationary/non-stationary) — This last question is perhaps the MOST important.</p>
+            </div>
+        </div>
+
+        <div class="procedure-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h4>Data Preparation & Pre-processing</h4>
+                <p><strong>Visualize First, Always:</strong> Plot data BEFORE any calculation. Numbers alone can deceive (Anscombe's Quartet). <strong>Quality Check:</strong> Identify outliers, missing values, noise. <strong>Pre-processing:</strong> Clean up outliers OR use robust methods; fill missing data; synchronize timestamps; filter noise; data reconciliation. <strong>Partition Data:</strong> Always set aside data for cross-validation (training vs test sets).</p>
+            </div>
+        </div>
+
+        <div class="procedure-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h4>Core Analysis & Modelling</h4>
+                <p><strong>Choose Domain:</strong> Time domain, frequency domain (Fourier transform for periodicity), joint time-frequency (wavelets). <strong>Dimensionality Reduction:</strong> PCA, NMF for large-dimensional data. <strong>Choose Right Tool:</strong> Sample mean (efficient if Gaussian, no outliers) vs sample median (robust to outliers). In hypothesis tests, choose appropriate statistic and significance level. In modelling, choose appropriate regressor set and model structure. <strong>Factor in Domain Knowledge</strong> at every step (e.g., don't build linear models for a pH system you know is non-linear).</p>
+            </div>
+        </div>
+
+        <div class="procedure-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h4>Assessment & Reporting</h4>
+                <p><strong>Quantify Uncertainty:</strong> Never report estimates without error bars/confidence intervals. Subject parameters to hypothesis tests for statistical significance. <strong>Cross-validate</strong> models on test data. If multiple models fit, use information-theoretic measures (AIC, BIC) and end-use criteria. We seek the <strong>best working model</strong>, not necessarily the "right" model. Any report should include estimates, error bounds, and validation test results.</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Remember:</strong> Data analysis is both a <strong>science</strong> (objective statistical methods) and an <strong>art</strong> (subjective judgment, domain expertise). There may not be a unique answer at every stage — and that's normal.
+        </div>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="section" id="da6">
+        <h2>6. Anscombe's Quartet & The Power of Visualization</h2>
+        <p>Anscombe's Quartet is four datasets that have <strong>identical</strong> statistical properties (mean, variance, correlation, regression line) but <strong>completely different</strong> visual features:</p>
+        <ul>
+            <li><strong>Dataset 1:</strong> Standard linear relationship</li>
+            <li><strong>Dataset 2:</strong> Parabolic (non-linear) relationship — clearly not linear</li>
+            <li><strong>Dataset 3:</strong> Perfect linear relationship with ONE outlier</li>
+            <li><strong>Dataset 4:</strong> All x-values identical except one extreme outlier — no relationship except influence of one point</li>
+        </ul>
+
+        <div class="important-box">
+            <strong>⚠️ Lesson:</strong> Based on descriptive statistics alone, you CANNOT distinguish these four datasets. Only visualization reveals the massive differences. This powerfully demonstrates why you must <strong>always plot your data</strong> before, during, and after analysis. Outliers can completely distort your results.
+        </div>
+
+        <h3>Visualization Tools</h3>
+        <p>Trend plots, scatter plots, bar charts, box plots, histograms, color maps, contour plots, and specialized plots. Convert numbers to pictures at every stage.</p>
+    </div>
+
+    <!-- SECTION 7 -->
+    <div class="section" id="da7">
+        <h2>7. Modelling Skills & Overfitting</h2>
+
+        <h3>Linear Regression in Practice</h3>
+        <p>Using the <code>lm()</code> function in R for fitting linear models (least squares estimation). The <code>summary()</code> function provides: coefficient estimates, standard errors, t-values, p-values, and significance stars.</p>
+
+        <h3>Interpreting Model Output</h3>
+        <ul>
+            <li><strong>Estimates:</strong> By themselves don't carry much meaning — must be interpreted relative to standard error</li>
+            <li><strong>Standard Error:</strong> If much smaller than the estimate → parameter is significant</li>
+            <li><strong>p-value:</strong> If extremely low → reject null hypothesis that parameter is zero → parameter is significant</li>
+            <li><strong>"If the p-value is low, the null hypothesis must go"</strong> — memorable phrase from Ogunnaike's book</li>
+            <li><strong>Stars (*** ** *):</strong> Indicate significance level</li>
+        </ul>
+
+        <h3>Input Excitation & Unique Parameter Estimation</h3>
+        <div class="key-concept">
+            <strong>Input excitation</strong> can greatly influence the ability to estimate parameters uniquely. If the input does not sufficiently "excite" the system, parameter estimates may be unreliable or non-unique.
+        </div>
+
+        <h3>Overfitting vs Underfitting</h3>
+        <table class="comparison-table">
+            <tr><th>Aspect</th><th>Underfitting</th><th>Correct Fit</th><th>Overfitting</th></tr>
+            <tr><td>Model complexity</td><td>Too simple (fewer parameters than needed)</td><td>Right number of parameters</td><td>Too complex (more parameters than needed)</td></tr>
+            <tr><td>Training performance</td><td>Poor</td><td>Good</td><td>Excellent (may be perfect)</td></tr>
+            <tr><td>Test/prediction performance</td><td>Poor</td><td>Good</td><td>Poor (fails on fresh data)</td></tr>
+            <tr><td>Parameter estimates</td><td>Significant but wrong model</td><td>Significant and close to truth</td><td>Large errors; some parameters become insignificant even if truly non-zero</td></tr>
+        </table>
+
+        <div class="key-concept">
+            <strong>"Data is the food for identification and parameters are guests."</strong> When you don't have enough food (data) for your guests (parameters), some guests go hungry (large errors). We don't want to over-invite (overfit) or under-invite (underfit). Invite exactly the number of guests the food can support.
+        </div>
+
+        <div class="warning-box">
+            <strong>⚡ Two Symptoms of Overfitting:</strong><br>
+            1. Large errors in parameter estimates (insignificant estimates for truly non-zero parameters)<br>
+            2. Predictions fail on fresh data (poor cross-validation performance)<br>
+            <strong>Overfitting does NOT mean more time spent fitting.</strong> Underfitted models are <strong>less complex</strong> than overfitted models.
+        </div>
+
+        <h3>Functions Linear in Time t</h3>
+        <ul>
+            <li>A sinusoidal signal y(t) = A sin(ω₀t) is <strong>NOT</strong> linear in t</li>
+            <li>x(t) = t·exp(c₀t) + β when c₀ = 0 becomes x(t) = t + β → <strong>linear in t</strong> ✓</li>
+            <li>Distance = velocity × time for uniform velocity → <strong>linear in t</strong> ✓</li>
+            <li>Instantaneous frequency of a linear chirp x(t) = cos(2π(αt + f₀)t) is f(t) = 2αt + f₀ → <strong>linear in t</strong> ✓</li>
+        </ul>
+    </div>
+
+    <!-- WEEK 4 HEADER -->
+    <div class="week-section">
+        <div class="week-header">📝 WEEK 4 — Technical Presentations, Writing & Lab Safety</div>
+    </div>
+
+    <!-- SECTION 8 -->
+    <div class="section" id="tp">
+        <h2>8. Technical Presentations</h2>
+
+        <h3>Journal Paper vs Technical Presentation</h3>
+        <table class="comparison-table">
+            <tr><th>Feature</th><th>Journal Paper</th><th>Technical Presentation</th></tr>
+            <tr><td>Nature</td><td>One-time activity w.r.t. a given dataset</td><td>An event; can be repeated with modifications</td></tr>
+            <tr><td>Structure</td><td>Formal, rigid; follows journal constraints</td><td>Significant flexibility; changes based on audience</td></tr>
+            <tr><td>Peer Review</td><td>Yes — evaluated by independent anonymous experts</td><td>Generally not peer reviewed</td></tr>
+            <tr><td>Interactivity</td><td>Not interactive; reader reads independently</td><td>Generally interactive; audience asks questions</td></tr>
+            <tr><td>Audience Control</td><td>No control — anyone can read it</td><td>Specific audience on each occasion</td></tr>
+        </table>
+
+        <h3>Two Key Constraints</h3>
+        <h4>1. Audience</h4>
+        <ul>
+            <li><strong>What is their background?</strong> — Pitch the talk at the right level (school students vs conference vs funding agency)</li>
+            <li><strong>Why are they watching?</strong> — Funding agency: highlight uniqueness; Conference: highlight new results vs prior work; School: highlight exciting general concepts</li>
+            <li>You CANNOT present the same talk everywhere — customize for each audience</li>
+        </ul>
+
+        <h4>2. Duration</h4>
+        <ul>
+            <li>Keeping track of time shows you value audience's and your own time</li>
+            <li><strong>Rule of thumb:</strong> ~1 slide per minute (for 50 min talk → ~35 slides)</li>
+            <li>You should be able to present the same content in 5 min, 20 min, or 1 hour by adjusting detail level</li>
+            <li>Never flash all slides quickly if time is cut — choose key slides and present them well</li>
+            <li><strong>Quantity of information ≠ audience's ability to absorb it</strong></li>
+        </ul>
+
+        <h3>Connecting with Your Audience — Do's and Don'ts</h3>
+        <table class="comparison-table">
+            <tr><th>❌ DON'T</th><th>✅ DO</th></tr>
+            <tr><td>Overfill slides from end to end</td><td>Use sufficient open space; one specific idea per slide</td></tr>
+            <tr><td>Overuse special effects / animations</td><td>Use special effects judiciously to highlight specific points</td></tr>
+            <tr><td>Write everything on slide and read from it</td><td>Use bullet points as prompts; elaborate conversationally</td></tr>
+            <tr><td>Turn your back to audience and read the screen</td><td>Face the audience; look at their eyes; gauge understanding</td></tr>
+            <tr><td>Use multiple fonts randomly</td><td>Stick to 1-2 standard fonts throughout</td></tr>
+        </table>
+
+        <h3>Outline Slide Best Practice</h3>
+        <p>Provide an outline slide at the beginning. Flash it at several points during the talk so the audience knows where they are. It helps them note the main points you'll cover and decide which sections interest them most.</p>
+
+        <h3>Illustrations in Presentations</h3>
+        <ul>
+            <li><strong>Choose the right type:</strong> Tables for specific values; Graphs for trends/maxima; Photographs for realism; Drawings/Schematics for highlighting specific features without distraction</li>
+            <li><strong>Pay attention to details:</strong> Always include axis labels, units, values, legends, captions</li>
+            <li><strong>Consistent significant digits</strong> in tables</li>
+            <li><strong>Remove extraneous objects</strong> from photographs</li>
+            <li><strong>Include scale bars</strong> — without scale, images are meaningless (e.g., Taj Mahal example; nanotube cross-section with 20nm scale bar)</li>
+            <li><strong>Level of complexity:</strong> Sometimes a simple drawing conveys a point better than a cluttered photograph (e.g., Hubble telescope — schematic vs photo for showing solar panels)</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 9 -->
+    <div class="section" id="tw">
+        <h2>9. Technical Writing & Journal Papers</h2>
+
+        <h3>Purpose of Technical Writing</h3>
+        <div class="key-concept">
+            The purpose is threefold: <strong>Inform</strong> the reader → <strong>Persuade</strong> the reader → Do both <strong>EFFICIENTLY</strong>. Efficiency is the single most important goal. Every element — sentence structure, illustration choice, document organization — is designed for maximum clarity and speed of understanding.
+        </div>
+
+        <h3>Why Technical Writing is Difficult</h3>
+        <ul>
+            <li><strong>Familiarity with wrong examples:</strong> We grew up reading novels, newspapers, magazines — all have very different styles and purposes from technical papers</li>
+            <li><strong>High expectations of first draft:</strong> Students expect the first draft to be perfect; in reality, the first 2-3 papers require many iterations</li>
+            <li><strong>Not understanding why changes are requested:</strong> Without knowing what's expected, corrections feel arbitrary</li>
+        </ul>
+
+        <div class="important-box">
+            <strong>⚠️ The Fatal Mistake:</strong> A mystery novel hides the truth until the final page. A scientific paper reveals it in the <strong>first paragraph (abstract)</strong>. The style of a good novel is EXACTLY WRONG for a journal paper. In technical writing, you <strong>"give it all away"</strong> upfront. The purpose is NOT to force people to read the entire paper — it's to deliver information efficiently.
+        </div>
+
+        <h3>Why Publish? (Purpose)</h3>
+        <ul>
+            <li><strong>Get formal credit</strong> for your research work</li>
+            <li><strong>Inform</strong> the scientific community of new results</li>
+            <li><strong>Convey ideas efficiently</strong> for others to build upon</li>
+            <li>Influence <strong>public policy</strong> and industrial innovation</li>
+        </ul>
+
+        <h3>The Publication Process</h3>
+        <ol>
+            <li>Write paper according to journal constraints (style, length, format)</li>
+            <li>Submit to a journal in your specific, narrow area of research</li>
+            <li>Journal sends to independent anonymous expert reviewers (peer review)</li>
+            <li>Receive reviewer comments; respond to comments</li>
+            <li>If reviewers approve (work is new, significant, correct) → paper gets published</li>
+        </ol>
+
+        <h3>Anatomy of a Journal Article</h3>
+
+        <h4>Beginning</h4>
+        <ul>
+            <li><strong>Title:</strong> Identifies the broad research area AND the specific novel contribution</li>
+            <li><strong>Abstract:</strong> Complete standalone summary — gives away ALL major findings and conclusions upfront. Aimed at a reader who may never read the rest. No undefined abbreviations.</li>
+            <li><strong>Introduction:</strong> What is your work? Why is it important? (Compare with prior published work to establish novelty: "Researcher X did this, Y did that, but no one has explored...") What is required to understand it?</li>
+        </ul>
+
+        <h4>Middle</h4>
+        <ul>
+            <li><strong>Experimental Details / Methods:</strong> The "recipe" — detailed enough for another researcher to reproduce your experiment. Nothing hidden.</li>
+            <li><strong>Results:</strong> Factual, objective statements of data (e.g., "hardness increased with decreasing grain size"). A result is something any technician can state — no judgment, no controversy.</li>
+            <li><strong>Discussion:</strong> The "so what?" section — your interpretation, analysis, scientific argument about WHY you observed those results. This is where opinions and arguments come in, based on scientific principles. Different people can have different discussions about the same results.</li>
+        </ul>
+
+        <h4>Ending</h4>
+        <ul>
+            <li><strong>Conclusion:</strong> Summarizes key findings (like abstract, but written for someone who has read the paper — more technical freedom). May include future perspectives.</li>
+            <li><strong>References:</strong> List of all cited prior work</li>
+        </ul>
+
+        <h3>Language & Illustration in Technical Writing</h3>
+        <ul>
+            <li><strong>Language:</strong> Keep sentences short, direct, simple. Avoid flowery language, arrogant phrases ("it is obvious that..."). If you must reread a sentence to understand it, it's too long.</li>
+            <li><strong>Illustration:</strong> Choose wisely — graphs for trends, tables for specific values, schematics for simplifying complex objects, photographs for realism (but watch out for distracting details)</li>
+        </ul>
+
+        <h3>Key Differences: Results vs Discussion</h3>
+        <table class="comparison-table">
+            <tr><th>Results</th><th>Discussion</th></tr>
+            <tr><td>Factual statement of data</td><td>Interpretation and analysis of data</td></tr>
+            <tr><td>Non-controversial — anyone would state the same thing</td><td>Can be debated — different experts may have different opinions</td></tr>
+            <tr><td>"Hardness increased with decreasing grain size"</td><td>"This increase is attributed to the Hall-Petch relationship because..."</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 10 -->
+    <div class="section" id="safety">
+        <h2>10. Laboratory Safety</h2>
+
+        <div class="key-concept">
+            Safety is an aspect of <strong>culture</strong> — it must be built into you, not just a set of procedures to follow. In research labs, we push boundaries with new experiments, making active involvement in safety even more critical than in industry (where activities are well-defined and repetitive).
+        </div>
+
+        <h3>Common Lab Hazards</h3>
+        <p>Five things commonly found in labs that require formal safety attention: <strong>Chemicals</strong>, <strong>Electricity</strong>, <strong>Water</strong>, <strong>Gas Bottles</strong>, <strong>Heat Sources</strong> (hot plates, ovens, furnaces up to 1500°C).</p>
+
+        <h3>Personal Protective Equipment (PPE)</h3>
+        <ul>
+            <li><strong>Lab Coat:</strong> Wear the moment you enter the lab. Protects from spills.</li>
+            <li><strong>Gloves:</strong> Nitrile gloves for general handling; acid-resistant gloves for acids; thermal gloves for hot items. Be aware of glove-solvent compatibility.</li>
+            <li><strong>Safety Glasses/Goggles:</strong> Must provide COMPLETE coverage (sides, top, bottom) AND be shatter-proof. Regular prescription glasses are NOT adequate — they don't cover sides and can shatter. Safety goggles are sized to fit over prescription glasses.</li>
+            <li><strong>Dust Masks:</strong> Surgical masks for basic dust; elaborate masks with filters for specific chemical dust. Check adequacy for your specific samples.</li>
+        </ul>
+
+        <h3>Chemical Safety (Acids)</h3>
+        <ul>
+            <li>Acid storage must be done with <strong>secondary containment</strong></li>
+            <li>Acids and bases must be <strong>separated</strong></li>
+            <li>Acid-containing bottles must be <strong>clearly labelled</strong></li>
+            <li>Acid wastes must <strong>NOT</strong> be washed down the sink</li>
+        </ul>
+
+        <h3>Gas Bottle Safety</h3>
+        <ul>
+            <li>Gas bottles are <strong>pressurized units</strong> — if the neck breaks, gas escapes uncontrollably → very dangerous</li>
+            <li>Must be <strong>secured with a chain</strong> attached to the wall — chain must be high enough (about ¾ height) to prevent toppling</li>
+            <li>Chain too low → bottle can still fall → safety purpose NOT served</li>
+            <li>NEVER have a gas bottle with a regulator installed that isn't secured</li>
+            <li>For <strong>transport:</strong> Use dedicated trolleys with similar chain arrangements; do NOT roll on the floor</li>
+            <li><strong>Store with regulators REMOVED</strong> (regulators are only attached when in use)</li>
+        </ul>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <div class="quiz-section" id="quiz">
+        <h2>📝 NPTEL-Style Quiz Questions (Weeks 3 & 4)</h2>
+        <p style="text-align:center; color: var(--text-muted); margin-bottom:30px;">Multiple correct answers possible. Select ALL correct options.</p>
+
+        <!-- Q1 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q1</span></div>
+            <div class="q-text">Which of the following is/are example(s) of exploratory data analysis?</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q1a"><label for="q1a">Testing that the average salary in an age group is S₀ (specified value)</label></div>
+                <div class="option"><input type="checkbox" id="q1b"><label for="q1b">Searching for trends or outliers in a data set</label></div>
+                <div class="option"><input type="checkbox" id="q1c"><label for="q1c">Histogram analysis of runs scored by a player in cricket</label></div>
+                <div class="option"><input type="checkbox" id="q1d"><label for="q1d">Analyzing the relationship between variables using linear regression</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a1').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a1">✅ <strong>B, C, D.</strong> Testing a specific value (A) is confirmatory, not exploratory. Searching for trends/outliers, histogram analysis, and exploring relationships via regression are all exploratory activities where you don't postulate upfront — you explore the data.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q2</span></div>
+            <div class="q-text">Identify the correct statement(s) below:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q2a"><label for="q2a">Any deterministic signal can be accurately predicted given sufficient history</label></div>
+                <div class="option"><input type="checkbox" id="q2b"><label for="q2b">A stochastic signal always keeps randomly alternating between positive and negative values</label></div>
+                <div class="option"><input type="checkbox" id="q2c"><label for="q2c">Measurements of steps by the best smartphone of an active individual are deterministic</label></div>
+                <div class="option"><input type="checkbox" id="q2d"><label for="q2d">Probability that a batsman will get out on any ball is 0.5</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a2').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a2">✅ <strong>A only.</strong> By definition, deterministic signals are perfectly predictable. Stochastic signals don't always alternate (B is wrong). Smartphone step counts have sensor noise and variability (C is wrong). Batting probability varies by conditions (D is wrong).</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q3</span></div>
+            <div class="q-text">An estimator is said to be most efficient when:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q3a"><label for="q3a">The parameters can be estimated accurately with the smallest sample size</label></div>
+                <div class="option"><input type="checkbox" id="q3b"><label for="q3b">It estimates parameters with the lowest variability / highest precision</label></div>
+                <div class="option"><input type="checkbox" id="q3c"><label for="q3c">It is able to handle at least 10% of missing data</label></div>
+                <div class="option"><input type="checkbox" id="q3d"><label for="q3d">Among all estimators (of a parameter) it estimates with lowest standard error</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a3').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a3">✅ <strong>B, D.</strong> Efficiency = lowest variability = lowest standard error among all estimators. It's about precision, not about sample size requirements or missing data handling.</div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q4</span></div>
+            <div class="q-text">Which of the following is true concerning a parameter estimate?</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q4a"><label for="q4a">It can never equal the true value even if the data is identical to the ensemble</label></div>
+                <div class="option"><input type="checkbox" id="q4b"><label for="q4b">When averaged across 500 data sets, the error is 500 times lower than from a single set</label></div>
+                <div class="option"><input type="checkbox" id="q4c"><label for="q4c">Increase in sample size will always increase its value</label></div>
+                <div class="option"><input type="checkbox" id="q4d"><label for="q4d">The most efficient estimate is not necessarily the most accurate</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a4').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a4">✅ <strong>D only.</strong> Efficiency measures precision (low variability); accuracy measures bias. An estimator can be precise but biased, so the most efficient is not necessarily most accurate.</div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q5</span></div>
+            <div class="q-text">Which of the following is true w.r.t. data-driven modelling?</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q5a"><label for="q5a">Overfitting generally implies more time has been spent in fitting the model</label></div>
+                <div class="option"><input type="checkbox" id="q5b"><label for="q5b">Models that are underfit are less complex than those that are overfit</label></div>
+                <div class="option"><input type="checkbox" id="q5c"><label for="q5c">Overfit models generally perform poorly on fresh data sets</label></div>
+                <div class="option"><input type="checkbox" id="q5d"><label for="q5d">Overfitting occurs whenever the sample size used is more than necessary</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a5').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a5">✅ <strong>B, C.</strong> Underfitting = too simple = less complex. Overfit models fail on fresh data. Overfitting is about model complexity, not time spent (A wrong) or sample size being too large (D wrong).</div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q6</span></div>
+            <div class="q-text">Identify the correct statement(s) among the following:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q6a"><label for="q6a">Bias in an estimate implies it is different from the true value by exactly a constant</label></div>
+                <div class="option"><input type="checkbox" id="q6b"><label for="q6b">A statistic and estimator are both mathematical functions of the observed data</label></div>
+                <div class="option"><input type="checkbox" id="q6c"><label for="q6c">Precision and accuracy of an estimator are very closely related to each other</label></div>
+                <div class="option"><input type="checkbox" id="q6d"><label for="q6d">Two variables with identical correlation in two different data sets have the same linear model</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a6').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a6">✅ <strong>B only.</strong> Both are mathematical functions of data (the difference is purpose). Bias being "exactly a constant" (A) is a simplification — bias is defined as E(θ̂) − θ₀. Precision ≠ accuracy (C). Same correlation doesn't mean same model (D) — Anscombe's Quartet proves this.</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q7</span></div>
+            <div class="q-text">Identify the correct statement(s) among the following:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q7a"><label for="q7a">Data visualization is useful because it gives us an idea of anomalies and trends</label></div>
+                <div class="option"><input type="checkbox" id="q7b"><label for="q7b">Robust methods of estimation are meant to handle outliers in the data set</label></div>
+                <div class="option"><input type="checkbox" id="q7c"><label for="q7c">Errors in estimates of order 10⁻³ can always be treated as insignificant</label></div>
+                <div class="option"><input type="checkbox" id="q7d"><label for="q7d">Input excitation can greatly influence the ability to estimate parameters uniquely</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a7').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a7">✅ <strong>A, B, D.</strong> Visualization reveals anomalies/trends; robust methods handle outliers; input excitation affects parameter identifiability. Errors of 10⁻³ cannot ALWAYS be treated as insignificant — it depends on context and units (C wrong).</div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q8</span></div>
+            <div class="q-text">The features of a journal paper are:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q8a"><label for="q8a">It changes based on the audience</label></div>
+                <div class="option"><input type="checkbox" id="q8b"><label for="q8b">It is a one-time activity with respect to a given set of data</label></div>
+                <div class="option"><input type="checkbox" id="q8c"><label for="q8c">It is peer reviewed</label></div>
+                <div class="option"><input type="checkbox" id="q8d"><label for="q8d">Generally interactive with the reader</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a8').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a8">✅ <strong>B, C.</strong> A journal paper is a one-time activity (fixed once published) and is peer reviewed. It does NOT change based on audience (A = presentation feature) and is NOT interactive (D).</div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q9</span></div>
+            <div class="q-text">The features of a Technical Presentation are:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q9a"><label for="q9a">It changes based on the audience</label></div>
+                <div class="option"><input type="checkbox" id="q9b"><label for="q9b">It is a one-time activity with respect to a given set of data</label></div>
+                <div class="option"><input type="checkbox" id="q9c"><label for="q9c">It is peer reviewed</label></div>
+                <div class="option"><input type="checkbox" id="q9d"><label for="q9d">Generally interactive with the audience</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a9').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a9">✅ <strong>A, D.</strong> Presentations change based on audience and are interactive. They are not one-time (can be repeated) and not peer reviewed.</div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q10</span></div>
+            <div class="q-text">An outline of a talk helps the audience:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q10a"><label for="q10a">Understand your educational background</label></div>
+                <div class="option"><input type="checkbox" id="q10b"><label for="q10b">Note the main points you will be covering in the talk</label></div>
+                <div class="option"><input type="checkbox" id="q10c"><label for="q10c">Decide the sections of the talk they are interested in</label></div>
+                <div class="option"><input type="checkbox" id="q10d"><label for="q10d">Understand the importance of your professional accomplishments</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a10').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a10">✅ <strong>B, C.</strong> An outline helps audience see the main topics and identify which sections interest them most.</div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q11</span></div>
+            <div class="q-text">Knowing who your audience is, is important in a technical presentation because:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q11a"><label for="q11a">Your audience may have popular people</label></div>
+                <div class="option"><input type="checkbox" id="q11b"><label for="q11b">You will be able to gauge their background knowledge</label></div>
+                <div class="option"><input type="checkbox" id="q11c"><label for="q11c">You can tailor your talk accordingly</label></div>
+                <div class="option"><input type="checkbox" id="q11d"><label for="q11d">You can understand why they are watching your talk</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a11').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a11">✅ <strong>B, C, D.</strong> Understanding audience helps gauge their background, tailor content, and understand their motivation for attending.</div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q12</span></div>
+            <div class="q-text">Illustration and data in a presentation:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q12a"><label for="q12a">Must completely fill the slide from end to end</label></div>
+                <div class="option"><input type="checkbox" id="q12b"><label for="q12b">Must be presented with sufficient open spaces in between</label></div>
+                <div class="option"><input type="checkbox" id="q12c"><label for="q12c">Must typically help the audience focus on a specific idea in each slide</label></div>
+                <div class="option"><input type="checkbox" id="q12d"><label for="q12d">Must always be in colour</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a12').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a12">✅ <strong>B, C.</strong> Open space helps focus. Each slide should convey one specific idea. Filling slides end-to-end overwhelms. Colour is not mandatory.</div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q13</span></div>
+            <div class="q-text">A technical paper and a science fiction novel:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q13a"><label for="q13a">Have the same style of presentation</label></div>
+                <div class="option"><input type="checkbox" id="q13b"><label for="q13b">Have very different styles of presentation</label></div>
+                <div class="option"><input type="checkbox" id="q13c"><label for="q13c">Both aim to surprise the reader in the end</label></div>
+                <div class="option"><input type="checkbox" id="q13d"><label for="q13d">Both aim to make every reader read till the end in a thrilling manner</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a13').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a13">✅ <strong>B only.</strong> They have very different styles. A novel hides the truth to create suspense; a technical paper gives away the main result in the abstract upfront.</div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q14</span></div>
+            <div class="q-text">The purpose of technical writing includes:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q14a"><label for="q14a">Informing the reader</label></div>
+                <div class="option"><input type="checkbox" id="q14b"><label for="q14b">Persuade the reader to a certain point of view</label></div>
+                <div class="option"><input type="checkbox" id="q14c"><label for="q14c">To convey ideas efficiently</label></div>
+                <div class="option"><input type="checkbox" id="q14d"><label for="q14d">Being sarcastic at different places in the technical document</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a14').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a14">✅ <strong>A, B, C.</strong> Inform, persuade, and convey efficiently. Sarcasm has no place in technical writing.</div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q15</span></div>
+            <div class="q-text">While working with acids in laboratories:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q15a"><label for="q15a">Acid storage must be done with secondary containment</label></div>
+                <div class="option"><input type="checkbox" id="q15b"><label for="q15b">Acids and bases must be separated</label></div>
+                <div class="option"><input type="checkbox" id="q15c"><label for="q15c">Acid wastes must be washed down the sink</label></div>
+                <div class="option"><input type="checkbox" id="q15d"><label for="q15d">Acid containing bottles must be clearly labelled</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a15').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a15">✅ <strong>A, B, D.</strong> Acid wastes must NOT be washed down the sink (C is wrong).</div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q16</span></div>
+            <div class="q-text">Gas bottles in laboratories should be:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q16a"><label for="q16a">Transported by rolling on the floor</label></div>
+                <div class="option"><input type="checkbox" id="q16b"><label for="q16b">Secured with a chain that is high enough to prevent toppling</label></div>
+                <div class="option"><input type="checkbox" id="q16c"><label for="q16c">Stored with regulators removed</label></div>
+                <div class="option"><input type="checkbox" id="q16d"><label for="q16d">Stored with the regulators fixed on the bottles</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a16').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a16">✅ <strong>B, C.</strong> Secured with chain at ~¾ height; stored with regulators removed. NOT rolled on floor (use trolleys); NOT stored with regulators fixed.</div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q17</span></div>
+            <div class="q-text">Most students typically find their initial technical papers difficult to write because:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q17a"><label for="q17a">They are accustomed to poor examples of technical writing</label></div>
+                <div class="option"><input type="checkbox" id="q17b"><label for="q17b">They have high expectations of the first draft</label></div>
+                <div class="option"><input type="checkbox" id="q17c"><label for="q17c">They often do not understand why they are being asked to make specific changes</label></div>
+                <div class="option"><input type="checkbox" id="q17d"><label for="q17d">They do not understand their work</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a17').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a17">✅ <strong>A, B, C.</strong> Students are familiar with wrong examples (novels, newspapers), expect the first draft to be perfect, and don't understand why corrections are needed. They usually DO understand their work (D wrong).</div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q18</span></div>
+            <div class="q-text">Any given journal will typically accept for review:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q18a"><label for="q18a">Papers in any area of research</label></div>
+                <div class="option"><input type="checkbox" id="q18b"><label for="q18b">Papers in any area of research as long as it is new</label></div>
+                <div class="option"><input type="checkbox" id="q18c"><label for="q18c">Papers only from a relatively narrow area of research</label></div>
+                <div class="option"><input type="checkbox" id="q18d"><label for="q18d">Papers that have been published in other journals to save time</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a18').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a18">✅ <strong>C only.</strong> Each journal publishes in a specific, relatively narrow area. They don't accept any area, and re-published papers are explicitly prohibited.</div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q19</span></div>
+            <div class="q-text">Steps involved in publishing a journal paper typically include:</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q19a"><label for="q19a">Writing the paper as per journal constraints</label></div>
+                <div class="option"><input type="checkbox" id="q19b"><label for="q19b">Submitting the paper to a journal which will send it to reviewers</label></div>
+                <div class="option"><input type="checkbox" id="q19c"><label for="q19c">Responding to the comments of the reviewers</label></div>
+                <div class="option"><input type="checkbox" id="q19d"><label for="q19d">Publication as long as paper is less than 7 pages</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a19').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a19">✅ <strong>A, B, C.</strong> The process involves writing per constraints, submission for peer review, and responding to reviewers. Page limit varies by journal — 7 pages is not a universal rule (D wrong).</div>
+        </div>
+
+        <!-- Q20 -->
+        <div class="quiz-question">
+            <div class="q-header"><span class="q-num">Q20</span></div>
+            <div class="q-text">Which of the following functions is/are linear in time t?</div>
+            <div class="options">
+                <div class="option"><input type="checkbox" id="q20a"><label for="q20a">A sinusoidal signal y(t) = A sin(ω₀t)</label></div>
+                <div class="option"><input type="checkbox" id="q20b"><label for="q20b">The signal x(t) = t·exp(c₀t) + β when c₀ = 0</label></div>
+                <div class="option"><input type="checkbox" id="q20c"><label for="q20c">Distance travelled by a car with uniform velocity between t₁ and t₂</label></div>
+                <div class="option"><input type="checkbox" id="q20d"><label for="q20d">The instantaneous frequency of a linear chirp x(t) = cos(2π(αt + f₀)t), where α, f₀ are positive constants</label></div>
+            </div>
+            <button class="quiz-btn" onclick="document.getElementById('a20').style.display='block'">Show Answer</button>
+            <div class="answer-reveal correct" id="a20">✅ <strong>B, C, D.</strong> When c₀=0, x(t)=t+β (linear). Uniform velocity → d=vt (linear). Instantaneous frequency of linear chirp = 2αt+f₀ (linear). Sinusoidal (A) is NOT linear in t.</div>
+        </div>
+
+    </div>
+
+    <!-- MASTER SUMMARY -->
+    <div class="summary-section" id="summary">
+        <h2>🎯 Master Summary — Weeks 3 & 4</h2>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>📊 Data Analysis</h4>
+                <p>Extracting useful, relevant, meaningful information systematically. Not just fancy graphs — requires theory, domain knowledge, and rigorous methodology. The 80/20 rule: 80% time on data prep.</p>
+            </div>
+            <div class="summary-card">
+                <h4>🎲 DGP Assumption</h4>
+                <p>Deterministic vs Stochastic is the MOST critical assumption. Determines theory, tools, and interpretations. In practice, no process is perfectly deterministic. Mixed cases common in engineering.</p>
+            </div>
+            <div class="summary-card">
+                <h4>🎯 Bias vs Variability</h4>
+                <p>Bias = systematic error = accuracy measure. Variability = spread of estimates = precision measure. Ideal: zero bias + low variability. Most efficient ≠ most accurate.</p>
+            </div>
+            <div class="summary-card">
+                <h4>📈 Overfitting</h4>
+                <p>Over-parameterized models: large errors in estimates + poor predictions on fresh data. "Data is food, parameters are guests." Always cross-validate. Underfit models are less complex than overfit ones.</p>
+            </div>
+            <div class="summary-card">
+                <h4>👁️ Visualization</h4>
+                <p>Always plot data BEFORE analysis. Anscombe's Quartet: identical statistics, wildly different features. Numbers deceive; pictures reveal. Visualize before, during, and after analysis.</p>
+            </div>
+            <div class="summary-card">
+                <h4>📊 Reporting Results</h4>
+                <p>NEVER report estimates without error bars/confidence intervals. Always conduct hypothesis tests. Cross-validate models. We seek the BEST WORKING model, not necessarily the RIGHT model.</p>
+            </div>
+            <div class="summary-card">
+                <h4>🎤 Presentations</h4>
+                <p>Customize for audience & duration. ~1 slide/minute. Outline slide shown multiple times. Don't overfill slides. Avoid reading from slides. Face the audience. Use illustrations wisely with proper labels, units, scale.</p>
+            </div>
+            <div class="summary-card">
+                <h4>📝 Technical Writing</h4>
+                <p>Purpose: inform + persuade EFFICIENTLY. Abstract gives it ALL away upfront (opposite of novels). Paper = Title → Abstract → Introduction → Methods → Results (facts) → Discussion (interpretation) → Conclusion. Peer reviewed. Simple, clear language.</p>
+            </div>
+            <div class="summary-card">
+                <h4>🔬 Lab Safety</h4>
+                <p>Safety is culture, not just procedures. Wear lab coat, gloves, safety goggles (NOT regular glasses). Gas bottles: chain at ¾ height, regulators removed for storage. Acids: secondary containment, separate from bases, clear labels, NO sink disposal.</p>
+            </div>
+            <div class="summary-card">
+                <h4>⚡ Key Formulas</h4>
+                <p>Bias(θ̂) = E(θ̂) − θ₀<br>Var(θ̂) = E(θ̂ − E(θ̂))²<br>Efficient = lowest Var among all estimators<br>Error should → 0 as N → ∞</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
