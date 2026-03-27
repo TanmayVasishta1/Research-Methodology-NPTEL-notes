@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPTEL Research Methodology — Complete 8-Week Revision Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --card: #12121a;
+  --card2: #1a1a25;
+  --border: #1e1e2e;
+  --border2: #2a2a3e;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --accent3: #fd79a8;
+  --green: #00b894;
+  --red: #e17055;
+  --yellow: #fdcb6e;
+  --blue: #74b9ff;
+  --teal: #4ecdc4;
+  --orange: #f0a500;
+  --text: #e8e8f0;
+  --text-dim: #8888a0;
+  --text-bright: #ffffff;
+  --g1: linear-gradient(135deg,#6c5ce7,#a29bfe);
+  --g2: linear-gradient(135deg,#fd79a8,#e17055);
+  --g3: linear-gradient(135deg,#00b894,#55efc4);
+  --g4: linear-gradient(135deg,#fdcb6e,#f0a500);
+  --g5: linear-gradient(135deg,#74b9ff,#4ecdc4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden}
+
+/* PROGRESS BAR */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--g1);z-index:9999;transition:width .1s;width:0}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:-50%;background:radial-gradient(circle at 30% 50%,rgba(108,92,231,.18) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(253,121,168,.12) 0%,transparent 50%);animation:bgfloat 25s ease-in-out infinite}
+@keyframes bgfloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;margin-bottom:.5rem}
+.hero .sub{font-size:clamp(.95rem,2vw,1.3rem);color:var(--text-dim);margin-bottom:1.5rem;font-weight:300}
+.hero .badge-row{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem}
+.hero .badge{padding:.35rem 1rem;border-radius:50px;font-size:.78rem;font-weight:600;background:rgba(108,92,231,.12);border:1px solid rgba(108,92,231,.3);color:var(--accent2)}
+.week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;max-width:900px;margin:.5rem auto 0}
+.week-btn{padding:.7rem 1rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:.85rem;transition:all .3s;text-align:center;border:1px solid}
+.w1-btn{background:rgba(108,92,231,.12);border-color:rgba(108,92,231,.3);color:var(--accent2)}
+.w2-btn{background:rgba(253,121,168,.1);border-color:rgba(253,121,168,.3);color:var(--accent3)}
+.w3-btn{background:rgba(0,184,148,.1);border-color:rgba(0,184,148,.3);color:var(--green)}
+.w4-btn{background:rgba(116,185,255,.1);border-color:rgba(116,185,255,.3);color:var(--blue)}
+.w5-btn{background:rgba(253,203,110,.1);border-color:rgba(253,203,110,.3);color:var(--yellow)}
+.w6-btn{background:rgba(78,205,196,.1);border-color:rgba(78,205,196,.3);color:var(--teal)}
+.w7-btn{background:rgba(240,165,0,.1);border-color:rgba(240,165,0,.3);color:var(--orange)}
+.w8-btn{background:rgba(225,112,85,.1);border-color:rgba(225,112,85,.3);color:var(--red)}
+.week-btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
+
+/* TOP NAV */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.6rem 1.5rem;display:flex;gap:.4rem;overflow-x:auto;justify-content:center;flex-wrap:wrap}
+.topnav a{padding:.35rem .9rem;border-radius:7px;text-decoration:none;font-size:.75rem;font-weight:600;color:var(--text-dim);transition:all .2s;white-space:nowrap}
+.topnav a:hover,.topnav a.active{background:rgba(108,92,231,.15);color:var(--accent2)}
+
+/* CONTAINER */
+.container{max-width:920px;margin:0 auto;padding:0 1.5rem}
+
+/* WEEK HEADER */
+.week-hdr{padding:4rem 0 1.5rem;text-align:center}
+.week-hdr h2{font-size:2.2rem;font-weight:900;letter-spacing:-1px;margin-bottom:.4rem}
+.week-hdr p{color:var(--text-dim);font-size:1rem}
+.wh-1{background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-2{background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-3{background:var(--g3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-4{background:var(--g5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-5{background:var(--g4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-6{background:linear-gradient(135deg,#4ecdc4,#00b894);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-7{background:linear-gradient(135deg,#f0a500,#fdcb6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wh-8{background:linear-gradient(135deg,#e17055,#fd79a8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* SECTION CARD */
+.sec{margin-bottom:2.2rem;padding:1.8rem;background:var(--card);border:1px solid var(--border);border-radius:16px;transition:border-color .3s}
+.sec:hover{border-color:rgba(108,92,231,.25)}
+.sec h3{font-size:1.25rem;font-weight:700;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.sec h4{font-size:1rem;font-weight:700;margin:1.3rem 0 .6rem;color:var(--accent2)}
+.sec p,.sec li{color:var(--text);line-height:1.8;margin-bottom:.4rem}
+.sec ul,.sec ol{padding-left:1.4rem;margin-bottom:.8rem}
+.sec li{margin-bottom:.35rem}
+.icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.ic-p{background:rgba(108,92,231,.2)} .ic-pk{background:rgba(253,121,168,.2)}
+.ic-g{background:rgba(0,184,148,.2)} .ic-b{background:rgba(116,185,255,.2)}
+.ic-y{background:rgba(253,203,110,.2)} .ic-t{background:rgba(78,205,196,.2)}
+.ic-o{background:rgba(240,165,0,.2)} .ic-r{background:rgba(225,112,85,.2)}
+
+/* HIGHLIGHT BOXES */
+.hl{padding:.9rem 1.1rem;border-radius:9px;margin:.8rem 0;font-size:.93rem;line-height:1.7}
+.hl-p{background:rgba(108,92,231,.08);border-left:3px solid var(--accent)}
+.hl-pk{background:rgba(253,121,168,.08);border-left:3px solid var(--accent3)}
+.hl-g{background:rgba(0,184,148,.08);border-left:3px solid var(--green)}
+.hl-y{background:rgba(253,203,110,.08);border-left:3px solid var(--yellow)}
+.hl-b{background:rgba(116,185,255,.08);border-left:3px solid var(--blue)}
+.hl-t{background:rgba(78,205,196,.08);border-left:3px solid var(--teal)}
+.hl-o{background:rgba(240,165,0,.08);border-left:3px solid var(--orange)}
+.hl-r{background:rgba(225,112,85,.08);border-left:3px solid var(--red)}
+.hl strong{color:var(--text-bright)}
+
+/* TABLES */
+.tw{overflow-x:auto;margin:.8rem 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:rgba(108,92,231,.15);padding:.75rem 1rem;text-align:left;font-weight:700;color:var(--accent2);border-bottom:1px solid var(--border)}
+td{padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(108,92,231,.04)}
+
+/* COMPARE GRID */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:.8rem 0}
+@media(max-width:580px){.cgrid{grid-template-columns:1fr}}
+.ccard{padding:1.1rem;border-radius:10px;border:1px solid var(--border)}
+.ccard h5{font-size:.95rem;margin-bottom:.4rem}
+.ccard p{font-size:.88rem;color:var(--text-dim);line-height:1.6}
+
+/* FLOW LIST */
+.fl{list-style:none;padding:0;counter-reset:fl}
+.fl li{counter-increment:fl;padding:.8rem 1rem .8rem 3.5rem;position:relative;border-left:2px solid var(--border2);margin-left:1rem;margin-bottom:.2rem}
+.fl li::before{content:counter(fl);position:absolute;left:-14px;top:.9rem;width:26px;height:26px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:white}
+.fl li:last-child{border-left-color:transparent}
+
+/* FORMULA BOX */
+.formula{background:#0d0d14;border:1px solid #2a2a42;border-radius:8px;padding:1rem 1.2rem;font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--teal);margin:.8rem 0;white-space:pre-wrap;line-height:1.8}
+
+/* SUMMARY BOX */
+.sum-box{background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(253,121,168,.08));border:1px solid rgba(108,92,231,.2);border-radius:16px;padding:1.8rem;margin:2rem 0}
+.sum-box h3{font-size:1.2rem;margin-bottom:1rem;color:var(--text-bright)}
+.sum-box ul{padding-left:1.3rem}
+.sum-box li{margin-bottom:.5rem;line-height:1.7}
+.sum-box li strong{color:var(--accent2)}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:2.5rem 0}
+
+/* QUIZ */
+.quiz-sec h3{font-size:1.4rem;font-weight:800;margin-bottom:1.5rem;text-align:center}
+.qq{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1.3rem;transition:border-color .3s}
+.qq.correct{border-color:var(--green)}
+.qq.wrong{border-color:var(--red)}
+.qq .question{font-weight:700;font-size:.97rem;margin-bottom:.9rem;color:var(--text-bright);line-height:1.6}
+.qq label{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .7rem;border-radius:7px;cursor:pointer;transition:background .2s;font-size:.91rem;line-height:1.5;color:var(--text)}
+.qq label:hover{background:rgba(108,92,231,.08)}
+.qq input[type=radio]{accent-color:var(--accent);margin-top:4px;flex-shrink:0}
+.qq .fb{margin-top:.7rem;padding:.7rem .9rem;border-radius:7px;font-size:.88rem;font-weight:600;display:none}
+.qq .fb.show{display:block}
+.qq .fb.cfb{background:rgba(0,184,148,.1);color:var(--green)}
+.qq .fb.wfb{background:rgba(225,112,85,.1);color:var(--red)}
+.show-q{display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin-bottom:1rem}
+.show-q .sq{font-weight:700;font-size:.95rem;margin-bottom:.8rem;color:var(--text-bright)}
+.show-q .opts div{padding:.45rem .7rem;border-radius:6px;margin-bottom:.3rem;font-size:.9rem;border:1px solid var(--border);transition:background .2s;cursor:default}
+.show-q .opts div.correct-opt{background:rgba(0,184,148,.1);border-color:var(--green);color:var(--green)}
+.quiz-btn{display:block;margin:1.5rem auto;padding:.75rem 2.2rem;border:none;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.btn-p{background:var(--g1);color:white}
+.btn-pk{background:var(--g2);color:white}
+.btn-g{background:var(--g3);color:white}
+.btn-b{background:var(--g5);color:white}
+.btn-y{background:var(--g4);color:#111}
+.quiz-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
+.score{text-align:center;font-size:1.4rem;font-weight:800;margin:.8rem 0;display:none}
+.reveal-btn{background:transparent;border:1px solid var(--accent);color:var(--accent2);font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;padding:.3rem .8rem;border-radius:5px;cursor:pointer;margin-top:.5rem;transition:all .2s}
+.reveal-btn:hover{background:rgba(108,92,231,.1)}
+.reveal-ans{display:none;margin-top:.6rem;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.2);border-radius:7px;padding:.7rem 1rem;font-size:.9rem;color:var(--text)}
+.reveal-ans.vis{display:block}
+.reveal-ans strong{color:var(--teal)}
+.multi-tag{display:inline-block;background:rgba(225,112,85,.12);color:var(--red);font-size:.65rem;padding:.1rem .4rem;border-radius:3px;border:1px solid rgba(225,112,85,.25);margin-left:.4rem;font-weight:700}
+
+code{background:rgba(108,92,231,.1);padding:.12rem .35rem;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.83em;color:var(--accent2)}
+mark{background:rgba(253,203,110,.18);color:var(--yellow);padding:0 .2em;border-radius:2px}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;border-radius:50%;background:var(--g1);color:white;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:99}
+.scroll-top.show{opacity:1}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 1rem;color:var(--text-dim);font-size:.83rem;border-top:1px solid var(--border);margin-top:2rem}
+
+/* RESPONSIVE */
+@media(max-width:700px){.sec{padding:1.2rem}.hero h1{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="pb"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+<div class="hero-content">
+  <div class="badge-row">
+    <span class="badge">📚 NPTEL Exam Prep</span>
+    <span class="badge">All 8 Weeks</span>
+    <span class="badge">Quizzes + PYQs</span>
+    <span class="badge">Key Points Highlighted</span>
+  </div>
+  <h1>Research Methodology</h1>
+  <p class="sub">Complete Week-by-Week Revision Guide — Every Detail, Every Quiz</p>
+  <div class="week-grid">
+    <a href="#week1" class="week-btn w1-btn">📖 Week 1<br><small>Intro to Research</small></a>
+    <a href="#week2" class="week-btn w2-btn">📖 Week 2<br><small>Literature Survey</small></a>
+    <a href="#week3" class="week-btn w3-btn">📖 Week 3<br><small>Data Analysis</small></a>
+    <a href="#week4" class="week-btn w4-btn">📖 Week 4<br><small>Writing & Safety</small></a>
+    <a href="#week5" class="week-btn w5-btn">📖 Week 5<br><small>Creativity & Ethics</small></a>
+    <a href="#week6" class="week-btn w6-btn">📖 Week 6<br><small>IPR</small></a>
+    <a href="#week7" class="week-btn w7-btn">📖 Week 7<br><small>DOE & Stats</small></a>
+    <a href="#week8" class="week-btn w8-btn">📖 Week 8<br><small>Applied Research</small></a>
+  </div>
+</div>
+</section>
+
+<!-- TOP NAV -->
+<nav class="topnav" id="topnav">
+  <a href="#week1">W1</a><a href="#week2">W2</a><a href="#week3">W3</a><a href="#week4">W4</a>
+  <a href="#week5">W5</a><a href="#week6">W6</a><a href="#week7">W7</a><a href="#week8">W8</a>
+  <a href="#quiz1">Q1</a><a href="#quiz2">Q2</a><a href="#quiz3">Q3</a><a href="#quiz4">Q4</a>
+  <a href="#quiz5">Q5</a><a href="#quiz6">Q6</a><a href="#quiz7">Q7</a><a href="#quiz8">Q8</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 1 — INTRODUCTION TO RESEARCH
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week1">
+  <h2 class="wh-1">Week 1</h2>
+  <p>Introduction to the World of Research & Experimental Skills</p>
+</div>
+
+<div class="sec" id="w1-intro">
+  <h3><span class="icon ic-p">🔬</span> What is Research?</h3>
+  <p>Research is a transition from being a <strong>consumer of knowledge</strong> to a <strong>producer of knowledge</strong>. It involves making a <strong>novel contribution</strong> to a field through self-driven discovery, experimentation, and validation.</p>
+  <div class="hl hl-p"><strong>Einstein:</strong> "If we knew what we were doing, it would not be called research, would it?"</div>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(108,92,231,.3)">
+      <h5 style="color:var(--accent2)">📘 Course-Based Degree</h5>
+      <p>Structured program. Established knowledge through courses & exams. Well-defined path. Everyone aims for correct answers.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)">
+      <h5 style="color:var(--accent3)">🔭 Research Degree</h5>
+      <p>Novel contribution. Self-driven discovery. Open-ended. Unique thesis — cannot be similar to anyone else's. Training to guide future researchers.</p>
+    </div>
+  </div>
+  <h4>Incremental vs Path-Breaking Research</h4>
+  <p>Most research is <strong>incremental</strong> — small structured additions to knowledge. Path-breaking discoveries happen by serendipity through this steady incremental process. <mark>Incremental research leads to path-breaking research</mark> — they are connected, not independent.</p>
+  <div class="hl hl-y"><strong>Exam Point:</strong> What distinguishes a research degree = <em>"Specialized knowledge in a specific field"</em> (NOT general knowledge, NOT presentation skills, NOT coursework completion).</div>
+</div>
+
+<div class="sec" id="w1-area">
+  <h3><span class="icon ic-b">🗺️</span> Selecting a Research Area</h3>
+  <p>Research is like <strong>exploring an unknown city</strong>. You don't know which monuments will fascinate you until you start exploring.</p>
+  <ol class="fl">
+    <li><strong>Start with genuine interest</strong> — Passion is your engine. Intrinsic motivation is non-negotiable. Don't let job market or trends drive your choice.</li>
+    <li><strong>Trace your interest</strong> — From a course that resonated, general reading that sparked curiosity, or desire for societal impact.</li>
+    <li><strong>Specialize beyond the textbook</strong> — True research is highly specialized. If a textbook exists for your exact topic, you're probably too late.</li>
+    <li><strong>Conduct a literature survey</strong> — Important early step involving trial and error to identify interesting and novel topics.</li>
+  </ol>
+  <div class="hl hl-y"><strong>Exam Alert:</strong> Important factors for selecting area = <em>"The appeal and interest in the area AND the impact it has on the scientific community."</em> NOT convenience of location, schedule flexibility, or number of students.</div>
+</div>
+
+<div class="sec" id="w1-advisor">
+  <h3><span class="icon ic-b">👨‍🏫</span> Selecting an Advisor</h3>
+  <p>A PhD can last <strong>4–7 years</strong> — this is one of the longest professional partnerships you'll have.</p>
+  <ul>
+    <li><strong>Investigate:</strong> Read potential advisor's publications. Does their work excite you? What is their publication record?</li>
+    <li><strong>Communicate:</strong> Have honest conversations. Express your interests, ask about mentorship style.</li>
+    <li><strong>Evaluate:</strong> Working style (hands-on, theoretical, experimental), personality, energy.</li>
+  </ul>
+  <div class="hl hl-g"><strong>Role of Advisor:</strong> <em>"To provide guidance when the student encounters difficulties or loses direction."</em> NOT day-to-day instructions, NOT doing all research, NOT ensuring strict adherence to initial plan.</div>
+  <p>A good advisor helps understand the "lay of the land" — is an area too crowded? Is a problem worth solving?</p>
+</div>
+
+<div class="sec" id="w1-daytoday">
+  <h3><span class="icon ic-g">📓</span> Day-to-Day Research Practice</h3>
+  <ul>
+    <li>Most daily work = <strong>small steps</strong>. Setting up experiments may take 2–3 weeks — that's normal, not wasted time.</li>
+    <li>Reproducing existing work is a valid starting point — it makes you familiar with the area.</li>
+    <li>Data should be <strong>believable, defensible, and reproducible</strong>.</li>
+    <li><strong>Research Notebook:</strong> Record EVERY observation, small result, every plot — electronically or on paper.</li>
+    <li>Be <strong>excited and proud</strong> of small results — keeps you thinking about extensions.</li>
+  </ul>
+  <div class="hl hl-p"><strong>Misconception busted:</strong> Working late nights ≠ great work. Regular 8am–5pm with evenings off can produce excellent research. What matters is <strong>regular, disciplined hours</strong>.</div>
+  <div class="hl hl-y"><strong>Exam Point — Attitude:</strong> "A steady and incremental approach while keeping the long-term goal in mind." NOT urgency/impatience, NOT OCD, NOT deviating from objectives.</div>
+  <h4>Simulations = Experiments</h4>
+  <ul>
+    <li>Same rules of Design of Experiments apply to simulations</li>
+    <li>Simulators are "deadly weapons" — can produce massive amounts of data, only a fraction useful</li>
+    <li>Must understand solver settings, engine underneath, right tools for purpose</li>
+  </ul>
+</div>
+
+<div class="sec" id="w1-peer">
+  <h3><span class="icon ic-p">👥</span> Peer Review & Validation</h3>
+  <h4>Research is NOT Democratic</h4>
+  <ul>
+    <li>One expert can prove everyone before wrong — their idea then prevails.</li>
+    <li>Not about majority agreement, not about authority of famous names.</li>
+    <li>Peers review each other and hold something as true until disproved.</li>
+  </ul>
+  <h4>Validation Hierarchy</h4>
+  <ol class="fl">
+    <li><strong>Self-validation:</strong> Conviction must begin from YOU. Validate qualitatively and quantitatively.</li>
+    <li><strong>Advisor discussion:</strong> Share and discuss — maybe you're right, maybe you need correction.</li>
+    <li><strong>Group presentation:</strong> Share with group mates for critical feedback.</li>
+    <li><strong>Peer community:</strong> Communicate through conferences and papers — identify reputable journals and conferences run by professional societies (e.g., IEEE).</li>
+  </ol>
+  <div class="hl hl-g"><strong>Thomas Huxley:</strong> "Science is simply common sense at its best, that is, rigidly accurate in observation, and merciless to fallacy in logic."</div>
+  <p>Results should be <strong>reproducible</strong> — publish code, post data if not confidential. You must be the <strong>most critical examiner</strong> of your own work. There is no "final result" — research fields don't end.</p>
+</div>
+
+<div class="sec" id="w1-learning">
+  <h3><span class="icon ic-y">🧠</span> Learning Paradigms in Research</h3>
+  <div class="tw"><table>
+    <tr><th>Paradigm</th><th>Description</th><th>Example</th></tr>
+    <tr><td><strong>Just-in-Time</strong></td><td>Learn only what's needed for immediate task</td><td>Learning MATLAB just to make one plot</td></tr>
+    <tr><td><strong>Strategic</strong></td><td>Learn up to the extent needed to solve a specific problem</td><td>Understanding enough theory without going to the bottom</td></tr>
+    <tr><td><strong>In-Depth</strong></td><td>Go to the bottom of knowledge; get into long-term memory</td><td>Your core research area — deep mastery</td></tr>
+  </table></div>
+  <div class="hl hl-pk"><strong>PhD Journey:</strong> Starts with Just-in-Time → converges to In-Depth learning. Your attitude toward learning MUST change from exam-prep mode when you enter research.</div>
+</div>
+
+<div class="sec" id="w1-teamwork">
+  <h3><span class="icon ic-b">🤝</span> Teamwork & Motivation</h3>
+  <ul>
+    <li>Research is rarely done in isolation — work in groups.</li>
+    <li>Some you learn from, some you teach — roles reverse over time.</li>
+    <li>Hiding resources = bad long-term strategy.</li>
+    <li>Know how to <strong>share credit</strong> in publications.</li>
+    <li>Joining an <strong>active group</strong> (publishing regularly) is "positively contagious."</li>
+  </ul>
+  <div class="hl hl-p"><strong>Newton:</strong> "If I have seen further than other men, it is because I have stood on the shoulder of giants."</div>
+  <h4>Daniel Pink's Motivation Framework ("Drive")</h4>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(0,184,148,.3)"><h5 style="color:var(--green)">🎯 Mastery</h5><p>Sense of getting better over time — skills, techniques, methodologies improve.</p></div>
+    <div class="ccard" style="border-color:rgba(108,92,231,.3)"><h5 style="color:var(--accent2)">🌍 Purpose</h5><p>Larger purpose for work — curiosity, improvement, betterment of society.</p></div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)"><h5 style="color:var(--accent3)">🔓 Autonomy</h5><p>Freedom to choose techniques, methodologies, specific problems.</p></div>
+    <div class="ccard" style="border-color:rgba(253,203,110,.3)"><h5 style="color:var(--yellow)">💡 JC Bose</h5><p>"You cannot close the lab of the mind." Thinking never stops.</p></div>
+  </div>
+  <div class="hl hl-g"><strong>Key traits:</strong> "Spark of interest and spirit of learning" — NOT super intelligence, NOT no work ethic, NOT just communication skills.</div>
+  <div class="hl hl-y"><strong>Best motivation:</strong> "To gain knowledge that advances understanding and enables meaningful impact." NOT automation alone, NOT without scientific inquiry.</div>
+  <div class="hl hl-b"><strong>Einstein:</strong> "Imagination is more important than knowledge."</div>
+</div>
+
+<div class="sec" id="w1-exp">
+  <h3><span class="icon ic-g">⚗️</span> Experimental Skills — The Golden Rules</h3>
+  <p>Experiments are <strong>supreme</strong> — they validate theories. But they must be run correctly. If theory doesn't match well-run experiments, the theory is incomplete.</p>
+  <h4>Temperature Measurement</h4>
+  <ul>
+    <li>Common error: Trusting furnace display blindly. Thermocouple may be far from your sample.</li>
+    <li>Furnace shows 800°C, but sample could be 750°C due to gas flow, heating element positions.</li>
+    <li><strong>Solution:</strong> Add a second thermocouple directly above your sample. Adjust furnace set-point.</li>
+    <li>Temperature gradients exist both vertically and horizontally in furnaces.</li>
+  </ul>
+  <h4>Humidity Measurement</h4>
+  <ul>
+    <li>Common error: Assuming humidifier output = 100% RH. Design and flow rate affect efficiency.</li>
+    <li><strong>Solution:</strong> Use a desiccant box — weigh before and after to measure actual water content.</li>
+    <li>If tube drops to room temperature, water condenses out — must <strong>heat-trace the path</strong> above dew point.</li>
+  </ul>
+  <h4>Current & Voltage Measurement</h4>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(225,112,85,.3)">
+      <h5 style="color:var(--red)">❌ Two-Probe Measurement</h5>
+      <p>Same two contact points for current AND voltage. Measures R_contact1 + R_sample + R_contact2. Can be off by 20–30%!</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(0,184,148,.3)">
+      <h5 style="color:var(--green)">✅ Four-Probe Measurement</h5>
+      <p>Current through outer two probes, voltage measured at inner two probes. Eliminates contact resistance error (3–4 orders of magnitude smaller).</p>
+    </div>
+  </div>
+  <div class="hl hl-g"><strong>Golden Rule of Experimental Skills:</strong> For EVERY measurement in EVERY experiment: (1) Understand HOW the instrument makes its measurement, (2) Identify WHERE the sensor is located, (3) Find possible sources of error, (4) Compensate and correct for those errors, (5) Cross-check with independent methods, (6) Feel confident to DEFEND your measurements.</div>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 1 — Master Summary</h3>
+  <ul>
+    <li><strong>Research degree</strong> = specialized knowledge in a specific field, novel contribution</li>
+    <li><strong>Textbook vs Paper:</strong> Accumulated knowledge vs new frontiers</li>
+    <li><strong>Incremental → Path-breaking:</strong> One leads to the other; connected, not random</li>
+    <li><strong>Choosing area:</strong> Follow interest + scientific impact, NOT convenience</li>
+    <li><strong>Advisor role:</strong> Guidance when stuck, NOT day-to-day instructions</li>
+    <li><strong>Student traits:</strong> Spark of interest + spirit of learning</li>
+    <li><strong>Attitude:</strong> Steady, incremental + long-term goal focus</li>
+    <li><strong>Motivation:</strong> Gain knowledge that advances understanding + meaningful impact</li>
+    <li><strong>Purpose of research:</strong> Clear rationale → guides questions & methodology</li>
+    <li><strong>Peer review:</strong> NOT democratic; peer scrutiny validates work; 1 expert beats majority</li>
+    <li><strong>Notebook:</strong> Record ALL observations, results, plots always</li>
+    <li><strong>Learning:</strong> Just-in-Time → Strategic → In-Depth (PhD journey)</li>
+    <li><strong>Teamwork:</strong> Essential; share credit; join active groups</li>
+    <li><strong>4-probe measurement:</strong> Eliminates contact resistance error</li>
+    <li><strong>No sequential workflow</strong> in research — but systematic at each stage</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 1 -->
+<div class="quiz-sec" id="quiz1">
+  <h3 style="background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 1 Quiz — NPTEL PYQs</h3>
+
+  <div class="qq" data-correct="c" id="q1-1">
+    <p class="question">Q1. What distinguishes a research degree from other degrees?</p>
+    <label><input type="radio" name="q1-1" value="a"> Emphasis on acquiring general knowledge</label>
+    <label><input type="radio" name="q1-1" value="b"> Focus on developing presentation skills</label>
+    <label><input type="radio" name="q1-1" value="c"> Specialized knowledge in a specific field</label>
+    <label><input type="radio" name="q1-1" value="d"> Completion of coursework and examinations</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q1-2">
+    <p class="question">Q2. What distinguishes a textbook from a research paper?</p>
+    <label><input type="radio" name="q1-2" value="a"> Textbooks provide accumulated knowledge, research papers explore new frontiers</label>
+    <label><input type="radio" name="q1-2" value="b"> Textbooks are purely theoretical while research papers are only practical</label>
+    <label><input type="radio" name="q1-2" value="c"> Textbooks offer only historical perspectives while research papers discuss the future</label>
+    <label><input type="radio" name="q1-2" value="d"> Textbooks offer predictable outcomes, research papers are unpredictable</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q1-3">
+    <p class="question">Q3. What is an important step in the early stages of research that involves trial and error?</p>
+    <label><input type="radio" name="q1-3" value="a"> Conducting a literature survey to identify interesting topics</label>
+    <label><input type="radio" name="q1-3" value="b"> Choosing a random topic based on popularity</label>
+    <label><input type="radio" name="q1-3" value="c"> Skipping preliminary research and starting experiments</label>
+    <label><input type="radio" name="q1-3" value="d"> Contributing to the chosen area through research</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q1-4">
+    <p class="question">Q4. What is the relationship between incremental and path-breaking research?</p>
+    <label><input type="radio" name="q1-4" value="a"> Incremental research leads to path-breaking research</label>
+    <label><input type="radio" name="q1-4" value="b"> Path-breaking research happens randomly without prior incremental work</label>
+    <label><input type="radio" name="q1-4" value="c"> Incremental research and path-breaking research are unrelated</label>
+    <label><input type="radio" name="q1-4" value="d"> Path-breaking research builds on theoretical assumptions alone</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="b" id="q1-5">
+    <p class="question">Q5. What is the primary role of a research advisor or guide?</p>
+    <label><input type="radio" name="q1-5" value="a"> To provide day-to-day instructions on every research activity</label>
+    <label><input type="radio" name="q1-5" value="b"> To provide guidance when the student encounters difficulties or loses direction</label>
+    <label><input type="radio" name="q1-5" value="c"> To do the research on behalf of the student</label>
+    <label><input type="radio" name="q1-5" value="d"> To ensure strict adherence to the initial research plan</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="c" id="q1-6">
+    <p class="question">Q6. What are the important characteristics required in researchers?</p>
+    <label><input type="radio" name="q1-6" value="a"> Super intelligence and no work ethic</label>
+    <label><input type="radio" name="q1-6" value="b"> Communication skills alone are sufficient</label>
+    <label><input type="radio" name="q1-6" value="c"> Spark of interest and spirit of learning</label>
+    <label><input type="radio" name="q1-6" value="d"> Creativity alone is sufficient</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="b" id="q1-7">
+    <p class="question">Q7. Which factors are important for selecting a research area?</p>
+    <label><input type="radio" name="q1-7" value="a"> Convenience of location and schedule flexibility</label>
+    <label><input type="radio" name="q1-7" value="b"> The appeal and interest in the area and the impact it has on the scientific community</label>
+    <label><input type="radio" name="q1-7" value="c"> The number of students in the area</label>
+    <label><input type="radio" name="q1-7" value="d"> The availability of lab equipment</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q1-8">
+    <p class="question">Q8. What is the most appropriate attitude for a researcher when conducting research?</p>
+    <label><input type="radio" name="q1-8" value="a"> A steady and incremental approach while keeping the long-term goal in mind</label>
+    <label><input type="radio" name="q1-8" value="b"> An urgent approach with a focus on quick results at any cost</label>
+    <label><input type="radio" name="q1-8" value="c"> An obsessive and compulsive approach with attention to minute details</label>
+    <label><input type="radio" name="q1-8" value="d"> A scattered approach, frequently deviating from objectives</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="d" id="q1-9">
+    <p class="question">Q9. What is the most appropriate underlying motivation for conducting research?</p>
+    <label><input type="radio" name="q1-9" value="a"> To replace manual processes with automated systems alone</label>
+    <label><input type="radio" name="q1-9" value="b"> To address social challenges without prioritizing scientific inquiry</label>
+    <label><input type="radio" name="q1-9" value="c"> To pursue personal interest in science without practical application</label>
+    <label><input type="radio" name="q1-9" value="d"> To gain knowledge that advances understanding and enables meaningful impact</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="b" id="q1-10">
+    <p class="question">Q10. What is the primary reason for clearly defining the purpose of a research?</p>
+    <label><input type="radio" name="q1-10" value="a"> To decide only the formatting and presentation style of the final report</label>
+    <label><input type="radio" name="q1-10" value="b"> To establish a clear rationale that guides the formulation of research questions and methodology</label>
+    <label><input type="radio" name="q1-10" value="c"> To expect higher academic ranks and long-term success in life</label>
+    <label><input type="radio" name="q1-10" value="d"> To allow manipulation of research results during the course of the study</label>
+    <div class="fb"></div>
+  </div>
+
+  <button class="quiz-btn btn-p" onclick="gradeQuiz('q1')">Check Week 1 Answers</button>
+  <div class="score" id="score-q1"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 2 — LITERATURE SURVEY
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week2">
+  <h2 class="wh-2">Week 2</h2>
+  <p>Literature Survey — Search, Organize, and Reference</p>
+</div>
+
+<div class="sec" id="w2-what">
+  <h3><span class="icon ic-pk">📚</span> What is a Literature Survey?</h3>
+  <div class="hl hl-pk"><strong>DISCLAIMER:</strong> Literature survey is <strong>NOT just Googling</strong>. Google looks at private websites. Literature survey = survey of <em>technical, authoritative</em> literature from universities, research labs, and scientific enterprises. Google Scholar is the closest Google equivalent.</div>
+  <h4>Why Do a Literature Survey?</h4>
+  <ul>
+    <li>Know what approaches others have used and where gaps exist</li>
+    <li><strong>Avoid duplication</strong> — even unintentional duplication is unacceptable in research degrees</li>
+    <li>Clarify controversial results</li>
+    <li>Establish state-of-the-art and build on others' work</li>
+    <li>Place your study in a <strong>current context</strong> where peers see it as valuable</li>
+    <li>Establish context and background for your own work</li>
+    <li>Point out anomalies and gaps</li>
+  </ul>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(108,92,231,.3)">
+      <h5 style="color:var(--accent2)">Novel technique + familiar area</h5>
+      <p>A new method applied to a well-known problem = valid contribution</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)">
+      <h5 style="color:var(--accent3)">Familiar technique + novel area</h5>
+      <p>A known method applied to a brand new problem = also valid</p>
+    </div>
+  </div>
+  <div class="hl hl-g"><strong>Key Exam Point:</strong> Literature review must be carried out <mark>throughout the research process</mark> — NOT only at the start, NOT only at the end, NOT only while publishing.</div>
+</div>
+
+<div class="sec" id="w2-sources">
+  <h3><span class="icon ic-b">🌐</span> Sources of Literature</h3>
+  <h4>Access Points</h4>
+  <div class="tw"><table>
+    <tr><th>Access Type</th><th>Description</th></tr>
+    <tr><td><strong>Open Access</strong></td><td>Freely available, but limited in scope. Increasing over time.</td></tr>
+    <tr><td><strong>Institutional (INDEST)</strong></td><td>Ministry of HRD program coordinated by IIT Delhi. Provides access for Indian institutes. Tier 1, 2, 3 categories.</td></tr>
+    <tr><td><strong>Library Subscriptions</strong></td><td>Beyond INDEST — check with your librarian!</td></tr>
+    <tr><td><strong>Peer-Sharing</strong></td><td>ResearchGate, Academia.edu — authors share upon request</td></tr>
+  </table></div>
+  <h4>Types of Literature Sources</h4>
+  <div class="tw"><table>
+    <tr><th>Type</th><th>Examples</th><th>Nature</th></tr>
+    <tr><td><strong>Primary</strong></td><td>Journal articles, conference proceedings, research reports, theses, dissertations, standards</td><td>Original research — most valuable</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>Review articles, reference books, textbooks, monographs, abstracting services</td><td>Analysis/compilation of primary sources</td></tr>
+    <tr><td><strong>Tertiary</strong></td><td>Bibliographies, dictionaries, yearbooks, lists of secondary sources</td><td>Indexes or directories</td></tr>
+  </table></div>
+  <div class="hl hl-y"><strong>Exam Point:</strong> Compared to peer-reviewed journals, websites are <strong>less likely to be reliable</strong>. NOT equally reliable, NOT completely incorrect, NOT more reliable.</div>
+</div>
+
+<div class="sec" id="w2-terms">
+  <h3><span class="icon ic-y">📖</span> Key Terminology</h3>
+  <div class="tw"><table>
+    <tr><th>Term</th><th>Full Form</th><th>What It Does</th><th>Key Exam Fact</th></tr>
+    <tr><td><strong>ISBN</strong></td><td>International Standard Book Number</td><td>Unique identifier for books</td><td>Without ISBN, book is not traceable anywhere</td></tr>
+    <tr><td><strong>ISSN</strong></td><td>International Standard Serial Number</td><td>Identifier for journals, newspapers, conference proceedings</td><td>Comes in ranges; also for newspapers</td></tr>
+    <tr><td><strong>DOI</strong></td><td>Digital Object Identifier</td><td>Persistent, unique alphanumeric string for online documents</td><td>Stable link even if URL changes; essential for citing digital resources</td></tr>
+    <tr><td><strong>h-index</strong></td><td>Hirsch index</td><td>Author has h-index h if h papers have ≥h citations each</td><td>Single-number metric; controversial, context-dependent</td></tr>
+    <tr><td><strong>Impact Factor</strong></td><td>Journal Impact Factor</td><td>Average citations to recent articles in a journal</td><td>Only compare journals in same discipline; controversial metric</td></tr>
+  </table></div>
+</div>
+
+<div class="sec" id="w2-search">
+  <h3><span class="icon ic-g">🔍</span> Search Strategies — The Three Methods</h3>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(108,92,231,.3)">
+      <h5 style="color:var(--accent2)">1. Keyword Search</h5>
+      <p>Use specific words, author names, or article-defined keywords. Cast a wide net. Tools: Google Scholar, ScienceDirect, SpringerLink, INSPEC, PubMed.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)">
+      <h5 style="color:var(--accent3)">2. Backward Chronological</h5>
+      <p>Start with a recent, relevant article → examine its reference list → trace back to foundational papers → understand historical development.</p>
+    </div>
+  </div>
+  <div class="hl hl-t"><strong>3. Forward Chronological Search:</strong> Start with a key, foundational paper → find ALL papers that have cited it using citation indexes (Web of Science, Scopus) → trace how idea evolved → identify current state-of-the-art. This is the most powerful method for tracking field evolution.</div>
+  <div class="hl hl-y"><strong>Exam Point:</strong> Which strategy traces how an idea has evolved over time? = <strong>Forward chronological search</strong> using citation databases like Web of Science and Scopus.</div>
+</div>
+
+<div class="sec" id="w2-tools">
+  <h3><span class="icon ic-t">🛠️</span> Tools & Reference Management</h3>
+  <h4>Reference Manager Software</h4>
+  <ul>
+    <li><strong>JabRef:</strong> Free, open-source, works with BibTeX</li>
+    <li><strong>Zotero:</strong> Free, browser integration, auto-imports from websites</li>
+    <li><strong>Mendeley:</strong> Social networking features, PDF management</li>
+    <li>All automate bibliography formatting and allow switching between citation styles (APA, MLA, Chicago, etc.)</li>
+  </ul>
+  <h4>Important Search Tools</h4>
+  <ul>
+    <li><strong>Web of Science / Scopus:</strong> Essential for forward chronological search (finding papers that cite a given paper)</li>
+    <li><strong>Google Scholar:</strong> Broad search; not limited to subscribed journals</li>
+    <li><strong>INSPEC:</strong> Specialized for physics, electronics, computing</li>
+    <li><strong>PubMed:</strong> Specialized for biomedical literature</li>
+  </ul>
+  <div class="hl hl-g"><strong>Best Practice:</strong> Start using a reference manager from Day 1 of your research. Retrospective bibliography management is painful and error-prone.</div>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 2 — Master Summary</h3>
+  <ul>
+    <li><strong>Not just Googling:</strong> Must use authoritative sources from universities, labs, enterprises</li>
+    <li><strong>Continuous process:</strong> Literature survey continues throughout research</li>
+    <li><strong>Novelty:</strong> Novel technique + familiar area OR familiar technique + novel area — both are valid</li>
+    <li><strong>Primary > Secondary > Tertiary</strong> in terms of scholarly value</li>
+    <li><strong>ISBN</strong> = books; <strong>ISSN</strong> = journals/serials; <strong>DOI</strong> = persistent digital link</li>
+    <li><strong>h-index</strong> of h = h papers each have ≥h citations; controversial but widely used</li>
+    <li><strong>Impact Factor</strong> = compare only within same field; controversial</li>
+    <li><strong>3 search strategies:</strong> Keyword, Backward (historical), Forward (evolution/current state)</li>
+    <li><strong>Web of Science/Scopus</strong> = citation databases for forward chronological search</li>
+    <li><strong>Reference manager</strong> = use from Day 1; automates bibliography</li>
+    <li><strong>Websites less reliable</strong> than peer-reviewed journals</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 2 -->
+<div class="quiz-sec" id="quiz2">
+  <h3 style="background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 2 Quiz — NPTEL PYQs</h3>
+
+  <div class="qq" data-correct="b" id="q2-1">
+    <p class="question">Q1. What is the primary difference between a literature survey and a Google search?</p>
+    <label><input type="radio" name="q2-1" value="a"> A literature survey takes more time</label>
+    <label><input type="radio" name="q2-1" value="b"> A literature survey focuses on authoritative technical sources while Google searches all websites</label>
+    <label><input type="radio" name="q2-1" value="c"> Google only finds peer-reviewed articles</label>
+    <label><input type="radio" name="q2-1" value="d"> Literature surveys are conducted only at the beginning of research</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="c" id="q2-2">
+    <p class="question">Q2. When should literature review be conducted during the research process?</p>
+    <label><input type="radio" name="q2-2" value="a"> Only at the beginning of the research process</label>
+    <label><input type="radio" name="q2-2" value="b"> Only when preparing to publish results</label>
+    <label><input type="radio" name="q2-2" value="c"> Throughout the research process</label>
+    <label><input type="radio" name="q2-2" value="d"> Only at the end when writing the thesis</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q2-3">
+    <p class="question">Q3. What does ISBN stand for, and what does it identify?</p>
+    <label><input type="radio" name="q2-3" value="a"> International Standard Book Number — uniquely identifies books</label>
+    <label><input type="radio" name="q2-3" value="b"> International Standard Bibliography Number — identifies journal articles</label>
+    <label><input type="radio" name="q2-3" value="c"> International Scientific Book Number — identifies databases</label>
+    <label><input type="radio" name="q2-3" value="d"> International Standard Binary Number — identifies digital files</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="b" id="q2-4">
+    <p class="question">Q4. The h-index of an author is h if —</p>
+    <label><input type="radio" name="q2-4" value="a"> The author has published h papers in the last h years</label>
+    <label><input type="radio" name="q2-4" value="b"> h of the author's papers have at least h citations each</label>
+    <label><input type="radio" name="q2-4" value="c"> The author has h citations total across all papers</label>
+    <label><input type="radio" name="q2-4" value="d"> The author has published in journals with h impact factor</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="d" id="q2-5">
+    <p class="question">Q5. Which search strategy is best for tracing how a key foundational paper has influenced later work?</p>
+    <label><input type="radio" name="q2-5" value="a"> Keyword search</label>
+    <label><input type="radio" name="q2-5" value="b"> Backward chronological search</label>
+    <label><input type="radio" name="q2-5" value="c"> Database search</label>
+    <label><input type="radio" name="q2-5" value="d"> Forward chronological search</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="a" id="q2-6">
+    <p class="question">Q6. Compared to peer-reviewed journal articles, websites are —</p>
+    <label><input type="radio" name="q2-6" value="a"> Less likely to be reliable</label>
+    <label><input type="radio" name="q2-6" value="b"> Equally reliable</label>
+    <label><input type="radio" name="q2-6" value="c"> More reliable because they are updated in real time</label>
+    <label><input type="radio" name="q2-6" value="d"> Completely incorrect and should never be used</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="c" id="q2-7">
+    <p class="question">Q7. Which of the following best describes a Primary source of literature?</p>
+    <label><input type="radio" name="q2-7" value="a"> A textbook that compiles existing knowledge</label>
+    <label><input type="radio" name="q2-7" value="b"> A bibliography that indexes other sources</label>
+    <label><input type="radio" name="q2-7" value="c"> A journal article presenting original research findings</label>
+    <label><input type="radio" name="q2-7" value="d"> A dictionary defining scientific terms</label>
+    <div class="fb"></div>
+  </div>
+
+  <div class="qq" data-correct="d" id="q2-8">
+    <p class="question">Q8. What is the main purpose of a DOI (Digital Object Identifier)?</p>
+    <label><input type="radio" name="q2-8" value="a"> To rank journal articles by importance</label>
+    <label><input type="radio" name="q2-8" value="b"> To identify the author's institutional affiliation</label>
+    <label><input type="radio" name="q2-8" value="c"> To measure citation count of an article</label>
+    <label><input type="radio" name="q2-8" value="d"> To provide a persistent, stable link to an online document even if the URL changes</label>
+    <div class="fb"></div>
+  </div>
+
+  <button class="quiz-btn btn-pk" onclick="gradeQuiz('q2')">Check Week 2 Answers</button>
+  <div class="score" id="score-q2"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 3 — DATA ANALYSIS
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week3">
+  <h2 class="wh-3">Week 3</h2>
+  <p>Data Analysis — From Raw Data to Meaningful Conclusions</p>
+</div>
+
+<div class="sec" id="w3-intro">
+  <h3><span class="icon ic-g">📊</span> What is Data Analysis?</h3>
+  <p>Data analysis is far more than feeding numbers into software. It is the process of extracting <strong>useful, relevant, and meaningful information</strong> from observations. The goal: understand what data means, how certain we are, and how to make decisions.</p>
+  <div class="tw"><table>
+    <tr><th>Type of Analysis</th><th>Description</th><th>Example</th></tr>
+    <tr><td><strong>Exploratory</strong></td><td>Making initial sense of data — searching for patterns, trends, outliers</td><td>Histogram analysis, scatter plots</td></tr>
+    <tr><td><strong>Confirmatory</strong></td><td>Using data to confirm or reject a pre-existing hypothesis</td><td>Testing if average salary in an age group = S₀</td></tr>
+    <tr><td><strong>Predictive</strong></td><td>Forecasting future values based on patterns</td><td>Forecasting stock prices</td></tr>
+    <tr><td><strong>Prescriptive</strong></td><td>Diagnosing why an event occurred and suggesting remedies</td><td>Root cause analysis</td></tr>
+  </table></div>
+  <div class="hl hl-y"><strong>Exam Trap:</strong> "Testing that the average salary in an age group is S₀" = <strong>CONFIRMATORY</strong>, not exploratory.</div>
+</div>
+
+<div class="sec" id="w3-dgp">
+  <h3><span class="icon ic-g">⚙️</span> Deterministic vs Stochastic Data</h3>
+  <p>The <strong>most critical assumption</strong> in data analysis is about the <strong>Data Generating Process (DGP)</strong>. This assumption determines ALL subsequent choices of tools and interpretations.</p>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(0,184,148,.3)">
+      <h5 style="color:var(--green)">Deterministic DGP</h5>
+      <p>DGP is perfectly known. Mathematical function perfectly explains the data. No uncertainty in observed values. Example: Ball dropped in still air — physics predicts time perfectly.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)">
+      <h5 style="color:var(--accent3)">Stochastic DGP</h5>
+      <p>Observations are a subset of many possibilities. No mathematical function perfectly explains the data. Observations have uncertainties. Example: Sensor noise, stock market, weather. <strong>Stochasticity ≠ zero predictability.</strong></p>
+    </div>
+  </div>
+  <div class="hl hl-r"><strong>Critical Point:</strong> In practice, NO process is truly deterministic since perfect knowledge is never available. We say a process is <em>predominantly</em> deterministic or stochastic. Many processes are a <em>mix</em> (e.g., well-understood reactor + noisy sensor). Determinism/stochasticity rests with the <em>knowledge of the analyst</em>.</div>
+  <div class="hl hl-y"><strong>Key Insight:</strong> Any estimate inferred from stochastic data ALSO has uncertainty in it. Therefore, <mark>always compute and report the error in your estimate</mark>. Choose methods where error shrinks as sample size N → ∞.</div>
+</div>
+
+<div class="sec" id="w3-terms">
+  <h3><span class="icon ic-y">📐</span> Key Terminology in Data Analysis</h3>
+  <div class="tw"><table>
+    <tr><th>Term</th><th>Definition</th><th>Key Distinction</th></tr>
+    <tr><td><strong>Population</strong></td><td>ALL events or possibilities that could ever be observed</td><td>True; never fully accessible</td></tr>
+    <tr><td><strong>Sample</strong></td><td>Subset of the population actually obtained</td><td>What you actually have; used to infer population</td></tr>
+    <tr><td><strong>Truth (θ₀)</strong></td><td>Actual parameter for the entire population</td><td>Unknown; e.g., true average temperature</td></tr>
+    <tr><td><strong>Estimate (θ̂)</strong></td><td>Value inferred from the sample</td><td>e.g., sample mean; NOT the truth</td></tr>
+    <tr><td><strong>Statistic</strong></td><td>Any mathematical function of observations</td><td>e.g., sample mean, sample variance</td></tr>
+    <tr><td><strong>Estimator</strong></td><td>Mathematical function devised to estimate an unknown quantity</td><td>All estimators are statistics; not all statistics are estimators</td></tr>
+    <tr><td><strong>Ensemble Average</strong></td><td>Average across ALL possible data records at a single time point</td><td>vs. Sample average: over one data record</td></tr>
+  </table></div>
+  <h4>Bias vs Variability</h4>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(225,112,85,.3)">
+      <h5 style="color:var(--red)">Bias (Accuracy)</h5>
+      <p>Bias(θ̂) = E(θ̂) − θ₀. Zero bias = unbiased = high accuracy. Systematic error. If expected value of estimate equals truth → unbiased.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(116,185,255,.3)">
+      <h5 style="color:var(--blue)">Variability (Precision)</h5>
+      <p>Spread of estimates across different samples. Var(θ̂) = E(θ̂ − E(θ̂))². Low variability = high precision. High precision instrument = low variability.</p>
+    </div>
+  </div>
+  <div class="hl hl-t"><strong>Efficiency:</strong> Most efficient estimator = lowest variability/highest precision among all estimators. The most efficient estimate is NOT necessarily the most accurate — they measure different things.</div>
+  <div class="hl hl-g"><strong>Ideal Goal:</strong> Zero bias (accurate) AND low variability (precise). In practice, both may not be achievable from finite samples.</div>
+</div>
+
+<div class="sec" id="w3-procedure">
+  <h3><span class="icon ic-b">📋</span> Systematic Procedure for Data Analysis</h3>
+  <div class="hl hl-b"><strong>Key Principle:</strong> Data analysis exercises are <strong>iterative</strong>, NOT necessarily sequential. Success depends on: (1) quality of data and (2) methodology. The 80/20 rule applies: expect 80% of time on data preparation.</div>
+  <ol class="fl">
+    <li><strong>Preliminary Questions & Scoping:</strong> What type of analysis? (exploratory/confirmatory/predictive/prescriptive). Where does data come from? How was it acquired? What assumptions on DGP? (deterministic/stochastic/linear/non-linear/stationary) — <strong>This last question is the MOST important.</strong></li>
+    <li><strong>Data Preparation & Pre-processing:</strong> Visualize first — ALWAYS plot before any calculation (Anscombe's Quartet lesson!). Check quality: outliers, missing values, noise. Set aside data for cross-validation (training vs test sets).</li>
+    <li><strong>Core Analysis & Modelling:</strong> Choose domain (time/frequency). Choose right tool: sample mean (best for Gaussian, no outliers) vs sample median (robust to outliers). Apply domain knowledge at every step.</li>
+    <li><strong>Assessment & Reporting:</strong> NEVER report estimates without error bars/confidence intervals. Subject parameters to hypothesis tests. Cross-validate. Use AIC/BIC if multiple models fit. Seek "best working model" not "right model."</li>
+  </ol>
+</div>
+
+<div class="sec" id="w3-anscombe">
+  <h3><span class="icon ic-pk">📉</span> Anscombe's Quartet — Why Visualization is Essential</h3>
+  <p>Four datasets with <strong>identical</strong> statistical properties (mean, variance, correlation, regression line) but completely different visual features:</p>
+  <div class="tw"><table>
+    <tr><th>Dataset</th><th>Pattern</th></tr>
+    <tr><td>Dataset 1</td><td>Standard linear relationship</td></tr>
+    <tr><td>Dataset 2</td><td>Parabolic (non-linear) — clearly not linear from picture</td></tr>
+    <tr><td>Dataset 3</td><td>Perfect linear relationship with ONE outlier distorting everything</td></tr>
+    <tr><td>Dataset 4</td><td>All x-values same except one extreme outlier — no relationship except one point's influence</td></tr>
+  </table></div>
+  <div class="hl hl-r"><strong>Lesson:</strong> Based on descriptive statistics alone you CANNOT distinguish these datasets. Only visualization reveals the truth. <mark>Always plot your data before, during, and after analysis.</mark></div>
+</div>
+
+<div class="sec" id="w3-model">
+  <h3><span class="icon ic-o">🧮</span> Modelling, Overfitting, Underfitting</h3>
+  <div class="tw"><table>
+    <tr><th>Aspect</th><th>Underfitting</th><th>Correct Fit</th><th>Overfitting</th></tr>
+    <tr><td>Model complexity</td><td>Too simple</td><td>Right number of params</td><td>Too complex (too many params)</td></tr>
+    <tr><td>Training performance</td><td>Poor</td><td>Good</td><td>Excellent/perfect</td></tr>
+    <tr><td>Test performance</td><td>Poor</td><td>Good</td><td>POOR (fails on fresh data)</td></tr>
+  </table></div>
+  <div class="hl hl-o"><strong>Food Analogy:</strong> "Data is the food for identification and parameters are guests." Over-invite guests (overfit) → some go hungry (large parameter errors). Under-invite (underfit) → not enough guests to eat the food.</div>
+  <div class="hl hl-y"><strong>Two Symptoms of Overfitting:</strong> (1) Large errors in parameter estimates — insignificant estimates for truly non-zero parameters. (2) Predictions fail on fresh data — poor cross-validation performance.</div>
+  <p><strong>Adjusted R²</strong> = 1 − (MS_Error/MS_Total). Penalizes for extra parameters. If Adj R² decreases when you add a term → that term is useless. <strong>Don't chase R² = 1.</strong></p>
+  <div class="hl hl-g"><strong>p-value rule:</strong> "If the p-value is low, the null hypothesis must go" — famous quote from Ogunnaike's book. If p-value is extremely low → reject null hypothesis → parameter is significant.</div>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 3 — Master Summary</h3>
+  <ul>
+    <li><strong>Data analysis is iterative</strong> — not necessarily sequential</li>
+    <li><strong>80/20 rule:</strong> 80% time on data preparation</li>
+    <li><strong>Most important first question:</strong> What is the DGP? (deterministic vs stochastic)</li>
+    <li><strong>Stochastic ≠ unpredictable;</strong> just acknowledges incomplete knowledge</li>
+    <li><strong>Always visualize FIRST</strong> — numbers alone deceive (Anscombe's Quartet)</li>
+    <li><strong>Bias = accuracy; Variability = precision</strong> — they are independent</li>
+    <li><strong>Always report error bars</strong> — never report estimates without uncertainty</li>
+    <li><strong>Sample mean</strong> = best when Gaussian, no outliers; <strong>Sample median</strong> = robust to outliers</li>
+    <li><strong>Overfitting:</strong> Too many parameters → fails on test data → Adj R² goes down</li>
+    <li><strong>Confirmatory</strong> ≠ exploratory; testing specific value = confirmatory</li>
+    <li><strong>Best working model</strong> ≠ the "right" model — use AIC/BIC for model selection</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 3 -->
+<div class="quiz-sec" id="quiz3">
+  <h3 style="background:var(--g3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 3 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. Which of the following is/are example(s) of exploratory data analysis? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div>A. Testing that the average salary in an age group is S₀</div>
+      <div class="correct-opt">B. Searching for trends or outliers in a data set</div>
+      <div class="correct-opt">C. Histogram analysis of runs scored by a player in cricket</div>
+      <div class="correct-opt">D. Analyzing the relationship between variables using linear regression (exploratory)</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Explanation</button>
+    <div class="reveal-ans">✅ <strong>B, C, D.</strong> Testing a specific value (A) is CONFIRMATORY. Searching for trends, histogram analysis, and exploring relationships are all exploratory — you don't postulate upfront.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. Which of the following statements about estimators is/are correct? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. An unbiased estimator has an expected value equal to the true population parameter</div>
+      <div>B. A biased estimator is always useless</div>
+      <div class="correct-opt">C. The most efficient estimator has the lowest variability among all estimators</div>
+      <div>D. Low bias and low variability are always simultaneously achievable from finite samples</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Explanation</button>
+    <div class="reveal-ans">✅ <strong>A, C.</strong> A and C are correct. B is wrong — biased estimators can sometimes be useful (bias-variance tradeoff). D is wrong — both low bias and low variability are not always simultaneously achievable.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. What is the key lesson from Anscombe's Quartet?</p>
+    <div class="opts">
+      <div>A. Statistical summaries are sufficient to describe data</div>
+      <div>B. Regression analysis always gives accurate results</div>
+      <div class="correct-opt">C. Visual inspection of data is essential because datasets with identical statistics can have very different patterns</div>
+      <div>D. Outliers should always be removed before analysis</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Explanation</button>
+    <div class="reveal-ans">✅ <strong>C.</strong> Anscombe's four datasets have identical means, variances, correlations and regression lines — but completely different visual patterns. Always plot your data first.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. Which of the following are symptoms of overfitting? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div>A. Poor performance on both training and test data</div>
+      <div class="correct-opt">B. Large errors in parameter estimates (insignificant estimates for non-zero parameters)</div>
+      <div class="correct-opt">C. Excellent training performance but poor performance on fresh/test data</div>
+      <div>D. Adjusted R² increases when more parameters are added</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Explanation</button>
+    <div class="reveal-ans">✅ <strong>B, C.</strong> A describes underfitting. D is wrong — if adding more parameters is useful, Adj R² increases; if overfitting, Adj R² would decrease (that's how you detect it).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. The success of a data analysis exercise depends on: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Quality of data</div>
+      <div class="correct-opt">B. Methodology of data analysis</div>
+      <div>C. The software tool used</div>
+      <div>D. The number of data points collected</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Explanation</button>
+    <div class="reveal-ans">✅ <strong>A, B.</strong> The two key factors are quality of data and methodology. Software is just a tool; number of points matters but the quality and methodology are the primary factors per the lecture.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 4 — TECHNICAL WRITING, PRESENTATIONS & LAB SAFETY
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week4">
+  <h2 class="wh-4">Week 4</h2>
+  <p>Technical Writing, Scientific Presentations & Lab Safety</p>
+</div>
+
+<div class="sec" id="w4-writing">
+  <h3><span class="icon ic-b">✍️</span> Technical Writing Fundamentals</h3>
+  <p>A mystery novel succeeds by hiding the truth until the final page. A scientific paper succeeds by <strong>revealing it in the first paragraph</strong>. This is the single most counter-intuitive shift for new writers.</p>
+  <div class="hl hl-b"><strong>Core Principle: EFFICIENCY</strong> — Every element from sentence structure to illustration choice is designed to help the reader understand the work as quickly and clearly as possible. The goal is NOT to force someone to read the whole paper, but to deliver key information effectively.</div>
+  <h4>Anatomy of a Journal Article</h4>
+  <div class="tw"><table>
+    <tr><th>Section</th><th>Purpose</th><th>Key Exam Facts</th></tr>
+    <tr><td><strong>Title</strong></td><td>Identifies broad research area AND specific novel contribution</td><td>Must contain both elements — NOT just broad topic</td></tr>
+    <tr><td><strong>Abstract</strong></td><td>Complete standalone summary — gives away ALL major findings upfront</td><td>No undefined abbreviations. Written for readers who may never read the rest. "Elevator pitch."</td></tr>
+    <tr><td><strong>Introduction</strong></td><td>What? Why important? What's needed to understand?</td><td>Compare with prior work to establish novelty: "X did this, Y did that, but no one has explored..."</td></tr>
+    <tr><td><strong>Methods/Experimental</strong></td><td>The "recipe" — enough detail to reproduce the experiment</td><td>Nothing hidden. Another researcher must be able to repeat.</td></tr>
+    <tr><td><strong>Results</strong></td><td>Factual, objective statements of data ONLY — no interpretation</td><td>A technician can write results. Non-controversial. "Hardness increased with decreasing grain size."</td></tr>
+    <tr><td><strong>Discussion</strong></td><td>The "so what?" — interpretation, analysis, scientific argument about WHY</td><td>Can be debated. Different experts may have different discussions of same results.</td></tr>
+    <tr><td><strong>Conclusion</strong></td><td>Summarizes key findings for readers who have read the paper</td><td>More technical freedom than abstract. May include future perspectives.</td></tr>
+  </table></div>
+  <div class="hl hl-y"><strong>Results vs Discussion — Most Important Distinction:</strong><br>
+  Results = WHAT you observed (factual, non-controversial, any technician would state the same).<br>
+  Discussion = WHY you observed it (interpretation, can be debated by different experts).</div>
+  <h4>Language & Illustration Principles</h4>
+  <ul>
+    <li><strong>Keep sentences SHORT, direct, simple</strong> — if you must reread a sentence to understand it, it's too long</li>
+    <li>Avoid flowery language, arrogant phrases ("it is obvious that...", "clearly...")</li>
+    <li><strong>Illustrations:</strong> Graphs for trends, Tables for specific values, Schematics for complex objects, Photographs for realism (watch out for distracting details)</li>
+    <li>A technical paper and a science fiction novel have <strong>very different</strong> styles — novel hides truth, paper reveals it upfront</li>
+    <li>Purpose of technical writing: <strong>Inform, Persuade, Convey ideas efficiently</strong> — NOT sarcasm</li>
+  </ul>
+</div>
+
+<div class="sec" id="w4-presentations">
+  <h3><span class="icon ic-pk">🎤</span> Scientific Presentations</h3>
+  <p>A presentation is <strong>different from a paper</strong> in important ways:</p>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(108,92,231,.3)">
+      <h5 style="color:var(--accent2)">Paper</h5>
+      <p>One-time read. Peer reviewed. Dense with information. Reader controls pace. Can re-read. Permanent record.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(253,121,168,.3)">
+      <h5 style="color:var(--accent3)">Presentation</h5>
+      <p>Interactive with audience. Changes based on audience. NOT peer reviewed. NOT a one-time activity (can be given multiple times). Audience controls pace.</p>
+    </div>
+  </div>
+  <h4>Key Principles for Presentations</h4>
+  <ul>
+    <li><strong>Know your audience</strong> — gauge their background, tailor content accordingly, understand why they're watching</li>
+    <li><strong>Outline at start</strong> — helps audience see main topics AND identify which sections interest them</li>
+    <li><strong>One idea per slide</strong> — illustrations must help audience focus on a SPECIFIC idea</li>
+    <li><strong>Open spaces</strong> — don't fill slides end to end; sufficient white space helps focus</li>
+    <li><strong>Don't read slides</strong> — you're a scientist, not a presenter reading slides</li>
+    <li>Slides must NOT be complete text — they complement speech, not replace it</li>
+    <li>Color is NOT mandatory — monochrome is fine if clearer</li>
+  </ul>
+  <div class="hl hl-y"><strong>Exam Points:</strong><br>
+  Presentations: (A) change based on audience ✓ (D) generally interactive ✓ — NOT one-time, NOT peer reviewed.<br>
+  Outline helps audience: (B) note main points ✓ (C) decide which sections interest them ✓.<br>
+  Knowing audience: (B) gauge background ✓ (C) tailor talk ✓ (D) understand their motivation ✓.</div>
+</div>
+
+<div class="sec" id="w4-safety">
+  <h3><span class="icon ic-r">⚠️</span> Laboratory Safety</h3>
+  <div class="hl hl-r"><strong>Safety is CULTURE</strong> — not just procedures. In research labs, we push boundaries with new experiments, making active involvement in safety even more critical than in industry.</div>
+  <h4>Common Lab Hazards</h4>
+  <p>Five common lab hazards: <strong>Chemicals, Electricity, Water, Gas Bottles, Heat Sources</strong> (hot plates, ovens, furnaces up to 1500°C).</p>
+  <h4>PPE (Personal Protective Equipment)</h4>
+  <ul>
+    <li><strong>Lab Coat:</strong> Wear the moment you enter the lab. Not just for acid — for ANY spill.</li>
+    <li><strong>Gloves:</strong> Nitrile (general), acid-resistant (acids), thermal (hot items). Check glove-solvent compatibility.</li>
+    <li><strong>Safety Goggles:</strong> Must provide COMPLETE coverage (sides, top, bottom) AND be shatter-proof. <mark>Regular prescription glasses are NOT adequate</mark> — don't cover sides and can shatter. Safety goggles fit OVER prescription glasses.</li>
+    <li><strong>Dust Masks:</strong> Surgical masks for basic dust; elaborate filter masks for chemical dust. Check adequacy for your specific samples.</li>
+  </ul>
+  <h4>Chemical Safety (Acids)</h4>
+  <div class="hl hl-y"><strong>Exam Point — Acid Safety (A, B, D are correct; C is WRONG):</strong><br>
+  ✅ A. Acid storage must be done with secondary containment.<br>
+  ✅ B. Acids and bases must be separated.<br>
+  ❌ C. Acid wastes must be washed down the sink — THIS IS WRONG. Acid wastes must NOT be washed down the sink.<br>
+  ✅ D. Acid-containing bottles must be clearly labelled.</div>
+  <h4>Gas Bottle Safety</h4>
+  <ul>
+    <li>Gas bottles are <strong>pressurized units</strong> — if neck breaks, uncontrolled gas escape is very dangerous</li>
+    <li>Must be secured with a chain attached to the wall — chain must be at about ¾ height to prevent toppling</li>
+    <li>Chain too low → bottle can still fall → safety purpose NOT served</li>
+    <li><strong>Transport:</strong> Use dedicated trolleys with chain arrangements. Do NOT roll on the floor.</li>
+    <li><strong>Store with regulators REMOVED</strong> — regulators only attached when in use</li>
+    <li>NEVER have a gas bottle with regulator installed that isn't secured</li>
+  </ul>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 4 — Master Summary</h3>
+  <ul>
+    <li><strong>Abstract:</strong> Give it ALL away upfront — complete standalone summary</li>
+    <li><strong>Introduction:</strong> Establish novelty vs prior work</li>
+    <li><strong>Results = what; Discussion = why</strong> — always separate them</li>
+    <li><strong>Methods = reproducible recipe;</strong> Nothing hidden</li>
+    <li><strong>Efficiency</strong> is the prime directive of technical writing</li>
+    <li><strong>Technical paper vs novel:</strong> Very different styles — paper reveals upfront</li>
+    <li><strong>Presentations:</strong> Interactive, change with audience, NOT peer reviewed, NOT one-time</li>
+    <li><strong>One idea per slide;</strong> open spaces; know your audience</li>
+    <li><strong>Acid wastes must NOT be washed down sink</strong> — most common exam trick</li>
+    <li><strong>Safety glasses must have side coverage</strong> — prescription glasses NOT adequate</li>
+    <li><strong>Gas bottles:</strong> chain at ¾ height; store without regulators; no rolling</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 4 -->
+<div class="quiz-sec" id="quiz4">
+  <h3 style="background:var(--g5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 4 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. A technical paper and a science fiction novel:</p>
+    <div class="opts">
+      <div>A. Have the same style of presentation</div>
+      <div class="correct-opt">B. Have very different styles of presentation</div>
+      <div>C. Both aim to surprise the reader in the end</div>
+      <div>D. Both aim to make every reader read till the end in a thrilling manner</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B only.</strong> Very different styles. A novel hides the truth to create suspense; a technical paper gives away the main result in the abstract upfront.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. The purpose of technical writing includes: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Informing the reader</div>
+      <div class="correct-opt">B. Persuading the reader to a certain point of view</div>
+      <div class="correct-opt">C. Conveying ideas efficiently</div>
+      <div>D. Being sarcastic at different places in the document</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, C.</strong> Inform, persuade, and convey efficiently. Sarcasm has NO place in technical writing.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. Properties of a presentation (select all that apply): <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. It changes based on the audience</div>
+      <div>B. It is a one-time activity with respect to a given set of data</div>
+      <div>C. It is peer reviewed</div>
+      <div class="correct-opt">D. Generally interactive with the audience</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, D.</strong> Presentations change based on audience and are interactive. They are NOT one-time (can be repeated for different audiences) and NOT peer reviewed (that's for publications).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. While working with acids in laboratories: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Acid storage must be done with secondary containment</div>
+      <div class="correct-opt">B. Acids and bases must be separated</div>
+      <div>C. Acid wastes must be washed down the sink</div>
+      <div class="correct-opt">D. Acid-containing bottles must be clearly labelled</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, D.</strong> C is WRONG — acid wastes must NEVER be washed down the sink. This is the most common exam trick question on safety.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. An outline of a talk helps the audience: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div>A. Understand your educational background</div>
+      <div class="correct-opt">B. Note the main points you will be covering in the talk</div>
+      <div class="correct-opt">C. Decide the sections of the talk they are interested in</div>
+      <div>D. Understand the importance of your professional accomplishments</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B, C.</strong> An outline helps audience see the main topics and identify which sections interest them. It's not about your background or accomplishments.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q6. Illustrations and data in a presentation: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div>A. Must completely fill the slide from end to end</div>
+      <div class="correct-opt">B. Must be presented with sufficient open spaces in between</div>
+      <div class="correct-opt">C. Must typically help the audience focus on a specific idea in each slide</div>
+      <div>D. Must always be in colour</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B, C.</strong> Open space helps focus; one idea per slide. Filling slides end-to-end overwhelms. Colour is NOT mandatory.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 5 — CREATIVITY IN RESEARCH & ETHICS
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week5">
+  <h2 class="wh-5">Week 5</h2>
+  <p>Creativity in Research & Research Ethics</p>
+</div>
+
+<div class="sec" id="w5-creativity">
+  <h3><span class="icon ic-y">🎨</span> Creativity in Research</h3>
+  <h4>What is a Fully Professional Researcher?</h4>
+  <ul>
+    <li>Has something to say that <strong>international peers want to listen to</strong></li>
+    <li>Should be among the <strong>top 10–20 experts</strong> in their specific domain</li>
+    <li>Must have mastery of <strong>analytical, numerical, AND experimental</strong> techniques</li>
+    <li>Must be able to <strong>communicate ideas</strong> effectively through papers & presentations</li>
+    <li>Should be a <strong>"fountain head of ideas"</strong> — generating new ideas throughout lifetime</li>
+    <li>Should be able to guide PhD students and defend proposals</li>
+  </ul>
+  <div class="hl hl-y"><strong>Does NOT:</strong> Work without focusing on literature. Has deep knowledge AND broad awareness globally.</div>
+
+  <h4>Sternberg's Triarchic Theory of Intelligence (1985, Yale)</h4>
+  <p>From: <em>Beyond IQ: A Triarchic Theory of Human Intelligence</em></p>
+  <div class="tw"><table>
+    <tr><th>Type</th><th>What It Is</th><th>Where Developed</th><th>Relation to Environment</th></tr>
+    <tr><td><strong>Analytical</strong></td><td>Solve well-defined problems with ONE correct answer. Tested through exams & grades.</td><td>Classrooms, traditional exams</td><td>Judging/evaluating environment</td></tr>
+    <tr><td><strong>Synthetic</strong></td><td>Combine existing knowledge in NEW ways. Off-beat solutions. Different people can get different answers.</td><td>Project work, design problems, research</td><td>Creating new ideas</td></tr>
+    <tr><td><strong>Practical</strong></td><td>"Street smarts." Selling ideas to funding agencies, managers, editors. <strong>Relates to how one adapts to the environment around them.</strong></td><td>Never formally taught — acquired over years</td><td>Adapting to environment</td></tr>
+  </table></div>
+  <div class="hl hl-r"><strong>Key Exam Trap:</strong> Traditional education only focuses on Analytical Intelligence. Synthetic and Practical must be self-developed. Practical intelligence = <em>how one relates to the environment around them</em> = how street smart they are. NOT solving new problems (that's synthetic).</div>
+
+  <h4>What Creativity IS and IS NOT</h4>
+  <ul>
+    <li>✅ Does things that have <strong>never been done before</strong></li>
+    <li>✅ Can be in ANY field — science, engineering, music, law, philosophy</li>
+    <li>✅ <strong>Does NOT conform</strong> to pre-existing notions of what is possible</li>
+    <li>✅ Taking a nuisance/problem and converting it into a useful product (Velcro!)</li>
+    <li>✅ Taking a poorly performing product and converting it into a new product line (Post-It!)</li>
+    <li>✅ Products that deviate from conventional wisdom (iPhone!)</li>
+    <li>❌ Does NOT mean just accurately repeating work done by others</li>
+    <li>❌ Copying products that already exist is NOT creativity, even if market is established</li>
+  </ul>
+
+  <h4>PhD and Depth vs Width</h4>
+  <ul>
+    <li>B.Tech = know a little about everything</li>
+    <li>M.Tech = know reasonably about many things</li>
+    <li>PhD = know a LOT about a very narrow area</li>
+    <li><strong>"We gain width through the depth"</strong> — deep focus cultivates a "vision/darshan" that radically improves ability to understand other areas</li>
+  </ul>
+
+  <h4>Important Named Concepts (Exam Favorites!)</h4>
+  <div class="tw"><table>
+    <tr><th>Concept</th><th>Who</th><th>What</th></tr>
+    <tr><td><strong>10,000-hour rule</strong></td><td>Herbert Simon (Nobel Laureate)</td><td>~5 years full-time (8hrs/day) to become an expert in any field. Deep expertise takes time.</td></tr>
+    <tr><td><strong>Yerkes-Dodson Curve (1908)</strong></td><td>Yerkes & Dodson</td><td>Best performance at <mark>Eustress</mark> (optimal/moderate stress level). Too little or too much stress reduces performance.</td></tr>
+    <tr><td><strong>Flow Theory</strong></td><td>Csikszentmihalyi</td><td>Best creative performance when <mark>challenge = skill</mark>. Too easy = boredom; too hard = anxiety.</td></tr>
+    <tr><td><strong>Medawar Zone</strong></td><td>Peter Medawar</td><td>Sweet spot of research difficulty = highest payoff. Questions must be neither too easy nor too hard.</td></tr>
+    <tr><td><strong>"To simplify"</strong></td><td>Edward de Bono</td><td>The most complex activity is <mark>to simplify</mark>. Wrote a 500-page book on simplicity.</td></tr>
+  </table></div>
+
+  <h4>Young vs Experienced Researchers</h4>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(0,184,148,.3)">
+      <h5 style="color:var(--green)">Young Researchers</h5>
+      <p>Generally MORE creative — less prior baggage, fearless, willing to challenge established ideas.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(225,112,85,.3)">
+      <h5 style="color:var(--red)">Experienced (20+ year) Researchers</h5>
+      <p>Generally LESS creative — familiarity breeds conservatism, fear of reputation damage.</p>
+    </div>
+  </div>
+  <div class="hl hl-r"><strong>Important:</strong> Ignorance of basic education does NOT enhance creativity. Knowledge is essential — it's the foundation upon which creative work is built. You need knowledge to know what is "genuinely new."</div>
+  <div class="hl hl-g"><strong>Traits of a creative engineer:</strong> High motivation, self-confidence, knowledge of fundamentals. NOT: low self-esteem, introversion as a barrier, following only conventional paths.</div>
+</div>
+
+<div class="sec" id="w5-ethics">
+  <h3><span class="icon ic-r">⚖️</span> Research Ethics</h3>
+  <div class="hl hl-r"><strong>Ethics</strong> = from Greek <em>"ethos"</em> = character. Core concept: <strong>Responsibility</strong>. Ethics governs how research is funded, carried out, reported, and information is shared.</div>
+  <h4>What is Unethical in Research?</h4>
+  <ul>
+    <li><strong>Plagiarism:</strong> Copying others' work without attribution</li>
+    <li><strong>Data fabrication:</strong> Inventing data that doesn't exist</li>
+    <li><strong>Data falsification:</strong> Changing data to match desired conclusions</li>
+    <li><strong>Improper attribution:</strong> Not giving credit, or giving credit to non-contributors</li>
+    <li><strong>Accusation without evidence</strong> of others' misconduct</li>
+  </ul>
+  <h4>Why Do People Behave Unethically?</h4>
+  <ul>
+    <li>Pressure for fame and quick career advancement</li>
+    <li>Pressure from funders to produce favorable results</li>
+    <li>Competitive pressure to publish more and faster</li>
+    <li>"Publish or perish" culture</li>
+  </ul>
+  <h4>Ethical Publishing</h4>
+  <ul>
+    <li>All listed authors must <strong>know and agree</strong> to the publication before submission</li>
+    <li>Only include researchers who genuinely contributed</li>
+    <li>Report experiments correctly — including failures, not just successes</li>
+    <li>Provide proper citations for all prior work used</li>
+    <li>Data must not be manipulated to support the hypothesis</li>
+  </ul>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 5 — Master Summary</h3>
+  <ul>
+    <li><strong>Analytical (textbook) + Synthetic (new combos) + Practical (street smarts, environment)</strong> = Sternberg's 3</li>
+    <li><strong>10,000 hrs</strong> = Herbert Simon (Nobel) rule for expertise</li>
+    <li><strong>Eustress</strong> = optimal stress zone (Yerkes-Dodson, 1908)</li>
+    <li><strong>Flow</strong> = challenge = skill (Csikszentmihalyi)</li>
+    <li><strong>Medawar Zone</strong> = sweet spot of research difficulty</li>
+    <li><strong>Edward de Bono</strong> = most complex activity = to simplify</li>
+    <li><strong>Young</strong> = more creative (less baggage); <strong>Experienced</strong> = less creative (familiarity)</li>
+    <li><strong>Creativity examples:</strong> Velcro (nuisance → product), Post-It (failed adhesive → product), iPhone (deviated from convention)</li>
+    <li><strong>Practical intelligence</strong> = how one relates to/adapts to environment = "street smarts"</li>
+    <li><strong>Ethics</strong> = from ethos = character; core = responsibility</li>
+    <li><strong>Unethical:</strong> plagiarism, data fabrication, falsification, improper attribution</li>
+    <li><strong>Ignorance does NOT enhance creativity</strong> — knowledge is essential</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 5 -->
+<div class="quiz-sec" id="quiz5">
+  <h3 style="background:var(--g4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 5 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. According to Sternberg's triarchic theory, practical intelligence relates to: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. How one relates to the environment around them</div>
+      <div class="correct-opt">B. How street smart they are</div>
+      <div>C. How well they come up with new theories</div>
+      <div>D. How well they solve new problems</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B.</strong> Practical = adapting to/relating to environment = street smarts. C = synthetic intelligence. D = also synthetic. NOT solving new problems — that's synthetic intelligence.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. Some examples of creativity include: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Taking a problem/nuisance and converting it into a useful product</div>
+      <div class="correct-opt">B. Taking a poorly performing product and converting it into a new product line</div>
+      <div class="correct-opt">C. Products that deviate from conventional wisdom</div>
+      <div>D. Copying products that already exist, since the market is established</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, C.</strong> Velcro (nuisance→product), Post-It (poor adhesive→product), iPhone (deviated from convention). Copying is NOT creativity.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. With respect to being creative in research: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Young researchers are generally more creative since they have less prior baggage</div>
+      <div class="correct-opt">B. Researchers who have spent 20 years are generally less creative due to familiarity</div>
+      <div>C. Ignorance of basic education enhances creativity in formal research</div>
+      <div>D. Researchers who have spent 20 years are generally more creative due to familiarity</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B.</strong> Young = fearless + fresh = more creative. Experienced = familiarity + fear of reputation = less creative. Ignorance does NOT help — knowledge is foundation. D contradicts B.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. According to Edward de Bono, the most complex activity is:</p>
+    <div class="opts">
+      <div>A. Teaching</div>
+      <div>B. Reading research papers</div>
+      <div class="correct-opt">C. To simplify</div>
+      <div>D. To complicate things further</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — To simplify.</strong> Edward de Bono wrote a 500-page book on simplicity. Making complex things as simple as possible is the hardest challenge.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. Best performance according to the Yerkes-Dodson (1908) curve occurs at:</p>
+    <div class="opts">
+      <div>A. Zero stress (complete calm)</div>
+      <div>B. Maximum stress</div>
+      <div class="correct-opt">C. Eustress — optimal/moderate stress level</div>
+      <div>D. Below-average performance levels</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — Eustress.</strong> The Yerkes-Dodson (1908) curve shows peak performance at optimal stress (eustress). Too little = apathy; too much = panic/shutdown. The sweet spot is the middle.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 6 — INTELLECTUAL PROPERTY RIGHTS (IPR)
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week6">
+  <h2 class="wh-6">Week 6</h2>
+  <p>Intellectual Property Rights (IPR) — Full Coverage</p>
+</div>
+
+<div class="sec" id="w6-basics">
+  <h3><span class="icon ic-t">⚖️</span> IPR Fundamentals</h3>
+  <div class="tw"><table>
+    <tr><th>Term</th><th>Definition</th><th>Key Point</th></tr>
+    <tr><td><strong>Intellectual Property (IP)</strong></td><td>Intangible creation emanating from human creative labour</td><td>Property that is from your intellect — NOT physical</td></tr>
+    <tr><td><strong>Rights</strong></td><td>Legal entitlements — violation is unlawful; leaves remedy</td><td>Two senses: Liberty (freedom to do) & License (consent given)</td></tr>
+    <tr><td><strong>IPR</strong></td><td>Legal rights that protect applications/expressions of ideas of commercial value</td><td>No universal definition; WIPO's definition is an "inclusive grocery list"</td></tr>
+    <tr><td><strong>Infringement</strong></td><td>Violation of intellectual property right</td><td>Technically = "trespass" on someone's IP. Both civil AND criminal remedies available.</td></tr>
+    <tr><td><strong>Real Property</strong></td><td>Tangible property with physical boundaries (land, house, pen)</td><td>Analogy to understand IP: unlike land, IP boundaries defined by written description only</td></tr>
+  </table></div>
+  <div class="hl hl-t"><strong>IP protects APPLICATIONS/EXPRESSIONS of ideas — NOT ideas per se.</strong> You can have an idea, but only the expression/application is protectable.</div>
+  <h4>Key Characteristics/Traits of IPR</h4>
+  <div class="tw"><table>
+    <tr><th>#</th><th>Trait</th><th>Explanation</th></tr>
+    <tr><td>1</td><td><strong>Protectable by law (Enforceable)</strong></td><td>If violated → remedy available (injunction or monetary damages)</td></tr>
+    <tr><td>2</td><td><strong>Intangible in nature</strong></td><td>Cannot touch/feel; must be described and registered</td></tr>
+    <tr><td>3</td><td><strong>Easily replicable</strong></td><td>First copy expensive (Windows 7 R&D), subsequent copies nearly FREE. This is the problem IPR solves!</td></tr>
+    <tr><td>4</td><td><strong>Requires creative effort</strong></td><td>Creations of the mind; often group efforts in modern research</td></tr>
+    <tr><td>5</td><td><strong>Has commercial value</strong></td><td>Can be used in trade and business</td></tr>
+    <tr><td>6</td><td><strong>Non-rivalrous</strong></td><td>Use by one does NOT take away from another (millions can read same e-book simultaneously)</td></tr>
+    <tr><td>7</td><td><strong>Non-excludable (by nature)</strong></td><td>Once public, hard to stop others from accessing. IPR creates ARTIFICIAL legal excludability.</td></tr>
+  </table></div>
+  <div class="hl hl-r"><strong>CRITICAL Exam Trap:</strong> "Cannot be easily replicated" is WRONG — IP CAN and IS easily replicated (that's exactly WHY IPR protection is needed!). Common characteristics of IPR: "Protectable by law, Intangible in nature, Has commercial value."</div>
+  <div class="hl hl-y"><strong>IPR are EXCLUSIVE rights (NOT non-exclusive)</strong> — they give you the ability to STOP others from using your IP without consent. This is fundamental.</div>
+</div>
+
+<div class="sec" id="w6-types">
+  <h3><span class="icon ic-t">📜</span> Types of IPR</h3>
+  <div class="tw"><table>
+    <tr><th>IPR Type</th><th>What It Protects</th><th>Duration</th><th>Key Details</th></tr>
+    <tr><td><strong>Patent</strong></td><td>Inventions (technological creations)</td><td><mark>20 years from date of application</mark> (TRIPS/WTO)</td><td>Rights: make, sell, use, offer for sale, import. Limited life → public domain after.</td></tr>
+    <tr><td><strong>Copyright</strong></td><td>Literary, artistic, musical, cinematographic works, computer programs</td><td><mark>Life of author + 60 years (India)</mark>; Institution: creation date + 60 years</td><td>Berne Convention: registration NOT mandatory for enforcement. © notice sufficient.</td></tr>
+    <tr><td><strong>Trademark</strong></td><td>Words, symbols, logos identifying a company/products</td><td>Granted for <mark>10 years, renewable indefinitely</mark> = <strong>UNLIMITED LIFE IP</strong></td><td>Identifies company; "ambassador" of business. Can be established by use (law of passing off) without registration.</td></tr>
+    <tr><td><strong>Design</strong></td><td>Shape, configuration, pattern — <strong>aesthetic/visual appeal only</strong></td><td>Limited (weakest IPR)</td><td>Does NOT protect functional elements. Test = "what the eye can see." For mass-produced goods.</td></tr>
+    <tr><td><strong>Geographical Indication</strong></td><td>Origin of goods from specific geography</td><td>—</td><td>e.g., Darjeeling tea. Beneficiaries = producers from that region.</td></tr>
+    <tr><td><strong>Trade Secret</strong></td><td>Confidential business information</td><td><mark>As long as kept confidential = UNLIMITED</mark></td><td>Once disclosed, protection is lost. No registration needed.</td></tr>
+  </table></div>
+  <div class="hl hl-y"><strong>Unlimited Life IP = Trademark + Trade Secret</strong><br>
+  Limited Life IP = Patent (20yr) + Copyright (life+60yr) + Design → after expiry: go to PUBLIC DOMAIN.</div>
+
+  <h4>Patent Rights — Exclusive Bundle</h4>
+  <ul>
+    <li>Right to <strong>make/manufacture</strong></li>
+    <li>Right to <strong>sell</strong></li>
+    <li>Right to <strong>use</strong></li>
+    <li>Right to <strong>offer for sale</strong></li>
+    <li>Right to <strong>import</strong></li>
+    <li>Anyone doing these without consent → infringement</li>
+  </ul>
+</div>
+
+<div class="sec" id="w6-trips">
+  <h3><span class="icon ic-g">🌍</span> TRIPS Agreement & History</h3>
+  <ul>
+    <li><strong>TRIPS</strong> = Trade-Related Aspects of Intellectual Property Rights</li>
+    <li>Agreement under the <strong>World Trade Organization (WTO)</strong></li>
+    <li>Mandates <strong>20-year patent term</strong> for all WTO member countries</li>
+    <li>Technology agnostic — applies to ALL fields of technology</li>
+    <li>Before TRIPS: Patent term was <strong>14 years</strong> in most countries</li>
+    <li>In India before TRIPS: 14 years general, up to 7 years for pharmaceuticals</li>
+  </ul>
+  <h4>Why 14 Years Historically?</h4>
+  <p>In England: 7 years to train an apprentice. Craftsmen were given exclusive privilege in exchange for training 2 British apprentices. 7 + 7 = 14 years.</p>
+  <h4>Historical Context</h4>
+  <ul>
+    <li>IPR attained international recognition with advent of <strong>Industrial Revolution</strong> (NOT Green Revolution!)</li>
+    <li>Advancement in printing technology → quick spread of ideas → mass duplication possible</li>
+    <li>Before Industrial Revolution: <strong>Oral-formulaic tradition</strong> (memorize and pass on) — Shakespeare benefited from this</li>
+    <li>Copyright requires things to be <strong>recorded/expressed on some medium</strong> — memorizing is NOT "making a copy"</li>
+  </ul>
+  <h4>Patent Specification & Claims</h4>
+  <ul>
+    <li><strong>Patent specification</strong> = descriptive document for an invention (like a land deed)</li>
+    <li>Contains: background art, description, embodiments, illustrations, and <strong>Claims</strong></li>
+    <li><strong>Claims</strong> = concluding part that demarcates the legal boundaries of the IP</li>
+    <li><strong>Protection is confined to WHAT IS MENTIONED IN THE CLAIMS</strong> — NOT the descriptive part</li>
+    <li><strong>Prior art</strong> = what has gone before (existing technology). Inventor must distinguish from prior art.</li>
+    <li>Patent prosecution = examination by patent office</li>
+  </ul>
+  <h4>Copyright — Idea/Expression Dichotomy</h4>
+  <p>Copyright protects the <strong>expression</strong> of an idea, NOT the idea itself. Many authors can write "whodunit" crime novels (the idea), but each unique text is a protected expression. Agatha Christie could write dozens of novels with the same detective — each receives its own copyright because the specific text is unique.</p>
+  <h4>Quick Identification Guide</h4>
+  <div class="tw"><table>
+    <tr><th>Scenario</th><th>IPR Type</th></tr>
+    <tr><td>Book written by Prof Feroz</td><td><strong>Copyright</strong></td></tr>
+    <tr><td>Company logo identifying business</td><td><strong>Trademark</strong></td></tr>
+    <tr><td>New drug discovery / invention</td><td><strong>Patent</strong></td></tr>
+    <tr><td>Unique shape of a bottle (aesthetic)</td><td><strong>Design</strong></td></tr>
+    <tr><td>Coca-Cola formula (kept secret)</td><td><strong>Trade Secret</strong></td></tr>
+    <tr><td>Darjeeling tea</td><td><strong>Geographical Indication</strong></td></tr>
+    <tr><td>A house, land, car</td><td><strong>Real Property (NOT IP)</strong></td></tr>
+    <tr><td>Medical methods of treatment</td><td><strong>Exempted from patent</strong> under Indian Patent Act Section 3</td></tr>
+  </table></div>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 6 — Master Summary</h3>
+  <ul>
+    <li><strong>IPR traits:</strong> Protectable by law, Intangible, Commercial value, Easily replicable (NOT "cannot be easily replicated")</li>
+    <li><strong>IPR are EXCLUSIVE rights</strong> (not non-exclusive)</li>
+    <li><strong>Patent = 20 years from application</strong> (TRIPS/WTO). Before TRIPS = 14 years.</li>
+    <li><strong>Copyright India = Life + 60 years.</strong> Berne Convention = no mandatory registration.</li>
+    <li><strong>Trademark = 10 years, renewable = unlimited life IP</strong></li>
+    <li><strong>Trade Secret = unlimited life</strong> (as long as kept confidential)</li>
+    <li><strong>Limited life IP → public domain</strong> after expiry</li>
+    <li><strong>Infringement = trespass = violation of IPR</strong> → both civil & criminal remedies</li>
+    <li><strong>Claims</strong> define the legal boundaries of a patent (not the description)</li>
+    <li><strong>Copyright:</strong> protects expression, NOT the idea itself</li>
+    <li><strong>IPR originated with Industrial Revolution</strong> (NOT Green Revolution)</li>
+    <li><strong>Design = weakest IPR</strong> → only aesthetic/visual appeal</li>
+    <li><strong>WIPO = World Intellectual Property Organization</strong> (UN body for IP)</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 6 -->
+<div class="quiz-sec" id="quiz6">
+  <h3 style="background:linear-gradient(135deg,#4ecdc4,#00b894);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 6 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. Which of the following are common characteristics of intellectual property rights? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. It is protectable by law</div>
+      <div class="correct-opt">B. It is intangible in nature</div>
+      <div>C. It cannot be easily replicated</div>
+      <div class="correct-opt">D. It has commercial value</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, D.</strong> "Cannot be easily replicated" is WRONG — IP CAN be easily replicated (that's exactly why IPR protection is needed in the first place).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. Which of the following is true? Statement 1: IPRs are non-exclusive set of rights. Statement 2: IPRs protect products of human creative labour.</p>
+    <div class="opts">
+      <div>A. Statement 1 is true, Statement 2 is false</div>
+      <div class="correct-opt">B. Statement 1 is false, Statement 2 is true</div>
+      <div>C. Both are true</div>
+      <div>D. Both are false</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B.</strong> IPRs are EXCLUSIVE rights (Statement 1 is FALSE). They do protect products of human creative labour (Statement 2 is TRUE).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. What is the duration of a patent (TRIPS Agreement)?</p>
+    <div class="opts">
+      <div>A. 14 years from filing</div>
+      <div class="correct-opt">B. 20 years from date of application</div>
+      <div>C. 7 years from date of grant</div>
+      <div>D. Lifetime of the inventor + 20 years</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B — 20 years from date of application.</strong> This is mandated by the TRIPS Agreement under WTO. Before TRIPS it was 14 years. Note: it's from APPLICATION date, not grant date.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. What is the duration of copyright in India?</p>
+    <div class="opts">
+      <div>A. Life of author + 20 Years</div>
+      <div>B. Life of author + 40 Years</div>
+      <div class="correct-opt">C. Life of author + 60 Years</div>
+      <div>D. Life of author + 80 Years</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — Life + 60 years.</strong> In India, copyright lasts lifetime of author + 60 years after death. For institutions, 60 years from date of creation/publication.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. Which intellectual property right has unlimited life?</p>
+    <div class="opts">
+      <div class="correct-opt">A. Trademark</div>
+      <div>B. Patent</div>
+      <div>C. Copyright</div>
+      <div>D. Design</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A — Trademark.</strong> Trademarks are granted for 10 years but can be renewed indefinitely = unlimited life IP. Trade Secrets also have unlimited life but that wasn't an option. Patents (20yr) and Copyright (life+60yr) are limited life.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q6. Which part of a patent specification defines the legal scope of protection?</p>
+    <div class="opts">
+      <div>A. The description section</div>
+      <div>B. The abstract</div>
+      <div class="correct-opt">C. The claims</div>
+      <div>D. The drawings</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — The claims.</strong> Claims define the exact boundaries of protection — like boundaries on a land deed. Protection is confined to what is explicitly claimed. The description explains, but only claims protect.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q7. IPR first gained international recognition with the advent of:</p>
+    <div class="opts">
+      <div>A. The Green Revolution</div>
+      <div class="correct-opt">B. The Industrial Revolution</div>
+      <div>C. The French Revolution</div>
+      <div>D. The Digital Revolution</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B — Industrial Revolution.</strong> Mass manufacturing made duplication easy. Printing technology spread ideas rapidly. People crossing borders spread works across nations. NOT the Green Revolution (a common wrong answer).</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 7 — DESIGN OF EXPERIMENTS & STATISTICS
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week7">
+  <h2 class="wh-7">Week 7</h2>
+  <p>Design of Experiments (DOE) — Statistics, ANOVA, Regression & Factorial Design</p>
+</div>
+
+<div class="sec" id="w7-fundamental">
+  <h3><span class="icon ic-o">📐</span> The Fundamental DOE Equation</h3>
+  <div class="formula">yᵢ = ηᵢ + εᵢ
+
+yᵢ  → actual measurement recorded (what you write down)
+ηᵢ  → TRUE value (unknown; what you really want to know)
+εᵢ  → random error (positive or negative; scatter is unavoidable; NOT your mistake)</div>
+  <div class="hl hl-o"><strong>Key Insight:</strong> You can NEVER directly know ηᵢ. Experiments give estimates. The scatter εᵢ is not a mistake — it's physics. DOE teaches you to <mark>live with scatter and still draw powerful conclusions</mark>.</div>
+  <p><strong>Why do experiments?</strong> (a) To prove theory, (b) Proof of concept, (c) When theory is too complex to develop analytically.</p>
+</div>
+
+<div class="sec" id="w7-probability">
+  <h3><span class="icon ic-o">📊</span> Probability & Distributions</h3>
+  <h4>Probability Density Function (PDF)</h4>
+  <ul>
+    <li><strong>Random Variable X</strong> — abstract before experiment; becomes small x after measurement</li>
+    <li><strong>PDF f(x)</strong> — describes distribution of probabilities for a continuous random variable</li>
+    <li><mark>Total area under the curve = 1</mark> (always, for any valid PDF)</li>
+    <li>P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx = F(b) − F(a)</li>
+    <li>∫ₐᵃ f(x) dx = 0 always (single point has zero probability)</li>
+  </ul>
+  <div class="formula">Mean (μ):     E[X] = ∫₋∞^∞ x · f(x) dx
+Variance (σ²): E[(X−μ)²] = ∫₋∞^∞ (x−μ)² · f(x) dx</div>
+  <div class="hl hl-y"><strong>Exam Trap:</strong> "∫₀^∞ f(x)dx = 1" is NOT always true — the total area from -∞ to +∞ = 1. If distribution is only on positive values (like chi-square), then ∫₀^∞ = 1, but NOT for all distributions.</div>
+
+  <h4>Normal Distribution — The Core of DOE</h4>
+  <div class="tw"><table>
+    <tr><th>Property</th><th>Value/Formula</th></tr>
+    <tr><td>Notation</td><td>N(μ, σ²) — parameters are mean μ and variance σ²</td></tr>
+    <tr><td>PDF</td><td>f(x) = (1/√(2πσ²)) · exp(−(x−μ)²/(2σ²))</td></tr>
+    <tr><td>Shape</td><td>Symmetric, bell-shaped, unimodal</td></tr>
+    <tr><td>Symmetry</td><td>Symmetric about the <strong>MEAN</strong> (not SD, not SD×Mean)</td></tr>
+    <tr><td>Mean = Median = Mode</td><td>All three are equal for normal distribution</td></tr>
+  </table></div>
+  <div class="formula">68–95–99.7 Rule:
+±1σ from mean  →  ~68% of data
+±2σ from mean  →  ~95% of data
+±3σ from mean  →  ~99.7% of data</div>
+  <div class="hl hl-g"><strong>Standardization:</strong> If X ~ N(μ, σ²), then Z = (X − μ)/σ ~ N(0,1). Use a SINGLE Z-table for ANY normal distribution!</div>
+</div>
+
+<div class="sec" id="w7-sampling">
+  <h3><span class="icon ic-y">📈</span> Sampling & Estimation</h3>
+  <div class="tw"><table>
+    <tr><th>Concept</th><th>Population</th><th>Sample</th></tr>
+    <tr><td>Mean</td><td>μ (true, unknown)</td><td>x̄ = Σxᵢ/n (estimator)</td></tr>
+    <tr><td>Variance</td><td>σ² (true, unknown)</td><td>s² = Σ(xᵢ−x̄)²/(n−1) (estimator)</td></tr>
+    <tr><td>Type</td><td>Parameter</td><td>Statistic / Point Estimate</td></tr>
+  </table></div>
+  <div class="hl hl-b"><strong>Why n−1 in sample variance?</strong> Degrees of freedom. Among n deviations (xᵢ−x̄), they must sum to 0 — so only n−1 are independent. Dividing by n−1 gives UNBIASED estimate of σ².</div>
+  <h4>Sampling Distribution of the Mean</h4>
+  <div class="formula">E[x̄] = μ          → mean of sample means = population mean
+Var[x̄] = σ²/n   → variance of sample means = σ²/n
+SD[x̄] = σ/√n   → standard error of the mean</div>
+  <div class="hl hl-g"><strong>Intuition:</strong> Larger sample → smaller variance of means → more precise estimates. Sample of size 100 = 10× more precise than size 1 (in terms of SD).</div>
+  <h4>Central Limit Theorem (CLT)</h4>
+  <div class="hl hl-t"><strong>CLT:</strong> Even if the parent population is NOT normal, the sampling distribution of the mean approaches normality as n increases. <mark>n > 30 is the rule of thumb.</mark></div>
+  <div class="hl hl-r"><strong>FALSE statements about CLT (exam traps):</strong><br>
+  ❌ "If parent is normal, sampling distribution is NOT normal for n&lt;30" — FALSE. If parent IS normal, sampling dist IS always normal regardless of n.<br>
+  ❌ "If parent is not normal, sampling dist is also not normal regardless of n" — FALSE. CLT fixes this for large n (>30).</div>
+</div>
+
+<div class="sec" id="w7-ci">
+  <h3><span class="icon ic-b">📏</span> Confidence Intervals & Hypothesis Testing</h3>
+  <h4>Confidence Intervals</h4>
+  <div class="formula">100(1−α)% CI when σ is known:
+x̄ − z(α/2)·σ/√n  ≤  μ  ≤  x̄ + z(α/2)·σ/√n
+
+α = significance level (0.05 for 95% CI)
+z(α/2) ≈ 1.96 for 95% CI (α = 0.05)</div>
+  <div class="hl hl-b"><strong>Meaning:</strong> If you take 100 random samples and compute 95% CIs from each, ~95 of those intervals will contain the true μ. Note: μ is fixed; the interval varies across samples.</div>
+  <p><strong>t-distribution:</strong> When σ² is unknown AND sample size is small, use t = (x̄−μ)/(s/√n) with n−1 degrees of freedom. As df → ∞, t-distribution → Normal.</p>
+  <h4>Chi-Square & F Distributions</h4>
+  <div class="cgrid">
+    <div class="ccard" style="border-color:rgba(240,165,0,.3)">
+      <h5 style="color:var(--orange)">Chi-Square (χ²)</h5>
+      <p>χ² = (n−1)s²/σ² with n−1 df. Used for CIs on variance. Only positive values (right-skewed). NOT symmetric.</p>
+    </div>
+    <div class="ccard" style="border-color:rgba(116,185,255,.3)">
+      <h5 style="color:var(--blue)">F Distribution</h5>
+      <p>Ratio of two chi-squares scaled by their DoF. Two sets of DoF: numerator (m₁) and denominator (m₂). Used in ANOVA.</p>
+    </div>
+  </div>
+  <h4>Hypothesis Testing</h4>
+  <div class="tw"><table>
+    <tr><th>Decision \ Reality</th><th>H₀ is TRUE</th><th>H₀ is FALSE</th></tr>
+    <tr><td>Do NOT reject H₀</td><td style="color:var(--green)">✅ Correct</td><td style="color:var(--red)">Type II Error (β) — missed detection</td></tr>
+    <tr><td>Reject H₀</td><td style="color:var(--red)">Type I Error (α) ← <strong>MORE SERIOUS</strong></td><td style="color:var(--green)">✅ Correct</td></tr>
+  </table></div>
+  <div class="hl hl-r"><strong>Type I Error > Type II Error in severity:</strong><br>
+  Type I = Innocent person convicted = discarding a perfectly good process for an unproven one.<br>
+  Type II = Guilty person freed = keeping a bad process when a good one exists.<br>
+  We control α (Type I error rate) when setting significance level.</div>
+  <p>Scope of hypothesis testing: concerns <strong>parameters of probability distribution of the population</strong>, not the sample. It relies on data from the sample.</p>
+</div>
+
+<div class="sec" id="w7-anova">
+  <h3><span class="icon ic-o">📉</span> ANOVA & Experimental Design</h3>
+  <h4>One-Factor ANOVA Table</h4>
+  <div class="tw"><table>
+    <tr><th>Source</th><th>Sum of Squares</th><th>Degrees of Freedom</th><th>Mean Square</th><th>F-ratio</th></tr>
+    <tr><td>Treatments</td><td>SS_Treatment</td><td>a − 1</td><td>MS_T = SS_T/(a−1)</td><td rowspan="2" style="vertical-align:middle"><strong>MS_T / MS_E</strong></td></tr>
+    <tr><td>Error</td><td>SS_Error</td><td>a(n−1)</td><td>MS_E = SS_E/[a(n−1)]</td></tr>
+    <tr><td>Total</td><td>SS_Total</td><td>an−1</td><td>—</td><td>—</td></tr>
+  </table></div>
+  <div class="hl hl-o"><strong>High F ratio → factor significantly affects response.</strong> F for AB (interaction) being high → interaction is significant. P-value = probability of committing Type I error.</div>
+  <h4>Interaction Effects</h4>
+  <ul>
+    <li><mark>Parallel lines in interaction plot → NO interaction</mark> between factors</li>
+    <li>Crossing, converging, or diverging lines → Interaction EXISTS</li>
+    <li>Interaction means: Factor A's effect on response DEPENDS on the level of Factor B</li>
+  </ul>
+  <h4>Randomization in Experiments</h4>
+  <div class="hl hl-g"><strong>Randomize run order!</strong> Uncontrolled lurking effects (temperature build-up, instrument drift, operator fatigue) get evenly distributed across all treatments rather than systematically biasing one. Example: Testing 3 toners sequentially — copier heats up and Toner C always gets hotter conditions. Randomization prevents this bias.</div>
+</div>
+
+<div class="sec" id="w7-factorial">
+  <h3><span class="icon ic-p">🔢</span> Factorial Design & Regression</h3>
+  <h4>2ⁿ Factorial Design</h4>
+  <ul>
+    <li>n factors, each at 2 levels (Low and High). Total runs = 2ⁿ</li>
+    <li><strong>Economical</strong> — maximum information from minimum runs vs one-factor-at-a-time (OFAT)</li>
+    <li><strong>Captures interactions</strong> — OFAT misses interaction effects completely</li>
+    <li>Both qualitative and quantitative factors can be analyzed together</li>
+  </ul>
+  <h4>Linear Regression Model</h4>
+  <div class="formula">y = β₀ + β₁X₁ + β₂X₂ + ... + βₖXₖ + ε
+
+β₀          → intercept
+β₁...βₖ    → partial regression coefficients (k+1 unknowns total)
+ε           → random error ~ N(0, σ²)
+
+Matrix form: y = Xβ + ε
+Least-squares solution: β̂ = (X'X)⁻¹ X'y</div>
+  <div class="formula">Coefficient of Determination:
+R² = SS_Regression / SS_Total = 1 − SS_Error/SS_Total
+
+R² = 1 when SS_Error = 0 (perfect fit) ← equivalent to SS_Regression = SS_Total
+
+Adjusted R² = 1 − (MS_Error/MS_Total) ← penalizes for extra parameters</div>
+  <div class="hl hl-r"><strong>Don't chase R² = 1!</strong> Adding useless parameters always inflates R². Use <strong>Adjusted R²</strong> — if Adj R² decreases when you add a term, that term is useless.</div>
+  <h4>Response Surface Methodology (RSM)</h4>
+  <ul>
+    <li>RSM finds the direction of steepest ascent/descent to reach the optimum efficiently</li>
+    <li><strong>Central Composite Design (CCD):</strong> 2ⁿ factorial + 2k axial points + center points</li>
+    <li>Center points detect curvature; axial points estimate individual quadratic terms</li>
+  </ul>
+  <h4>Canonical Analysis (Eigenvalues of B matrix)</h4>
+  <div class="hl hl-y"><strong>All eigenvalues NEGATIVE → stationary point is a MAXIMUM</strong><br>
+  <strong>All eigenvalues POSITIVE → stationary point is a MINIMUM</strong><br>
+  <strong>Mixed signs → SADDLE POINT</strong></div>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 7 — DOE Master Summary</h3>
+  <ul>
+    <li><strong>yᵢ = ηᵢ + εᵢ</strong> — every measurement = true value + random error</li>
+    <li><strong>Normal distribution symmetric about MEAN</strong> (not SD, not SD×Mean)</li>
+    <li><strong>PDF: Total area = 1; ∫ₐᵃ f(x)dx = 0</strong> always</li>
+    <li><strong>Sample variance uses (n−1)</strong> in denominator → degrees of freedom → unbiased</li>
+    <li><strong>Var[x̄] = σ²/n</strong> — variance of sampling distribution</li>
+    <li><strong>CLT: n>30</strong> → sampling dist of mean → Normal regardless of parent dist</li>
+    <li><strong>95% CI ↔ α=0.05 ↔ z(α/2) ≈ 1.96</strong></li>
+    <li><strong>Type I Error (α) > Type II Error (β)</strong> in severity</li>
+    <li><strong>F = MS_Treatment / MS_Error</strong> → high F = factor is significant</li>
+    <li><strong>R² = 1 when SS_Error = 0</strong></li>
+    <li><strong>Parallel lines in interaction plot → NO interaction</strong></li>
+    <li><strong>RSM eigenvalues: all negative → max; all positive → min; mixed → saddle</strong></li>
+    <li><strong>Randomize run order</strong> to distribute lurking variable effects</li>
+    <li><strong>2ⁿ factorial</strong> better than OFAT because it captures interactions</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 7 -->
+<div class="quiz-sec" id="quiz7">
+  <h3 style="background:linear-gradient(135deg,#f0a500,#fdcb6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 7 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. A normal probability distribution function is symmetric about —</p>
+    <div class="opts">
+      <div>A. Standard Deviation (SD)</div>
+      <div class="correct-opt">B. Mean</div>
+      <div>C. SD × Mean</div>
+      <div>D. SD − Mean</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B — Mean.</strong> The normal distribution is symmetric about its mean μ. Area below and above mean = exactly 50% each. SD controls the spread/width, not the center of symmetry.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. Coefficient of Determination (R²) is said to be unity when — <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Error Sum of Squares is zero</div>
+      <div>B. Total Sum of Squares is zero</div>
+      <div>C. Regression Sum of Squares is zero</div>
+      <div class="correct-opt">D. Regression SS is same as Total SS</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A and D are both correct</strong> (they mean the same thing). R² = SS_Regression/SS_Total = 1 when SS_Error = 0, which is equivalent to SS_Regression = SS_Total (since SS_Total = SS_Regression + SS_Error).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. Properties of a PDF f(x): <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. ∫₋∞^+∞ f(x)dx = 1</div>
+      <div class="correct-opt">B. ∫ₐᵃ f(x)dx = 0 for any value a</div>
+      <div>C. f(x) can be negative for some values</div>
+      <div class="correct-opt">D. P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, D.</strong> Total area = 1 always. Single-point probability = 0 always (continuous RV). f(x) cannot be negative — it's a density function. P(a≤X≤b) = integral from a to b.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. Regarding errors in hypothesis testing:</p>
+    <div class="opts">
+      <div>A. Type II error is more serious than Type I error</div>
+      <div class="correct-opt">B. Type I error (α) is more serious than Type II error (β)</div>
+      <div>C. Both types of errors are equally serious</div>
+      <div>D. The seriousness depends only on sample size</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B.</strong> Type I = rejecting a true null hypothesis = innocent person convicted = discarding a perfectly good process. This is considered more serious than Type II (failing to detect a real effect).</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. In an interaction plot for a 2-factor experiment, parallel lines indicate:</p>
+    <div class="opts">
+      <div>A. Strong interaction between factors</div>
+      <div>B. The main effects are not significant</div>
+      <div class="correct-opt">C. No interaction between the two factors</div>
+      <div>D. That the experiment was not properly randomized</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C.</strong> Parallel lines → no interaction. The lines being parallel means Factor A has the same effect on response regardless of the level of Factor B. Crossing/diverging/converging = interaction exists.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q6. In canonical analysis of a second-order RSM model, if all eigenvalues of matrix B are negative, the stationary point is a:</p>
+    <div class="opts">
+      <div>A. Minimum</div>
+      <div class="correct-opt">B. Maximum</div>
+      <div>C. Saddle point</div>
+      <div>D. Cannot be determined</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>B — Maximum.</strong> All negative eigenvalues → stationary point is a maximum. All positive → minimum. Mixed signs → saddle point. This is analogous to the second derivative test.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q7. For a set of numbers in arithmetic progression starting at a=5, common difference d=3, n=100 terms, the sample mean is:</p>
+    <div class="opts">
+      <div>A. 5</div>
+      <div>B. 150</div>
+      <div class="correct-opt">C. 153.5</div>
+      <div>D. 148.5</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — 153.5.</strong> For AP: mean = a + (n−1)d/2 = 5 + (99×3)/2 = 5 + 148.5 = 153.5. This is the midpoint between first term (5) and last term (5 + 99×3 = 302). Mean = (5+302)/2 = 153.5 ✓</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     WEEK 8 — RESEARCH IN APPLIED SCIENCES
+═══════════════════════════════════════════════════ -->
+<div class="week-hdr" id="week8">
+  <h2 class="wh-8">Week 8</h2>
+  <p>Research in Applied Mechanics & Advanced Research Methodology</p>
+</div>
+
+<div class="sec" id="w8-research">
+  <h3><span class="icon ic-r">🔭</span> What is Research? (Advanced Perspective)</h3>
+  <div class="hl hl-r"><strong>Definition:</strong> Conducting <mark>systematic scientific investigations</mark> to uncover the truth about a specific problem. NOT "repeating a search process" or "just discovering solutions."</div>
+  <div class="tw"><table>
+    <tr><th>Classroom Environment</th><th>Research Environment</th></tr>
+    <tr><td>Problems are well-defined</td><td>Problems are open-ended and ambiguous</td></tr>
+    <tr><td>Involves ONE unknown variable (given 3, find 4th)</td><td>Multiple variables; scholar defines and justifies ALL unknowns (given 1, define the other 3)</td></tr>
+    <tr><td>Fixed solutions exist</td><td>Multiple valid approaches; boundaries are fuzzy</td></tr>
+    <tr><td>Success = correct answer</td><td>Success = novel contribution + defensible methodology</td></tr>
+  </table></div>
+  <h4>Primary Objectives of Research</h4>
+  <ul>
+    <li>(1) Acquiring new knowledge</li>
+    <li>(2) Staying updated with latest advances</li>
+    <li>(3) Systematic examination and critical analysis</li>
+    <li><mark>ALL of the above</mark> — the correct NPTEL exam answer</li>
+  </ul>
+  <h4>Starting Point for Research</h4>
+  <div class="hl hl-y"><strong>Primary requirement when starting research:</strong> <mark>Establishing a research question</mark>. NOT starting data analysis, NOT writing the thesis first, NOT publishing immediately.</div>
+</div>
+
+<div class="sec" id="w8-interdisciplinary">
+  <h3><span class="icon ic-pk">🔗</span> Interdisciplinary Research</h3>
+  <div class="hl hl-pk"><strong>Primary objective of interdisciplinary research:</strong> To incorporate a <mark>comprehensive methodology by merging two or more fields</mark>. NOT to complicate problems, NOT to diminish individual field focus.</div>
+  <h4>Applied Mechanics at IIT Madras — Case Study</h4>
+  <ul>
+    <li>Three core groups: <strong>Fluid Mechanics, Solid Mechanics, Biomechanics/Biomedical Engineering</strong></li>
+    <li>Faculty from <strong>8 different undergraduate backgrounds</strong> — a "melting pot" culture</li>
+    <li>Cutting-edge tools: DNS of combustion, nano-indentation, atomic force microscopy (AFM)</li>
+    <li>Cell mechanics, fluid-structure interaction, electro-mechanical systems = interdisciplinary frontiers</li>
+  </ul>
+  <h4>India-Scale Thinking</h4>
+  <p>Not all critical problems need the newest tools. Innovative application of existing methods to strategic problems (DRDO, ISRO, rural development) is equally valuable and important.</p>
+</div>
+
+<div class="sec" id="w8-scholar">
+  <h3><span class="icon ic-r">🎓</span> Research Scholar's Journey</h3>
+  <p><strong>The big challenge:</strong> Transitioning from structured coursework to open-ended research. Students accustomed to "given problem, find answer" must shift to "define the problem, justify your assumptions."</p>
+  <ul>
+    <li>Approach it as a <strong>positive challenge</strong>, not an obstacle</li>
+    <li>Embrace interdisciplinary work — the world doesn't fit into vertical silos</li>
+    <li><strong>Advisor meetings:</strong> Weekly initially; frequency adjusts as independence grows. This is a two-person agreement.</li>
+    <li>Peer group discussion is as important as meeting the guide</li>
+  </ul>
+  <div class="hl hl-g"><strong>Success metrics for a PhD graduate:</strong><br>
+  (1) Clear understanding and ability to explain work to others<br>
+  (2) Identification of limitations and boundaries<br>
+  (3) Setting goals for future research<br>
+  (4) <mark>Ability to carry out research INDEPENDENTLY</mark><br>
+  NOT dependence on others.</div>
+  <h4>Career Paths for PhD Graduates</h4>
+  <ul>
+    <li><strong>Industry:</strong> GE, Boeing, Mercedes-Benz, DRDO, ISRO</li>
+    <li><strong>Academia:</strong> Largest employer of PhDs in India</li>
+    <li>Both require the same foundational skills: analytical thinking, technical depth, communication</li>
+  </ul>
+</div>
+
+<div class="sec" id="w8-experimental">
+  <h3><span class="icon ic-r">⚗️</span> Experimental Research Processes</h3>
+  <div class="hl hl-r"><strong>NOT required in experimental research:</strong> <mark>Manipulating results</mark>.<br>
+  Required processes: controlling variables, making observations, collecting references.</div>
+  <div class="hl hl-y"><strong>Why is manipulation discouraged?</strong> (exam answer = ALL of the following):<br>
+  • Distorts validity and reliability of findings<br>
+  • Undermines integrity and credibility of the researcher<br>
+  • Hampers progress of knowledge in the field</div>
+  <h4>Research Approach</h4>
+  <p>Recommended approach: <strong>Open mind + prepared for interdisciplinary work</strong>.</p>
+  <h4>Purpose of Research in Education</h4>
+  <p>To contribute to becoming a <strong>respected educational professional</strong>. NOT to diminish social status, NOT to suppress development.</p>
+</div>
+
+<div class="sum-box">
+  <h3>📋 Week 8 — Master Summary</h3>
+  <ul>
+    <li><strong>Research = systematic scientific investigations to uncover truth</strong></li>
+    <li><strong>Classroom:</strong> well-defined, one variable. <strong>Research:</strong> multiple variables, scholar defines all unknowns</li>
+    <li><strong>Primary objectives: ALL — acquire knowledge + stay updated + systematic critical analysis</strong></li>
+    <li><strong>Starting research: first establish a research question</strong></li>
+    <li><strong>Interdisciplinary research:</strong> merge 2+ fields for comprehensive methodology</li>
+    <li><strong>Successful PhD:</strong> independent research capability — NOT dependence on others</li>
+    <li><strong>NOT required in experimental research:</strong> manipulating results</li>
+    <li><strong>Discouraging manipulation: ALL — distorts validity + undermines integrity + hampers progress</strong></li>
+    <li><strong>Research purpose in education:</strong> become a respected educational professional</li>
+    <li><strong>Applied Mechanics groups:</strong> Fluid, Solid, Biomechanics/Biomedical</li>
+    <li><strong>India-Scale Thinking:</strong> innovative use of existing tools for strategic national problems</li>
+    <li><strong>Open-ended problems:</strong> given 1 variable, define the other 3 (vs classroom: given 3, find 4th)</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUIZ 8 -->
+<div class="quiz-sec" id="quiz8">
+  <h3 style="background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🧠 Week 8 Quiz — NPTEL PYQs</h3>
+
+  <div class="show-q">
+    <p class="sq">Q1. Which of the following processes are required in experimental research? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Controlling variables</div>
+      <div>B. Manipulating results to support the hypothesis</div>
+      <div class="correct-opt">C. Making observations</div>
+      <div class="correct-opt">D. Collecting references</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, C, D.</strong> Controlling variables, making observations, and collecting references are all required. B — manipulating results — is NOT required and is in fact unethical. This is a key NPTEL exam trap.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q2. Why is manipulation of results discouraged in research? <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. It distorts the validity and reliability of findings</div>
+      <div class="correct-opt">B. It undermines the integrity and credibility of the researcher</div>
+      <div class="correct-opt">C. It hampers the progress of knowledge</div>
+      <div>D. It makes publishing easier</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, C — All of the above (except D).</strong> In NPTEL format, the answer is often "all of the above" for this question. Manipulation has all three negative consequences.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q3. What is the primary requirement when starting research?</p>
+    <div class="opts">
+      <div>A. Begin data analysis immediately</div>
+      <div>B. Write the thesis draft</div>
+      <div class="correct-opt">C. Establishing a research question</div>
+      <div>D. Publishing preliminary findings</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C — Establishing a research question.</strong> Before anything else, you must define what you are trying to answer. Without a clear research question, all subsequent work lacks direction.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q4. What is the primary objective of interdisciplinary research?</p>
+    <div class="opts">
+      <div>A. To complicate the research problems</div>
+      <div>B. To diminish the importance of any single field</div>
+      <div class="correct-opt">C. To incorporate a comprehensive methodology by merging two or more fields</div>
+      <div>D. To limit the scope of research to one discipline</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C.</strong> Interdisciplinary research merges fields for comprehensive methodology. Modern challenges rarely fit into single discipline "silos." A, B, D are all contradictions of the actual purpose.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q5. The success of a PhD student can be measured by: <span class="multi-tag">MULTI</span></p>
+    <div class="opts">
+      <div class="correct-opt">A. Clear understanding and ability to explain their work to others</div>
+      <div class="correct-opt">B. Identification of limitations and boundaries of their research</div>
+      <div class="correct-opt">C. Ability to carry out research independently</div>
+      <div>D. Continued dependence on the advisor for all decisions</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>A, B, C.</strong> All three are indicators of PhD success. D is the OPPOSITE — continued dependence on the advisor is a sign of failure, not success. The goal is to become an independent researcher.</div>
+  </div>
+
+  <div class="show-q">
+    <p class="sq">Q6. What is the definition of research?</p>
+    <div class="opts">
+      <div>A. The act of repeating a search process</div>
+      <div>B. Just discovering solutions to known problems</div>
+      <div class="correct-opt">C. Conducting systematic scientific investigations to uncover the truth about a specific problem</div>
+      <div>D. Publishing as many papers as possible</div>
+    </div>
+    <button class="reveal-btn" onclick="toggleReveal(this)">Show Answer</button>
+    <div class="reveal-ans">✅ <strong>C.</strong> Research = systematic scientific investigations to uncover truth. A is a common wrong answer (pun on "re-search" = search again). B is too narrow. D is a caricature of research culture, not its definition.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FINAL SUMMARY PANEL -->
+<div class="sum-box" style="background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(253,121,168,.1),rgba(0,184,148,.08));border-color:rgba(108,92,231,.3);margin-bottom:2rem">
+  <h3 style="font-size:1.4rem">🏆 Ultimate Cheat Sheet — Most-Tested Points Across All Weeks</h3>
+  <div class="tw" style="margin-top:1rem"><table>
+    <tr><th>Topic</th><th>The Answer NPTEL Expects</th></tr>
+    <tr><td>Distinguishes research degree</td><td>Specialized knowledge in a specific field</td></tr>
+    <tr><td>Textbook vs research paper</td><td>Accumulated knowledge vs new frontiers</td></tr>
+    <tr><td>Incremental vs path-breaking</td><td>Incremental LEADS TO path-breaking</td></tr>
+    <tr><td>Advisor's role</td><td>Guidance when student encounters difficulties or loses direction</td></tr>
+    <tr><td>Student characteristics</td><td>Spark of interest + spirit of learning</td></tr>
+    <tr><td>Research motivation</td><td>Gain knowledge that advances understanding and enables meaningful impact</td></tr>
+    <tr><td>Attitude for research</td><td>Steady, incremental, long-term goal in mind</td></tr>
+    <tr><td>Literature review timing</td><td>Throughout the research process (not just beginning or end)</td></tr>
+    <tr><td>Websites vs journals reliability</td><td>Websites are LESS reliable than peer-reviewed journals</td></tr>
+    <tr><td>h-index</td><td>h papers each have at least h citations</td></tr>
+    <tr><td>Forward chronological search</td><td>Find all papers that cited a key foundational paper (using Web of Science/Scopus)</td></tr>
+    <tr><td>Anscombe's Quartet lesson</td><td>Always visualize data — identical statistics can hide completely different patterns</td></tr>
+    <tr><td>Most important DGP question</td><td>Is the DGP deterministic or stochastic? (most critical assumption)</td></tr>
+    <tr><td>Acid safety WRONG option</td><td>Acid wastes must be washed down the sink ← WRONG, always pick this as incorrect</td></tr>
+    <tr><td>Safety glasses requirement</td><td>Complete side coverage + shatter-proof; prescription glasses NOT adequate</td></tr>
+    <tr><td>Abstract purpose</td><td>Give it ALL away upfront — complete standalone summary</td></tr>
+    <tr><td>Results vs Discussion</td><td>Results = WHAT (factual), Discussion = WHY (interpretation/argument)</td></tr>
+    <tr><td>Practical intelligence</td><td>How one relates to and adapts to the environment = street smarts</td></tr>
+    <tr><td>Sternberg's 3 intelligences</td><td>Analytical (exams) + Synthetic (new combinations) + Practical (environment/street smarts)</td></tr>
+    <tr><td>10,000-hour rule</td><td>Herbert Simon (Nobel Laureate)</td></tr>
+    <tr><td>Edward de Bono</td><td>Most complex activity = to simplify</td></tr>
+    <tr><td>Yerkes-Dodson (1908)</td><td>Best performance at Eustress (optimal stress)</td></tr>
+    <tr><td>Flow Theory</td><td>Csikszentmihalyi — best performance when challenge = skill</td></tr>
+    <tr><td>IPR common characteristics</td><td>Protectable by law, Intangible, Commercial value. NOT "cannot be easily replicated"</td></tr>
+    <tr><td>IPR are ___ rights</td><td>EXCLUSIVE (not non-exclusive)</td></tr>
+    <tr><td>Patent duration</td><td>20 years from date of application (TRIPS/WTO)</td></tr>
+    <tr><td>Copyright India</td><td>Life + 60 years; Berne Convention = no mandatory registration</td></tr>
+    <tr><td>Trademark duration</td><td>10 years, renewable = UNLIMITED LIFE IP</td></tr>
+    <tr><td>Unlimited life IPR</td><td>Trademark + Trade Secret</td></tr>
+    <tr><td>IPR origin</td><td>Industrial Revolution (NOT Green Revolution)</td></tr>
+    <tr><td>Patent claims</td><td>Defines the legal scope/boundaries of protection (not description)</td></tr>
+    <tr><td>Normal distribution symmetric about</td><td>MEAN (not SD, not SD×Mean)</td></tr>
+    <tr><td>R² = 1 when</td><td>SS_Error = 0 (equivalent to SS_Regression = SS_Total)</td></tr>
+    <tr><td>Parallel lines in interaction plot</td><td>NO interaction between factors</td></tr>
+    <tr><td>Type I vs Type II error</td><td>Type I (α) is MORE serious than Type II (β)</td></tr>
+    <tr><td>Sample variance denominator</td><td>n−1 (degrees of freedom for unbiased estimate)</td></tr>
+    <tr><td>CLT rule of thumb</td><td>n > 30</td></tr>
+    <tr><td>RSM eigenvalues: negative</td><td>Maximum; positive = minimum; mixed = saddle</td></tr>
+    <tr><td>Experimental research: NOT required</td><td>Manipulating results</td></tr>
+    <tr><td>Starting research first step</td><td>Establish a research question</td></tr>
+    <tr><td>Research objectives</td><td>Acquire knowledge + stay updated + systematic analysis = ALL of the above</td></tr>
+    <tr><td>PhD success measure</td><td>Ability to carry out research INDEPENDENTLY</td></tr>
+  </table></div>
+</div>
+
+</div><!-- end container -->
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer>
+  <p>NPTEL Research Methodology — Complete 8-Week Revision Guide</p>
+  <p style="margin-top:.4rem;opacity:.6">All content compiled from NPTEL lectures. Study hard, you've got this! 🚀</p>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+  document.getElementById('pb').style.width = pct + '%';
+  document.getElementById('scrollTop').classList.toggle('show', d.scrollTop > 300);
+  // active nav
+  const sections = document.querySelectorAll('[id^="week"],[id^="quiz"]');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  document.querySelectorAll('.topnav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// Grade radio quizzes
+function gradeQuiz(qId) {
+  const quizMap = {
+    'q1': {prefix:'q1-', count:10},
+    'q2': {prefix:'q2-', count:8}
+  };
+  const info = quizMap[qId];
+  if (!info) return;
+  let score = 0;
+  for (let i = 1; i <= info.count; i++) {
+    const id = info.prefix + i;
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const correct = el.dataset.correct;
+    const selected = el.querySelector('input[type=radio]:checked');
+    const fb = el.querySelector('.fb');
+    if (selected) {
+      if (selected.value === correct) {
+        el.classList.add('correct');
+        el.classList.remove('wrong');
+        fb.textContent = '✅ Correct!';
+        fb.className = 'fb show cfb';
+        score++;
+      } else {
+        el.classList.add('wrong');
+        el.classList.remove('correct');
+        fb.textContent = `❌ Incorrect. The correct answer is option ${correct.toUpperCase()}.`;
+        fb.className = 'fb show wfb';
+      }
+    } else {
+      fb.textContent = '⚠️ No answer selected.';
+      fb.className = 'fb show wfb';
+    }
+  }
+  const scoreEl = document.getElementById('score-' + qId);
+  scoreEl.style.display = 'block';
+  const total = info.count;
+  const pct = Math.round((score / total) * 100);
+  let msg = pct >= 80 ? '🎉 Excellent!' : pct >= 60 ? '👍 Good effort!' : '📚 Keep reviewing!';
+  scoreEl.innerHTML = `Score: <span style="color:${pct>=80?'var(--green)':pct>=60?'var(--yellow)':'var(--red)'}">${score}/${total} (${pct}%)</span> ${msg}`;
+}
+
+// Toggle reveal answers
+function toggleReveal(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = ans.classList.contains('vis');
+  ans.classList.toggle('vis', !isOpen);
+  btn.textContent = isOpen ? 'Show Answer' : 'Hide Answer';
+}
+</script>
+</body>
+</html>
